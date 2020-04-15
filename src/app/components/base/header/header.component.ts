@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
+
+  connected: string;
 
   ngOnInit(): void {
+    this.connected = localStorage.getItem('token');
+  }
+
+  disconnect(){
+    localStorage.removeItem('token')
+    if(this.router.url=='/'){
+      location.reload()
+    }else{
+      this.router.navigate(['/'])
+    }
   }
 
 }

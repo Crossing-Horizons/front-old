@@ -1,7 +1,7 @@
-<div class="contenedor">
-    <h1>{{ 'principal.index' | translate }}</h1>
-    <div class="contenedor-botones">
-      <button [ngClass]="{'active': activeLang == 'es'}" (click)="cambiarLenguaje('es')">{{ "principal.spanish" | translate }}</button>
-      <button [ngClass]="{'active': activeLang == 'en'}" (click)="cambiarLenguaje('en')">{{ "principal.english" | translate }}</button>
-    </div>
+<li class="nav-item dropdown" dropdown>
+  <a mdbWavesEffect mdbDropdownToggle>{{ "principal.language" | translate }}<mdb-icon fas icon="globe"></mdb-icon></a>
+  <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
+    <a class="dropdown-item waves-light" [ngClass]="{'active': activeLang == 'en'}" (click)="cambiarLenguaje('en')">{{ "principal.english" | translate }}</a>
+    <a class="dropdown-item waves-light" [ngClass]="{'active': activeLang == 'es'}" (click)="cambiarLenguaje('es')">{{ "principal.spanish" | translate }}</a>
   </div>
+</li>

@@ -2,6 +2,26 @@
   "principal": {
     "index" : "Index",
     "english": "English",
-    "spanish": "Spanish"
+    "spanish": "Spanish",
+    "language": "Language"
+  },
+  "general": {
+    "username": "Username",
+    "password": "Password",
+    "required": {
+      "username": "Username required",
+      "password": "Password required"
+    }
+  },
+  "authentication": {
+    "login": "Sign in",
+    "register": "Register",
+    "forgot": "Forgot password?",
+    "notmember": "Not member?",
+    "remember": "Remember me",
+    "error": {
+      "notfound": "Incorrect username or password",
+      "server": "Internal server error"
+    }
   }
 }

@@ -2,6 +2,26 @@
   "principal": {
     "index" : "Índice",
     "english": "Inglés",
-    "spanish": "Español"
+    "spanish": "Español",
+    "language": "Idioma"
+  },
+  "general": {
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "required": {
+      "username": "Debe indicar el nombre de usuario",
+      "password": "Debe indicar la contraseña"
+    }
+  },
+  "authentication": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse" ,
+    "forgot": "¿Has olvidado la contraseña?",
+    "notmember": "¿No tienes cuenta?",
+    "remember": "Recuérdame",
+    "error": {
+      "notfound": "Nombre de usuario o contraseña incorrecto",
+      "server": "Error interno del servidor"
+    }
   }
 }

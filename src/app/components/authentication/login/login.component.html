@@ -1,50 +1,53 @@
+<app-header></app-header>
 <div class="container my-5">
   <!-- Default form login -->
-  <form class="text-center border border-light p-5">
+  <form class="text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <p class="h4 mb-4">Sign in</p>
+    <p class="h4 mb-4">{{"authentication.login" | translate}}</p>
 
-    <!-- Email -->
-    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+    <!-- Username -->
+    <input mdbInput mdbValidate type="text" id="username" formControlName="username" class="form-control mb-4" placeholder="{{'general.username' | translate}}" required />
+    <div *ngIf="username.invalid && (username.dirty || username.touched || submitAttemp)" class="alert alert-danger">
+      <div *ngIf="username.errors.required">
+        {{"general.required.username" | translate}}
+      </div>
+    </div>
 
     <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+    <input mdbInput type="password" id="password" formControlName="password" class="form-control mb-4" placeholder="{{'general.password' | translate}}" required>
+    <div *ngIf="password.invalid && (password.dirty || password.touched || submitAttemp)" class="alert alert-danger">
+      <div *ngIf="password.errors.required">
+        {{"general.required.password" | translate}}
+      </div>
+    </div>
+
+    <div *ngIf="this.loginError=='Not found'" class="alert alert-danger">
+      {{"authentication.error.notfound" | translate}}
+    </div>
+    <div *ngIf="this.loginError=='Internal'" class="alert alert-danger">
+      {{"authentication.error.server" | translate}}
+    </div>
 
     <div class="d-flex justify-content-around">
       <div>
         <!-- Remember me -->
-        <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+        <mdb-checkbox [default]="true">{{"authentication.remember" | translate}}</mdb-checkbox>
       </div>
       <div>
         <!-- Forgot password -->
-        <a href="">Forgot password?</a>
+        <a href="">{{"authentication.forgot" | translate}}</a>
       </div>
     </div>
 
     <!-- Sign in button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">{{"authentication.login" | translate}}</button>
 
     <!-- Register -->
-    <p>Not a member?
-      <a href="">Register</a>
+    <p>{{"authentication.notmember" | translate}}
+      <a href="">{{"authentication.register" | translate}}</a>
     </p>
-
-    <!-- Social login -->
-    <p>or sign in with:</p>
-
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="facebook"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="twitter"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="linkedin"></mdb-icon>
-    </a>
-    <a type="button" class="light-blue-text mx-2">
-      <mdb-icon fab icon="github"></mdb-icon>
-    </a>
     
   </form>
     <!-- Default form login -->
 </div>
+<app-footer></app-footer>
