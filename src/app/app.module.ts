@@ -15,9 +15,12 @@ import { FormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+//Application
 import { HeaderComponent } from './components/base/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
 import { FooterComponent } from './components/base/footer/footer.component';
+import { LoginComponent } from './components/authentication/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { FooterComponent } from './components/base/footer/footer.component';
     TranslationComponent,
     HeaderComponent,
     IndexComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
