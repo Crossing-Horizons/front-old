@@ -15,13 +15,14 @@ export class LoginComponent implements OnInit {
 
   userAccount = new UserAccount();
   submitAttemp = false;
-  loginError;
+  loginError: string;
 
   loginForm = new FormGroup({
     username: new FormControl(this.userAccount.username, [
       Validators.required]),
     password: new FormControl(this.userAccount.password,
     [Validators.required]),
+    remember: new FormControl([Validators.required])
   });
 
   ngOnInit(): void {
@@ -34,8 +35,13 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if(!this.loginForm.invalid){
       // send credential to backend only if the form is valid
-      this.authenticationService.login(this.loginForm).then(res =>
-        localStorage.setItem('token', res.token)
+      this.authenticationService.login(this.loginForm).then(res =>{
+          if(this.loginForm.get('remember').value){
+            localStorage.setItem('token', res.token)
+          } else {
+            sessionStorage.setItem('token', res.token)
+          }
+        }
         ).then(res => this.loginForm.errors == null).then(res=>
           this.router.navigate(['/'])
       ).catch( error => {

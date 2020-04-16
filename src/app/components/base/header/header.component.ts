@@ -13,11 +13,11 @@ export class HeaderComponent implements OnInit {
   connected: string;
 
   ngOnInit(): void {
-    this.connected = localStorage.getItem('token');
+    this.connected = localStorage.getItem('token') == null ? sessionStorage.getItem('token') : localStorage.getItem('token');
   }
 
   disconnect(){
-    localStorage.removeItem('token')
+    localStorage.getItem('token') == null ? sessionStorage.removeItem('token') : localStorage.removeItem('token');
     if(this.router.url=='/'){
       location.reload()
     }else{

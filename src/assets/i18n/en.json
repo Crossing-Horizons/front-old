@@ -6,8 +6,10 @@
     "language": "Language"
   },
   "general": {
-    "username": "Username",
-    "password": "Password",
+    "user":{
+      "username": "Username",
+      "password": "Password"
+    },
     "required": {
       "username": "Username required",
       "password": "Password required"
@@ -16,6 +18,7 @@
   "authentication": {
     "login": "Sign in",
     "register": "Register",
+    "logout": "Log out",
     "forgot": "Forgot password?",
     "notmember": "Not member?",
     "remember": "Remember me",

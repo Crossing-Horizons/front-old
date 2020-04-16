@@ -6,16 +6,19 @@
     "language": "Idioma"
   },
   "general": {
-    "username": "Nombre de usuario",
-    "password": "Contraseña",
+    "user":{
+      "username": "Nombre de usuario",
+      "password": "Contraseña"
+    },
     "required": {
       "username": "Debe indicar el nombre de usuario",
       "password": "Debe indicar la contraseña"
     }
   },
   "authentication": {
-    "login": "Iniciar sesión",
+    "login": "Conectarse",
     "register": "Registrarse" ,
+    "logout": "Desconectarse",
     "forgot": "¿Has olvidado la contraseña?",
     "notmember": "¿No tienes cuenta?",
     "remember": "Recuérdame",

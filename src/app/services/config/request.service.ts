@@ -24,7 +24,7 @@ export class RequestService {
       auth = true;
     }
     if (auth) {
-      const accessToken = localStorage.getItem('token');
+      const accessToken = localStorage.getItem('token') == null ? sessionStorage.getItem('token') : localStorage.getItem('token');
       headers['Authorization'] = 'Bearer ' + accessToken;
     }
 
@@ -54,7 +54,7 @@ export class RequestService {
     } catch (error) {
       // Unauthorized Error 401
       if (error.status === 401) {
-        localStorage.removeItem('token');
+        localStorage.getItem('token') == null ? sessionStorage.removeItem('token') : localStorage.removeItem('token');
         this.router.navigate(['/'])
       }
     
