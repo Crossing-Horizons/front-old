@@ -8,11 +8,14 @@
   "general": {
     "user":{
       "username": "Username",
-      "password": "Password"
+      "password": "Password",
+      "email": "Email",
+      "confirmpassword": "Confirm password"
     },
     "required": {
       "username": "Username required",
-      "password": "Password required"
+      "password": "Password required",
+      "email": "Email required"
     }
   },
   "authentication": {
@@ -22,9 +25,17 @@
     "forgot": "Forgot password?",
     "notmember": "Not member?",
     "remember": "Remember me",
+    "invalid":{
+      "username": "Username must be at least 4 characters long",
+      "email": "Incorrect email",
+      "password": "Password must be at least 8 characters long",
+      "matchpassword": "Passwords don't match"
+    },
     "error": {
       "notfound": "Incorrect username or password",
-      "server": "Internal server error"
+      "server": "Internal server error",
+      "email": "Email already used",
+      "username": "Username already exists"
     }
   }
 }

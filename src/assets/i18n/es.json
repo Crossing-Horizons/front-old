@@ -8,11 +8,14 @@
   "general": {
     "user":{
       "username": "Nombre de usuario",
-      "password": "Contraseña"
+      "password": "Contraseña",
+      "email": "Correo electrónico",
+      "confirmpassword": "Confirmar contraseña"
     },
     "required": {
       "username": "Debe indicar el nombre de usuario",
-      "password": "Debe indicar la contraseña"
+      "password": "Debe indicar la contraseña",
+      "email": "Debe indicar el correo electrónico"
     }
   },
   "authentication": {
@@ -22,9 +25,18 @@
     "forgot": "¿Has olvidado la contraseña?",
     "notmember": "¿No tienes cuenta?",
     "remember": "Recuérdame",
+    "invalid": {
+      "username": "El nombre de usuario debe tener al menos 4 caracteres",
+      "email": "Email incorrecto",
+      "password": "La contraseña debe tener al menos 8 caracteres",
+      "matchpassword": "Las contraseñas no coinciden"
+    },
     "error": {
       "notfound": "Nombre de usuario o contraseña incorrecto",
-      "server": "Error interno del servidor"
+      "server": "Error interno del servidor",
+      "username": "El nombre de usuario ya existe",
+      "email": "El correo electrónico ya está en uso"
+      
     }
   }
 }

@@ -6,8 +6,8 @@
     <p class="h4 mb-4">{{"authentication.login" | translate}}</p>
 
     <!-- Username -->
-    <input mdbInput mdbValidate type="text" id="username" formControlName="username" class="form-control mb-4" placeholder="{{'general.user.username' | translate}}" required />
-    <div *ngIf="username.invalid && (username.dirty || username.touched || submitAttemp)" class="alert alert-danger">
+    <input mdbInput type="text" id="username" formControlName="username" class="form-control mb-4" placeholder="{{'general.user.username' | translate}}" required />
+    <div *ngIf="username.invalid && (username.dirty || submitAttemp)" class="alert alert-danger">
       <div *ngIf="username.errors.required">
         {{"general.required.username" | translate}}
       </div>
@@ -15,7 +15,7 @@
 
     <!-- Password -->
     <input mdbInput type="password" id="password" formControlName="password" class="form-control mb-4" placeholder="{{'general.user.password' | translate}}" required>
-    <div *ngIf="password.invalid && (password.dirty || password.touched || submitAttemp)" class="alert alert-danger">
+    <div *ngIf="password.invalid && (password.dirty || submitAttemp)" class="alert alert-danger">
       <div *ngIf="password.errors.required">
         {{"general.required.password" | translate}}
       </div>
@@ -44,7 +44,7 @@
 
     <!-- Register -->
     <p>{{"authentication.notmember" | translate}}
-      <a href="">{{"authentication.register" | translate}}</a>
+      <a routerLink="/register">{{"authentication.register" | translate}}</a>
     </p>
     
   </form>

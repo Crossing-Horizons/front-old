@@ -17,4 +17,8 @@ export class AuthenticationService {
       password: loginForm.value.password
     }, {}, false);
   }
+
+  register(data: any) {
+    return this.requestService.request('POST', `${environment.endpoint}/authentication/register`, data, {}, false);
+  }
 }

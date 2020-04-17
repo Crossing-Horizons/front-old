@@ -1,9 +1,10 @@
 export class UserAccount {
     username: string;
-    name: string;
     password: string;
     email: string;
+    role: string;
     photo: string;
+    active: boolean;
     friends: number[];
     profile: number;
 }
