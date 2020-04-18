@@ -16,6 +16,26 @@ export class RegisterComponent implements OnInit {
   user_account = new UserAccount();
   submitAttemp = false;
   registerError: string;
+  showModal: boolean = false;
+
+  // Message language control
+  public availableLanguages(){
+    return ['es', 'en'];
+  }
+
+  public activeLang = 'en';
+
+  userLang = this.availableLanguages().includes(navigator.language.split("-")[0]) ? navigator.language.split("-")[0] : this.activeLang;
+  
+  getMessage(language: string){
+    if(language=='es'){
+      return `<img src="https://i.imgur.com/VIPB8vU.jpg">`
+    } else if(language=='en'){
+      return `<img src="https://i.imgur.com/anvUzZp.jpg">`
+    }
+  }
+
+  // end message language control
 
   registerForm = new FormGroup({
     username: new FormControl(this.user_account.username, [Validators.required, Validators.minLength(4)]),
@@ -39,9 +59,12 @@ export class RegisterComponent implements OnInit {
       fd.append('repeat_password', this.registerForm.get('repeat_password').value);
       fd.append('email', this.registerForm.get('email').value);
       fd.append('role', 'user');
-      fd.append('active', '1');
+
+      // Email message control
+      fd.append('message', this.getMessage(this.userLang))
+
       this.authenticationService.register(fd).then(res =>{
-          this.router.navigate(['/'])
+          this.showModal=true;
         }
       ).catch( error => {
         this.registerError = error.error.error;
@@ -66,4 +89,5 @@ export class RegisterComponent implements OnInit {
     }
     return null;
   }
+
 }

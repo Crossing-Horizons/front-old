@@ -21,6 +21,7 @@ import { IndexComponent } from './pages/index/index.component';
 import { FooterComponent } from './components/base/footer/footer.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
+import { ConfirmationComponent } from './components/authentication/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegisterComponent } from './components/authentication/register/register
     IndexComponent,
     FooterComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,

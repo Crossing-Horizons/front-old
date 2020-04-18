@@ -37,5 +37,15 @@
       "email": "Email already used",
       "username": "Username already exists"
     }
+  },
+  "messages":{
+    "registerconfirm": {
+      "header": "Account successfully registered!",
+      "body": "You will receive an activation link in the email you have specified"
+    },
+    "emailconfirm": {
+      "header": "Email has been successfully confirmed!",
+      "body": "Your account has been activated and you can access it now. To log in, click on 'Sign in' button on navbar"
+    }
   }
 }

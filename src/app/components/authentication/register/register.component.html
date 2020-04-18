@@ -10,7 +10,7 @@
             fugiat! Commodi sequi non animi ea dolor molestiae, quisquam iste, maiores. Nulla.</p>
             <br>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5" *ngIf="!showModal">
             <form class="text-center border border-light p-5" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
                 <p class="h4 mb-4">{{"authentication.register" | translate}}</p>
@@ -70,6 +70,10 @@
 
             </form>
             <!-- Default form register -->
+        </div>
+        <div *ngIf="showModal" class="alert alert-success col-md-5 mt-5 pt-5" role="alert">
+            <h2 class="alert-heading">{{ "messages.registerconfirm.header" | translate }}</h2>
+            <p>{{ "messages.registerconfirm.body" | translate }}</p>
         </div>
     </div>
 </div>

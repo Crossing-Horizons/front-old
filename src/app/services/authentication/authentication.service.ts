@@ -21,4 +21,8 @@ export class AuthenticationService {
   register(data: any) {
     return this.requestService.request('POST', `${environment.endpoint}/authentication/register`, data, {}, false);
   }
+
+  confirmation(hash: string){
+    return this.requestService.request('PUT', `${environment.endpoint}/authentication/confirmation/${hash}`, {}, {}, false);
+  }
 }

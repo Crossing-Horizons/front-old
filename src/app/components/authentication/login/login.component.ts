@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         ).then(res => this.loginForm.errors == null).then(res=>
           this.router.navigate(['/'])
       ).catch( error => {
-        if(error.error.error=='Not found account'){
+        if(error.error.error=='Not found account' || error.error.error == 'Incorrect password'){
           this.loginError = 'Not found';
         } else {
           this.loginError = 'Internal';
