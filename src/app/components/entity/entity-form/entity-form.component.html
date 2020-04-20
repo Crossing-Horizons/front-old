@@ -1,0 +1,203 @@
+<app-header></app-header>
+<div class="container my-5">
+<!-- Default form register -->
+    <form class="text-center border border-light p-5" [formGroup]="entityForm" (ngSubmit)="onSubmit()">
+
+        <p class="h4 mb-4">{{"authentication.register" | translate}}</p>
+
+        <div class="form-row">
+            <!-- Name -->
+            <div class="col-md-3">
+                <input type="text" id="name" class="form-control mb-4" formControlName="name" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="name.invalid && (name.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="name.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Description -->
+            <div class="col-md-3">
+                <textarea id="description" class="form-control mb-4" formControlName="description" placeholder="{{'general.user.username' | translate}}"></textarea>
+                <div *ngIf="description.invalid && (description.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="description.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Image -->
+            <div class="col-md-3">
+                <input type="file" id="image" class="form-control mb-4" formControlName="image" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="image.invalid && (image.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="image.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Exchangable -->
+            <div class="col-md-3">
+                <input type="checkbox" id="exchangable" class="form-check-control mb-4" formControlName="exchangable" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="exchangable.invalid && (exchangable.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="exchangable.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Size -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('size', type)">
+                <textarea id="size" class="form-control mb-4" formControlName="size" placeholder="{{'general.user.username' | translate}}"></textarea>
+                <div *ngIf="size.invalid && (size.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="size.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Place -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('place', type)">
+                <input type="text" id="place" class="form-control mb-4" formControlName="place" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="place.invalid && (place.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="place.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Date -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('date', type)">
+                <input type="text" id="date" class="form-control mb-4" formControlName="date" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="date.invalid && (date.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="date.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Time -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('time', type)">
+                <input type="text" id="time" class="form-control mb-4" formControlName="time" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="time.invalid && (time.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="time.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Sell price -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('sell_price', type)">
+                <input type="text" id="sell_price" class="form-control mb-4" formControlName="sell_price" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="sell_price.invalid && (sell_price.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="sell_price.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Rarity -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('rarity', type)">
+                <input type="text" id="rarity" class="form-control mb-4" formControlName="rarity" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="rarity.invalid && (rarity.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="rarity.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Obtaining -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('obtaining', type)">
+                <input type="text" id="obtaining" class="form-control mb-4" formControlName="obtaining" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="obtaining.invalid && (obtaining.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="obtaining.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Buy price -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('buy_price', type)">
+                <input type="text" id="buy_price" class="form-control mb-4" formControlName="buy_price" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="buy_price.invalid && (buy_price.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="buy_price.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Clothing type -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('clothing_type', type)">
+                <input type="text" id="clothing_type" class="form-control mb-4" formControlName="clothing_type" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="clothing_type.invalid && (clothing_type.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="clothing_type.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Plant type -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('plant_type', type)">
+                <input type="text" id="plant_type" class="form-control mb-4" formControlName="plant_type" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="plant_type.invalid && (plant_type.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="plant_type.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Animal type -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('animal_type', type)">
+                <input type="text" id="animal_type" class="form-control mb-4" formControlName="animal_type" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="animal_type.invalid && (animal_type.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="animal_type.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Personality -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('personality', type)">
+                <input type="text" id="personality" class="form-control mb-4" formControlName="personality" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="personality.invalid && (personality.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="personality.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Genre -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('genre', type)">
+                <input type="text" id="genre" class="form-control mb-4" formControlName="genre" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="genre.invalid && (genre.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="genre.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Slogan -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('slogan', type)">
+                <input type="text" id="slogan" class="form-control mb-4" formControlName="slogan" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="slogan.invalid && (slogan.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="slogan.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- CatchPhrase -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('catchphrase', type)">
+                <input type="text" id="catchphrase" class="form-control mb-4" formControlName="catchphrase" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="catchphrase.invalid && (catchphrase.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="catchphrase.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Birthdate -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('birthdate', type)">
+                <input type="text" id="birthdate" class="form-control mb-4" formControlName="birthdate" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="birthdate.invalid && (birthdate.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="birthdate.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+            <!-- Character -->
+            <div class="col-md-3" *ngIf="entityHelper.getEntityInputs('character', type)">
+                <input type="text" id="character" class="form-control mb-4" formControlName="character" placeholder="{{'general.user.username' | translate}}">
+                <div *ngIf="character.invalid && (character.dirty || submitAttemp)" class="alert alert-danger">
+                    <div *ngIf="character.errors.required">
+                        {{"general.required.username" | translate}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign up button -->
+        <button class="btn btn-info my-4 btn-block" type="submit">{{"authentication.register" | translate}}</button>
+    </form>
+</div>
+<app-footer></app-footer>
