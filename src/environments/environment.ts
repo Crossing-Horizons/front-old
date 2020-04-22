@@ -5,9 +5,7 @@
 export const environment = {
   production: false,
   endpoint: 'http://localhost:3000',
-  accessKeyId: 'AKIAZSB7QDPL6UGFEI5P',
-  secretAccessKey: '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',
-  region: 'eu-west-3'
+
 
 };
 
