@@ -1,41 +1,88 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, Router, CanActivateChild} from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthorizationService } from './authorization.service';
+import { Router } from '@angular/router';
+import { CanActivate } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorizationGuard implements CanActivate, CanActivateChild {
-  constructor(
-    private authorizationService: AuthorizationService,
-    private router: Router
-  ) {}
+/** Restricts access to routes to all users not logged */
+export class AuthorizationGuard implements CanActivate {
 
-  canActivate(
-    next: ActivatedRouteSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    const allowedRoles = next.data.allowedRoles;
-    const isAuthorized = this.authorizationService.isAuthorized(allowedRoles);
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
-    if (!isAuthorized) {
-      this.router.navigate(['/login']);
+  canActivate() {
+    if (!this.authenticationService.userRole()) {
+        this.router.navigate(['/login']);
+        return false;
     }
-
-    return isAuthorized;
+    return true;
   }
+}
 
-  canActivateChild(
-    next: ActivatedRouteSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    const allowedRoles = next.data.allowedRoles;
-    const isAuthorized = this.authorizationService.isAuthorized(allowedRoles);
+/** Restricts access to routes to all users logged in.
+ *  Only for login and register forms. 
+ */
+export class UnauthenticatedGuard implements CanActivate {
 
-    if (!isAuthorized) {
-      // if not authorized, show access denied message
-      this.router.navigate(['/login']);
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+
+  canActivate() {
+    if (this.authenticationService.userRole()) {
+        this.router.navigate(['/']);
+        return false;
     }
+    return true;
+  }
+}
 
-    return isAuthorized;
+@Injectable({
+  providedIn: 'root'
+})
+/** Restricts access to routes to all users other than the administrator */
+export class AdminGuard implements CanActivate {
+
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+
+  canActivate() {
+    if (this.authenticationService.userRole()!='admin') {
+        this.router.navigate(['/']);
+        return false;
+    }
+    return true;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+/** Restricts access to routes to all users other than the seller */
+export class SellerGuard implements CanActivate {
+
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+
+  canActivate() {
+    if (this.authenticationService.userRole()!='seller') {
+        this.router.navigate(['/']);
+        return false;
+    }
+    return true;
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+/** Restricts access to routes to all users other than the writer */
+export class WriterGuard implements CanActivate {
+
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+
+  canActivate() {
+    if (this.authenticationService.userRole()!='writer') {
+        this.router.navigate(['/']);
+        return false;
+    }
+    return true;
   }
 }

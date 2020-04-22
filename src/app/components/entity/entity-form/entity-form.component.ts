@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 
+import { UploadService } from '../../../services/config/upload.service';
+
 import { EntityHelper } from '../entity-helper';
 import { Entity } from '../../../models/entity';
 
@@ -12,8 +14,9 @@ import { Entity } from '../../../models/entity';
 })
 export class EntityFormComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper) { }
+  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private uploadService: UploadService) { }
 
+  selectedFiles: FileList;
   submitAttemp: boolean;
   type: string;
   entity = new Entity();
@@ -32,7 +35,21 @@ export class EntityFormComponent implements OnInit {
   }
 
   onSubmit() {
+    if(!this.entityForm.invalid){
 
+    } else {
+      this.submitAttemp = true;
+    }
+
+  }
+
+  upload() {
+    const file = this.selectedFiles.item(0);
+    this.uploadService.uploadFile(file, this.type);
+  }
+    
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
   }
 
   get name() { return this.entityForm.get('name'); }

@@ -5,6 +5,28 @@
     "spanish": "Spanish",
     "language": "Language"
   },
+  "entity":{
+    "name": "Name",
+    "description": "Description",
+    "image": "Image",
+    "size": "Size",
+    "place": "Place",
+    "date": "Date",
+    "time": "Time",
+    "sell_price": "Sell price",
+    "rarity": "Rarity",
+    "obtaining": "Obtaining",
+    "buy_price": "Buy price",
+    "clothing_type": "Clothing type",
+    "plant_type": "Plant type",
+    "animal_type": "Animal type",
+    "personality": "Personality",
+    "genre": "Genre",
+    "slogan": "Slogan",
+    "chatchphrase": "Catchphrase",
+    "birthdate": "Birthdate",
+    "character": "Character"
+  },
   "general": {
     "user":{
       "username": "Username",

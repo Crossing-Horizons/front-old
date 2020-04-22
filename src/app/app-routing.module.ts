@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthorizationGuard } from './utils/authguard/authorization.guard';
+import { AuthorizationGuard, UnauthenticatedGuard, AdminGuard, WriterGuard, SellerGuard } from './utils/authguard/authorization.guard';
 
 import { IndexComponent } from './components/base/index/index.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ConfirmationComponent } from './components/authentication/confirmation/confirmation.component';
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
+import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent },
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'confirmation/:hash', component: ConfirmationComponent},
-  {path: 'entity/:type', component: EntityFormComponent}
+  {path: 'login', canActivate:[UnauthenticatedGuard], component: LoginComponent},
+  {path: 'register', canActivate:[UnauthenticatedGuard], component: RegisterComponent},
+  {path: 'confirmation/:hash', canActivate:[UnauthenticatedGuard], component: ConfirmationComponent},
+  {path: 'entity/:type', component: EntityFormComponent},
+  {path: 'entity', component: EntityDisplayComponent}
 ];
 
 @NgModule({

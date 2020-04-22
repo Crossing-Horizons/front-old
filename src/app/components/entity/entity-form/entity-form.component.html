@@ -1,13 +1,14 @@
 <app-header></app-header>
 <div class="container my-5">
 <!-- Default form register -->
-    <form class="text-center border border-light p-5" [formGroup]="entityForm" (ngSubmit)="onSubmit()">
+    <form class="card border border-light p-5" [formGroup]="entityForm" (ngSubmit)="onSubmit()">
 
         <p class="h4 mb-4">{{"authentication.register" | translate}}</p>
 
         <div class="form-row">
             <!-- Name -->
             <div class="col-md-3">
+                <label for="name" class="form-label">Example label</label>
                 <input type="text" id="name" class="form-control mb-4" formControlName="name" placeholder="{{'general.user.username' | translate}}">
                 <div *ngIf="name.invalid && (name.dirty || submitAttemp)" class="alert alert-danger">
                     <div *ngIf="name.errors.required">
@@ -26,7 +27,11 @@
             </div>
             <!-- Image -->
             <div class="col-md-3">
-                <input type="file" id="image" class="form-control mb-4" formControlName="image" placeholder="{{'general.user.username' | translate}}">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" formControlName="image" (change)="selectFile($event)">
+                    <label class="custom-file-label" for="image">Selecciona imagen</label>
+                </div>
+                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
                 <div *ngIf="image.invalid && (image.dirty || submitAttemp)" class="alert alert-danger">
                     <div *ngIf="image.errors.required">
                         {{"general.required.username" | translate}}
@@ -35,7 +40,7 @@
             </div>
             <!-- Exchangable -->
             <div class="col-md-3">
-                <input type="checkbox" id="exchangable" class="form-check-control mb-4" formControlName="exchangable" placeholder="{{'general.user.username' | translate}}">
+                <mdb-checkbox [default]="true" formControlName="image">Default unchecked</mdb-checkbox>
                 <div *ngIf="exchangable.invalid && (exchangable.dirty || submitAttemp)" class="alert alert-danger">
                     <div *ngIf="exchangable.errors.required">
                         {{"general.required.username" | translate}}

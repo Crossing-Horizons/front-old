@@ -20,6 +20,7 @@ export class Entity{
     catchphrase: string;
     birthdate: string;
     character: number;
+    type: string;
 }
 
 const enum Genre{

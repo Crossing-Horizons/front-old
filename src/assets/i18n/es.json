@@ -5,6 +5,28 @@
     "spanish": "Español",
     "language": "Idioma"
   },
+  "entity":{
+    "name": "Nombre",
+    "description": "Descripción",
+    "image": "Imagen",
+    "size": "Tamaño",
+    "place": "Lugar",
+    "date": "Fecha",
+    "time": "Hora",
+    "sell_price": "Precio de venta",
+    "rarity": "Rareza",
+    "obtaining": "Obtención",
+    "buy_price": "Precio de compra",
+    "clothing_type": "Tipo de ropa",
+    "plant_type": "Tipo de planta",
+    "animal_type": "Tipo de animal",
+    "personality": "Personalidad",
+    "genre": "Género",
+    "slogan": "Lema",
+    "chatchphrase": "Muletilla",
+    "birthdate": "Cumpleaños",
+    "character": "Personaje"
+  },
   "general": {
     "user":{
       "username": "Nombre de usuario",

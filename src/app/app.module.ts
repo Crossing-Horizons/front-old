@@ -24,6 +24,8 @@ import { ConfirmationComponent } from './components/authentication/confirmation/
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
 
 import { EntityHelper } from './components/entity/entity-helper';
+import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
+import { AuthorizationService } from './utils/authguard/authorization.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { EntityHelper } from './components/entity/entity-helper';
     LoginComponent,
     RegisterComponent,
     ConfirmationComponent,
-    EntityFormComponent
+    EntityFormComponent,
+    EntityDisplayComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,9 @@ import { EntityHelper } from './components/entity/entity-helper';
       }
     })
   ],
-  providers: [EntityHelper],
+  providers: [
+    EntityHelper
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
