@@ -12,12 +12,8 @@ export class AuthenticationService {
 
   userToken = null;
 
-  login(loginForm: FormGroup) {
-    return this.requestService.request('POST', `${environment.endpoint}/authentication/login`,
-    {
-      username: loginForm.value.username,
-      password: loginForm.value.password
-    }, {}, false);
+  login(data: FormData) {
+    return this.requestService.request('POST', `${environment.endpoint}/authentication/login`, data, {}, false);
   }
 
   register(data: any) {
@@ -32,6 +28,6 @@ export class AuthenticationService {
   userRole(){
     this.userToken = localStorage.getItem('token') == null ? sessionStorage.getItem('token') : localStorage.getItem('token');
     this.userToken = this.userToken ? JSON.parse(atob(this.userToken.split('.')[1])) : null;
-    return this.userToken.role;
+    return this.userToken == null ? null : this.userToken.role;
   }
 }

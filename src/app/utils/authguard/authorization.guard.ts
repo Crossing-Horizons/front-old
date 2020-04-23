@@ -20,6 +20,9 @@ export class AuthorizationGuard implements CanActivate {
   }
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 /** Restricts access to routes to all users logged in.
  *  Only for login and register forms. 
  */

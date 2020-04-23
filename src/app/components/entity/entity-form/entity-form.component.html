@@ -40,7 +40,7 @@
             </div>
             <!-- Exchangable -->
             <div class="col-md-3">
-                <mdb-checkbox [default]="true" formControlName="image">Default unchecked</mdb-checkbox>
+                <mdb-checkbox [default]="true" formControlName="exchangable">Default unchecked</mdb-checkbox>
                 <div *ngIf="exchangable.invalid && (exchangable.dirty || submitAttemp)" class="alert alert-danger">
                     <div *ngIf="exchangable.errors.required">
                         {{"general.required.username" | translate}}

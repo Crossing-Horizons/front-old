@@ -35,7 +35,10 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if(!this.loginForm.invalid){
       // send credential to backend only if the form is valid
-      this.authenticationService.login(this.loginForm).then(res =>{
+      const fd = new FormData();
+      fd.append('username', this.loginForm.get('username').value);
+      fd.append('password', this.loginForm.get('password').value);
+      this.authenticationService.login(fd).then(res =>{
           if(this.loginForm.get('remember').value){
             localStorage.setItem('token', res.token)
           } else {

@@ -3,9 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import { UploadService } from '../../../services/config/upload.service';
+import { EntityService } from '../../../services/entity/entity.service';
 
 import { EntityHelper } from '../entity-helper';
 import { Entity } from '../../../models/entity';
+import { CompileReflector } from '@angular/compiler';
 
 @Component({
   selector: 'app-entity-form',
@@ -14,7 +16,8 @@ import { Entity } from '../../../models/entity';
 })
 export class EntityFormComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private uploadService: UploadService) { }
+  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private uploadService: UploadService, 
+    private entityService: EntityService) { }
 
   selectedFiles: FileList;
   submitAttemp: boolean;
@@ -36,6 +39,15 @@ export class EntityFormComponent implements OnInit {
 
   onSubmit() {
     if(!this.entityForm.invalid){
+      // this.entityService.create(JSON.stringify(this.entityForm.value)).catch(error => {
+      //   console.log(error);
+      // });
+      const form = new FormData();
+      form.append("name",this.entityForm.get('name').value)
+      form.append("image",this.selectedFiles.item(0))
+      this.entityService.create(form).catch(error => {
+        console.log(error);
+      });
 
     } else {
       this.submitAttemp = true;
@@ -44,8 +56,12 @@ export class EntityFormComponent implements OnInit {
   }
 
   upload() {
-    const file = this.selectedFiles.item(0);
-    this.uploadService.uploadFile(file, this.type);
+    const fd = new FormData();
+    fd.append("image", this.selectedFiles.item(0));
+    fd.append("folder", this.type)
+    this.uploadService.uploadFile(fd).catch(error => {
+      console.log(error);
+    });
   }
     
   selectFile(event) {
