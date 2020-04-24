@@ -1,26 +1,49 @@
 export class Entity{
-    name: string;
+    //common
+    english_name: string;
+    spanish_name: string;
     description: string;
     image: string;
-    exchangable: boolean;
-    size: string;
-    place: string;
-    date: Date;
+    exchangeable: boolean;
+
+    // fish and bugs
+    shadow: string;
+    location: string;
+    month_northerm: string;
+    month_southern: string;
     time: string;
-    sell_price: number;
+    all_day: boolean;
+    all_year: boolean;
+    price_cj: number;
+    price_flick: number;
     rarity: number;
-    obtaining: string;
+    museum_phrase: string;
+
+    // other
+    obtainment: string;
     buy_price: number;
+    sell_price: number;
+    date: string;
     clothing_type: Clothing;
     plant_type: Plants;
-    animal_type: Animals;
+    consumable_type: Consumables;
+    durability: Durabilities;
+    size: string;
+    special_character_id: number;
+
+    // vilager
+    species: Animals;
     personality: string;
     genre: Genre;
-    slogan: string;
     catchphrase: string;
     birthdate: string;
-    character: number;
+
+    // type of entity
     type: string;
+}
+
+const enum Type{
+    bug, fish, fossil, material, clothes, furniture, tool, plant, consumable, villager, special_special_character_id, event
 }
 
 const enum Genre{
@@ -28,11 +51,19 @@ const enum Genre{
 }
 
 const enum Clothing{
-    accessory, shoes,
+    accessory, bag, bottom, dress, headwear, shoes, socks, top, umbrella
 }
 
 const enum Plants{
     tree, flower
+}
+
+const enum Consumables{
+    fruit, vegetables, misc
+}
+
+const enum Durabilities{
+    low, medium, high, very_high, infinite
 }
 
 const enum Animals{

@@ -1,33 +1,11 @@
 {
-  "principal": {
-    "index" : "Index",
-    "english": "English",
-    "spanish": "Spanish",
-    "language": "Language"
-  },
-  "entity":{
-    "name": "Name",
-    "description": "Description",
-    "image": "Image",
-    "size": "Size",
-    "place": "Place",
-    "date": "Date",
-    "time": "Time",
-    "sell_price": "Sell price",
-    "rarity": "Rarity",
-    "obtaining": "Obtaining",
-    "buy_price": "Buy price",
-    "clothing_type": "Clothing type",
-    "plant_type": "Plant type",
-    "animal_type": "Animal type",
-    "personality": "Personality",
-    "genre": "Genre",
-    "slogan": "Slogan",
-    "chatchphrase": "Catchphrase",
-    "birthdate": "Birthdate",
-    "character": "Character"
-  },
   "general": {
+    "actions":{
+      "create": "Create",
+      "edit": "Edit",
+      "show": "Show",
+      "delete": "Delete"
+    },
     "user":{
       "username": "Username",
       "password": "Password",
@@ -40,6 +18,50 @@
       "email": "Email required"
     }
   },
+
+  "translation": {
+    "index" : "Index",
+    "english": "English",
+    "spanish": "Spanish",
+    "language": "Language"
+  },
+
+  "entity":{
+    "new_entity": "Add new entity",
+    "edit_entity": "Edit an entity",
+    "english_name": "English name",
+    "spanish_name": "Spanish name",
+    "description": "Description",
+    "image": "Image",
+    "size": "Size",
+    "location": "Location",
+    "date": "Date",
+    "time": "Time",
+    "sell_price": "Sell price",
+    "rarity": "Rarity",
+    "obtainment": "Obtainment",
+    "buy_price": "Buy price",
+    "clothing_type": "Clothing type",
+    "plant_type": "Plant type",
+    "species": "Specie",
+    "personality": "Personality",
+    "genre": "Genre",
+    "catchphrase": "Catchphrase",
+    "birthdate": "Birthdate",
+    "special_character": "Special character",
+    "exchangeable": "Exchangeable",
+    "month_northern": "Northern months",
+    "month_southern": "Southern months",
+    "all_day": "Available all day",
+    "all_year": "Available all year",
+    "price_flick": "Flick sell price",
+    "price_cj": "CJ sell price",
+    "museum_phrase": "Museum phrase",
+    "shadow": "Shadow",
+    "durability": "Durability",
+    "consumable_type": "Consumable type"
+  },
+
   "authentication": {
     "login": "Sign in",
     "register": "Register",
@@ -48,9 +70,9 @@
     "notmember": "Not member?",
     "remember": "Remember me",
     "invalid":{
-      "username": "Username must be at least 4 characters long",
+      "username": "Username must be at least 4 special_character_ids long",
       "email": "Incorrect email",
-      "password": "Password must be at least 8 characters long",
+      "password": "Password must be at least 8 special_character_ids long",
       "matchpassword": "Passwords don't match"
     },
     "error": {
@@ -60,6 +82,7 @@
       "username": "Username already exists"
     }
   },
+
   "messages":{
     "registerconfirm": {
       "header": "Account successfully registered!",

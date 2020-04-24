@@ -6,7 +6,7 @@
     <p class="h4 mb-4">{{"authentication.login" | translate}}</p>
 
     <!-- Username -->
-    <input mdbInput type="text" id="username" formControlName="username" class="form-control mb-4" placeholder="{{'general.user.username' | translate}}" required />
+    <input mdbInput type="text" id="username" formControlName="username" class="form-control mb-4" required />
     <div *ngIf="username.invalid && (username.dirty || submitAttemp)" class="alert alert-danger">
       <div *ngIf="username.errors.required">
         {{"general.required.username" | translate}}

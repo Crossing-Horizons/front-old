@@ -16,7 +16,7 @@
                 <p class="h4 mb-4">{{"authentication.register" | translate}}</p>
 
                 <!-- Username -->
-                <input type="text" id="username" class="form-control mb-4" formControlName="username" placeholder="{{'general.user.username' | translate}}">
+                <input type="text" id="username" class="form-control mb-4" formControlName="username">
                 <div *ngIf="username.invalid && (username.dirty || submitAttemp)" class="alert alert-danger">
                     <div *ngIf="username.errors.required">
                         {{"general.required.username" | translate}}

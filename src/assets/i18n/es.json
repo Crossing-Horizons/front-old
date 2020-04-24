@@ -1,33 +1,11 @@
 {
-  "principal": {
-    "index" : "Índice",
-    "english": "Inglés",
-    "spanish": "Español",
-    "language": "Idioma"
-  },
-  "entity":{
-    "name": "Nombre",
-    "description": "Descripción",
-    "image": "Imagen",
-    "size": "Tamaño",
-    "place": "Lugar",
-    "date": "Fecha",
-    "time": "Hora",
-    "sell_price": "Precio de venta",
-    "rarity": "Rareza",
-    "obtaining": "Obtención",
-    "buy_price": "Precio de compra",
-    "clothing_type": "Tipo de ropa",
-    "plant_type": "Tipo de planta",
-    "animal_type": "Tipo de animal",
-    "personality": "Personalidad",
-    "genre": "Género",
-    "slogan": "Lema",
-    "chatchphrase": "Muletilla",
-    "birthdate": "Cumpleaños",
-    "character": "Personaje"
-  },
   "general": {
+    "actions":{
+      "create": "Crear",
+      "edit": "Editar",
+      "show": "Ver",
+      "delete": "Eliminar"
+    },
     "user":{
       "username": "Nombre de usuario",
       "password": "Contraseña",
@@ -40,6 +18,50 @@
       "email": "Debe indicar el correo electrónico"
     }
   },
+
+  "translation": {
+    "index" : "Índice",
+    "english": "Inglés",
+    "spanish": "Español",
+    "language": "Idioma"
+  },
+
+  "entity":{
+    "new_entity": "Añadir nueva entidad",
+    "edit_entity": "Editar una entidad",
+    "english_name": "Nombre en inglés",
+    "spanish_name": "Nombre en español",
+    "description": "Descripción",
+    "image": "Imagen",
+    "size": "Tamaño",
+    "location": "Lugar",
+    "date": "Fecha",
+    "time": "Hora",
+    "sell_price": "Precio de venta",
+    "rarity": "Rareza",
+    "obtainment": "Obtención",
+    "buy_price": "Precio de compra",
+    "clothing_type": "Tipo de ropa",
+    "plant_type": "Tipo de planta",
+    "species": "Especie",
+    "personality": "Personalidad",
+    "genre": "Género",
+    "catchphrase": "Muletilla",
+    "birthdate": "Cumpleaños",
+    "special_character": "Personaje",
+    "exchangeable": "Intercambiable",
+    "month_northern": "Meses hemisferio norte",
+    "month_southern": "Meses hemisferio sur",
+    "all_day": "Disponible todo el día",
+    "all_year": "Disponible todo el año",
+    "price_flick": "Precio venta a Kamilo",
+    "price_cj": "Precio venta a CJ",
+    "museum_phrase": "Texto del museo",
+    "shadow": "Sombra",
+    "durability": "Durabilidad",
+    "consumable_type": "Tipo de consumible"
+  },
+
   "authentication": {
     "login": "Conectarse",
     "register": "Registrarse" ,
@@ -61,6 +83,7 @@
       
     }
   },
+
   "messages":{
     "registerconfirm": {
       "header": "¡La cuenta ha sido creada correctamente!",
