@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Entity } from '../../models/entity'
 
 @Injectable()
 export class EntityHelper{
-
-    getEntityFormAttributes(form, type, entity){
+    getEntityFormAttributes(form, type, entity: Entity){
         if(type=='fish'){
             form.addControl('shadow', new FormControl(entity.shadow, [Validators.required]));
             form.addControl('location', new FormControl(entity.location, [Validators.required]));
@@ -17,6 +17,7 @@ export class EntityHelper{
             form.addControl('sell_price', new FormControl(entity.sell_price, [Validators.required]));
             form.addControl('price_cj', new FormControl(entity.price_cj, [Validators.required]));
             form.addControl('rarity', new FormControl(entity.rarity, [Validators.required]));
+            //form.setValidators({ validators: this.checkRarity })
             form.get('all_day').setValue(false);
             form.get('all_year').setValue(false);
         } else
@@ -297,4 +298,14 @@ export class EntityHelper{
             }
         }
     }
+
+    // checkRarity(c: AbstractControl): ValidationErrors | null {
+    //     let rarity = c.get(['rarity']);
+    
+    //     if (Rarities.includes(rarity)) {
+    //       c.get(['rarity']).setErrors({wrong_rarity: true})
+    //       return { invalid: true };
+    //     }
+    //     return null;
+    //   }
 }

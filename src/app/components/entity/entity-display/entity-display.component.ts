@@ -13,10 +13,12 @@ export class EntityDisplayComponent implements OnInit {
   constructor(private route: ActivatedRoute, public entityHelper: EntityHelper) { }
 
   type: string;
+  name: string;
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      //this.type = params['type'];
-      this.type='insect'
+      this.type = params['type'];
+      this.name = params['name'];
     });
   }
 

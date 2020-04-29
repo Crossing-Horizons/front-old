@@ -131,7 +131,7 @@
                     <!-- Sell price -->
                     <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('sell_price', type)">
                         <label for="spanish_name" class="form-label">{{'entity.sell_price' | translate}}</label>
-                        <input type="text" id="sell_price" class="form-control mb-4" formControlName="sell_price">
+                        <input type="number" id="sell_price" class="form-control mb-4" formControlName="sell_price">
                         <div *ngIf="sell_price.invalid && (sell_price.dirty || submitAttemp)" class="alert alert-danger">
                             <div *ngIf="sell_price.errors.required">
                                 {{"general.required.username" | translate}}
@@ -141,7 +141,7 @@
                     <!-- Price CJ -->
                     <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('price_cj', type)">
                         <label for="spanish_name" class="form-label">{{'entity.price_cj' | translate}}</label>
-                        <input type="text" id="price_cj" class="form-control mb-4" formControlName="price_cj">
+                        <input type="number" id="price_cj" class="form-control mb-4" formControlName="price_cj">
                         <div *ngIf="price_cj.invalid && (price_cj.dirty || submitAttemp)" class="alert alert-danger">
                             <div *ngIf="price_cj.errors.required">
                                 {{"general.required.username" | translate}}
@@ -151,7 +151,7 @@
                     <!-- Price Flick -->
                     <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('price_flick', type)">
                         <label for="spanish_name" class="form-label">{{'entity.price_flick' | translate}}</label>
-                        <input type="text" id="price_flick" class="form-control mb-4" formControlName="price_flick">
+                        <input type="number" id="price_flick" class="form-control mb-4" formControlName="price_flick">
                         <div *ngIf="price_flick.invalid && (price_flick.dirty || submitAttemp)" class="alert alert-danger">
                             <div *ngIf="price_flick.errors.required">
                                 {{"general.required.username" | translate}}
@@ -181,7 +181,7 @@
                     <!-- Buy price -->
                     <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('buy_price', type)">
                         <label for="spanish_name" class="form-label">{{'entity.buy_price' | translate}}</label>
-                        <input type="text" id="buy_price" class="form-control mb-4" formControlName="buy_price">
+                        <input type="number" id="buy_price" class="form-control mb-4" formControlName="buy_price">
                         <div *ngIf="buy_price.invalid && (buy_price.dirty || submitAttemp)" class="alert alert-danger">
                             <div *ngIf="buy_price.errors.required">
                                 {{"general.required.username" | translate}}

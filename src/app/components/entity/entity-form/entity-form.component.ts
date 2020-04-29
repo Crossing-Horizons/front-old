@@ -22,18 +22,25 @@ export class EntityFormComponent implements OnInit {
   imgPreview;
   submitAttemp: boolean;
   type: string;
-  entity = new Entity();
+  entity = null;
+  creating: boolean = this.route.snapshot.data['creating']
 
-
-  entityForm = new FormGroup({
-    english_name: new FormControl(this.entity.english_name, [Validators.required]),
-    spanish_name: new FormControl(this.entity.spanish_name, [Validators.required]),
-    description: new FormControl(this.entity.description, [Validators.required]),
-    image: new FormControl(this.entity.exchangeable, [Validators.required]),
-    exchangeable: new FormControl(this.entity.exchangeable, [Validators.required])
-  });
+  entityForm;
 
   ngOnInit(): void {
+    if(this.creating){
+      this.entity = new Entity();
+    } else {
+
+    }
+
+    this.entityForm = new FormGroup({
+      english_name: new FormControl(this.entity.english_name, [Validators.required]),
+      spanish_name: new FormControl(this.entity.spanish_name, [Validators.required]),
+      description: new FormControl(this.entity.description, [Validators.required]),
+      image: new FormControl(this.entity.exchangeable, [Validators.required]),
+      exchangeable: new FormControl(this.entity.exchangeable, [Validators.required])
+    });
     // set checkboxes false by default
     this.entityForm.get('exchangeable').setValue(false)
     this.route.params.subscribe(params => {
@@ -50,6 +57,7 @@ export class EntityFormComponent implements OnInit {
       form.append("description",this.entityForm.get('description').value)
       form.append("exchangeable",this.entityForm.get('exchangeable').value)
       form.append("image", this.selectedFiles.item(0))
+      form.append("type", this.type)
       form = this.entityHelper.getEntityDataAttributes(form, this.type, this.entityForm)
       this.entityService.create(form).catch(error => {
         console.log(error);

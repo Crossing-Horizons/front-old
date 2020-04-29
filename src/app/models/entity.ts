@@ -9,14 +9,14 @@ export class Entity{
     // fish and bugs
     shadow: string;
     location: string;
-    month_northerm: string;
+    month_northern: string;
     month_southern: string;
     time: string;
     all_day: boolean;
     all_year: boolean;
     price_cj: number;
     price_flick: number;
-    rarity: number;
+    rarity: Rarities;
     museum_phrase: string;
 
     // other
@@ -37,37 +37,42 @@ export class Entity{
     genre: Genre;
     catchphrase: string;
     birthdate: string;
-
-    // type of entity
-    type: string;
 }
 
 const enum Type{
     bug, fish, fossil, material, clothes, furniture, tool, plant, consumable, villager, special_special_character_id, event
 }
 
-const enum Genre{
+export const enum Genre{
     male, female
 }
 
-const enum Clothing{
+export const enum Clothing{
     accessory, bag, bottom, dress, headwear, shoes, socks, top, umbrella
 }
 
-const enum Plants{
+export const enum Plants{
     tree, flower
 }
 
-const enum Consumables{
+export const enum Consumables{
     fruit, vegetables, misc
 }
 
-const enum Durabilities{
+export const enum Durabilities{
     low, medium, high, very_high, infinite
 }
 
-const enum Animals{
+export const enum Rarities{
+    common, uncommon, rare, ultra_rare
+}
+
+export const enum Animals{
     alligator, anteater, bear, bird, bull, cat, chicken, cow, cub, deer, dog, duck, eagle, elephant, frog, goat, gorilla,
     hamster, hippo, horse, kangaroo, koala, lion, mouse, monkey, octopus, ostrich, penguin, pig, rabbit, rhino, sheep, squirrel, 
     tiger, wolf
+}
+
+export const enum Personalities{
+    crancky, jock, lazy, smug, normal, peppy, sisterly, snooty
 }
