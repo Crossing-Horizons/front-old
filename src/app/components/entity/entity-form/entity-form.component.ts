@@ -24,7 +24,6 @@ export class EntityFormComponent implements OnInit {
   type: string;
   entity = new Entity();
 
-
   entityForm = new FormGroup({
     english_name: new FormControl(this.entity.english_name, [Validators.required]),
     spanish_name: new FormControl(this.entity.spanish_name, [Validators.required]),

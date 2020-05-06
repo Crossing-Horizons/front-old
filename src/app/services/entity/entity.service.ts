@@ -12,4 +12,9 @@ export class EntityService {
   create(data: any) {
       return this.requestService.request('POST', `${environment.endpoint}/entity`, data, {}, false);
     }
+
+  getEntityList(type: string){
+    return this.requestService.request('GET' ,`${environment.endpoint}/entity/list/${type}`, {}, {}, false );
+  }  
+
 }

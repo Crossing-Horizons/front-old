@@ -12,6 +12,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
+//Pagination
+import {NgxPaginationModule} from 'ngx-pagination'; 
+
 //Application components
 import { AppComponent } from './app.component';
 import { TranslationComponent } from './utils/translation/translation.component';
@@ -26,6 +29,8 @@ import { EntityFormComponent } from './components/entity/entity-form/entity-form
 import { EntityHelper } from './components/entity/entity-helper';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
 import { AuthorizationService } from './utils/authguard/authorization.service';
+import { EntityListComponent } from './components/entity/entity-list/entity-list.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +43,8 @@ import { AuthorizationService } from './utils/authguard/authorization.service';
     RegisterComponent,
     ConfirmationComponent,
     EntityFormComponent,
-    EntityDisplayComponent
+    EntityDisplayComponent,
+    EntityListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,7 @@ import { AuthorizationService } from './utils/authguard/authorization.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxPaginationModule,
     TranslateModule.forRoot({
       loader: {
       provide: TranslateLoader,

@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/authentication/register/register
 import { ConfirmationComponent } from './components/authentication/confirmation/confirmation.component';
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
+import { EntityListComponent } from './components/entity/entity-list/entity-list.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'register', canActivate:[UnauthenticatedGuard], component: RegisterComponent},
   {path: 'confirmation/:hash', canActivate:[UnauthenticatedGuard], component: ConfirmationComponent},
   {path: 'entity/:type', component: EntityFormComponent},
-  {path: 'entity', component: EntityDisplayComponent}
+  {path: 'entity', component: EntityDisplayComponent},
+  {path: 'listEntities/:type', component: EntityListComponent}
 ];
 
 @NgModule({

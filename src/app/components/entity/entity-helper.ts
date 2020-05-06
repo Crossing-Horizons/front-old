@@ -180,7 +180,7 @@ export class EntityHelper{
             }
         }
     }
-
+    
     getEntityInputsAttributes(param, type){
         switch(type){
             case 'fish': {
