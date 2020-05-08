@@ -1,8 +1,8 @@
 {
   "principal": {
     "index" : "Index",
-    "english": "English",
-    "spanish": "Spanish",
+    "english": "English (EU)",
+    "spanish": "Spanish (EU)",
     "language": "Language"
   },
   "general": {
