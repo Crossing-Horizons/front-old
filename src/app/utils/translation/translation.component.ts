@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { EntityTranslatorPipe } from './entity-translator.pipe'
 
 @Component({
   selector: 'app-translation',

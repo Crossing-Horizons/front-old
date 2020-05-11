@@ -16,7 +16,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 //Application
 import { AppComponent } from './app.component';
 import { TranslationComponent } from './utils/translation/translation.component';
-import { EntityTranslatorPipe } from './utils/translation/entity-translator.pipe';
 import { HeaderComponent } from './components/base/header/header.component';
 import { IndexComponent } from './pages/index/index.component';
 import { FooterComponent } from './components/base/footer/footer.component';
@@ -33,8 +32,7 @@ import { ConfirmationComponent } from './components/authentication/confirmation/
     FooterComponent,
     LoginComponent,
     RegisterComponent,
-    ConfirmationComponent,
-    EntityTranslatorPipe
+    ConfirmationComponent
   ],
   imports: [
     BrowserModule,
