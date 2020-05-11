@@ -59,7 +59,8 @@ import { AuthorizationService } from './utils/authguard/authorization.service';
     })
   ],
   providers: [
-    EntityHelper
+    EntityHelper,
+    TranslationComponent
   ],
   bootstrap: [AppComponent]
 })

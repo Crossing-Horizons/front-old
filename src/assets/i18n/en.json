@@ -1,4 +1,10 @@
 {
+  "principal": {
+    "index" : "Index",
+    "english": "English (EU)",
+    "spanish": "Spanish (EU)",
+    "language": "Language"
+  },
   "general": {
     "actions":{
       "create": "Create",
