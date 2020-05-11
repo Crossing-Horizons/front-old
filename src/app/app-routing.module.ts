@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', canActivate:[UnauthenticatedGuard], component: LoginComponent},
   {path: 'register', canActivate:[UnauthenticatedGuard], component: RegisterComponent},
   {path: 'confirmation/:hash', canActivate:[UnauthenticatedGuard], component: ConfirmationComponent},
-  {path: 'entity/new/:type', component: EntityFormComponent, data:{creating: true}},
+  {path: 'entity/new', component: EntityFormComponent, data:{creating: true}},
   {path: 'entity/edit/:type', component: EntityFormComponent, data:{creating: false}},
   {path: 'entity/:type/:name', component: EntityDisplayComponent}
 ];

@@ -299,6 +299,12 @@ export class EntityHelper{
         }
     }
 
+    getPropertyTranslated(entity, property, locale, translations){
+        const result = translations[locale]
+        var propertyTranslated = (typeof result == 'string' && result.length > 0) ? result[0].toUpperCase() + result.substr(1).toLowerCase() : result
+        entity[property] = propertyTranslated
+    }
+
     // checkRarity(c: AbstractControl): ValidationErrors | null {
     //     let rarity = c.get(['rarity']);
     

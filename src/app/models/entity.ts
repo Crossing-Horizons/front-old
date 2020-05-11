@@ -1,9 +1,8 @@
 export class Entity{
     //common
-    english_name: string;
-    spanish_name: string;
+    name: string;
     description: string;
-    image: string;
+    image: [];
     exchangeable: boolean;
 
     // fish and bugs
@@ -30,6 +29,7 @@ export class Entity{
     durability: Durabilities;
     size: string;
     special_character_id: number;
+    varieties: number;
 
     // vilager
     species: Animals;
@@ -39,8 +39,8 @@ export class Entity{
     birthdate: string;
 }
 
-const enum Type{
-    bug, fish, fossil, material, clothes, furniture, tool, plant, consumable, villager, special_special_character_id, event
+export const enum Type{
+    bug, fish, fossil, material, clothes, furniture, tool, plant, consumable, villager, special_character_id, event
 }
 
 export const enum Genre{

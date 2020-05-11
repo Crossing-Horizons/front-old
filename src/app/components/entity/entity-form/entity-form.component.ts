@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 
@@ -8,12 +8,15 @@ import { EntityService } from '../../../services/entity/entity.service';
 import { EntityHelper } from '../entity-helper';
 import { Entity } from '../../../models/entity';
 
+import {clothing_types,types,durabilities,personalities} from '../entity-enum'
+
 @Component({
   selector: 'app-entity-form',
   templateUrl: './entity-form.component.html',
   styleUrls: ['./entity-form.component.scss']
 })
 export class EntityFormComponent implements OnInit {
+  @ViewChild('content', { static: true }) public contentModal;
 
   constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private uploadService: UploadService, 
     private entityService: EntityService) { }
@@ -22,10 +25,10 @@ export class EntityFormComponent implements OnInit {
   imgPreview;
   submitAttemp: boolean;
   type: string;
-  entity = null;
+  entity: Entity;
   creating: boolean = this.route.snapshot.data['creating']
-
   entityForm;
+  types = types;
 
   ngOnInit(): void {
     if(this.creating){
@@ -35,29 +38,35 @@ export class EntityFormComponent implements OnInit {
     }
 
     this.entityForm = new FormGroup({
-      english_name: new FormControl(this.entity.english_name, [Validators.required]),
-      spanish_name: new FormControl(this.entity.spanish_name, [Validators.required]),
+      name: new FormControl(this.entity.name, [Validators.required]),
       description: new FormControl(this.entity.description, [Validators.required]),
-      image: new FormControl(this.entity.exchangeable, [Validators.required]),
+      image: new FormControl(this.entity.image, [Validators.required]),
       exchangeable: new FormControl(this.entity.exchangeable, [Validators.required])
     });
     // set checkboxes false by default
     this.entityForm.get('exchangeable').setValue(false)
-    this.route.params.subscribe(params => {
-      this.type = params['type'];
-      this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
-    });
+    this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
+  }
+
+  show(value:string){
+    this.type = value;
+    this.entityForm.reset();
+    this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
+    this.contentModal.show();
   }
 
   onSubmit() {
     if(!this.entityForm.invalid){
       var form = new FormData();
-      form.append("english_name",this.entityForm.get('english_name').value)
-      form.append("spanish_name",this.entityForm.get('spanish_name').value)
+      form.append("name",this.entityForm.get('name').value)
       form.append("description",this.entityForm.get('description').value)
       form.append("exchangeable",this.entityForm.get('exchangeable').value)
-      form.append("image", this.selectedFiles.item(0))
       form.append("type", this.type)
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        const file = this.selectedFiles[i];
+        form.append("image", file);
+      }
+      console.log(form)
       form = this.entityHelper.getEntityDataAttributes(form, this.type, this.entityForm)
       this.entityService.create(form).catch(error => {
         console.log(error);
@@ -66,16 +75,6 @@ export class EntityFormComponent implements OnInit {
     } else {
       this.submitAttemp = true;
     }
-
-  }
-
-  upload() {
-    const fd = new FormData();
-    fd.append("image", this.selectedFiles.item(0));
-    fd.append("folder", this.type)
-    this.uploadService.uploadFile(fd).catch(error => {
-      console.log(error);
-    });
   }
     
   selectFile(event) {
@@ -91,8 +90,7 @@ export class EntityFormComponent implements OnInit {
     }
   }
 
-  get english_name() { return this.entityForm.get('english_name'); }
-  get spanish_name() { return this.entityForm.get('spanish_name'); }
+  get name() { return this.entityForm.get('name'); }
   get description() { return this.entityForm.get('description'); }
   get image() { return this.entityForm.get('image'); }
   get exchangeable() { return this.entityForm.get('exchangeable'); }
