@@ -22,10 +22,8 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ConfirmationComponent } from './components/authentication/confirmation/confirmation.component';
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
-
 import { EntityHelper } from './components/entity/entity-helper';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
-import { AuthorizationService } from './utils/authguard/authorization.service';
 
 @NgModule({
   declarations: [

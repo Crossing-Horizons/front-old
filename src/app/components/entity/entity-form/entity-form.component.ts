@@ -6,9 +6,8 @@ import { UploadService } from '../../../services/config/upload.service';
 import { EntityService } from '../../../services/entity/entity.service';
 
 import { EntityHelper } from '../entity-helper';
-import { Entity } from '../../../models/entity';
+import { Entity, Type } from '../../../models/entity';
 
-import {clothing_types,types,durabilities,personalities} from '../entity-enum'
 
 @Component({
   selector: 'app-entity-form',
@@ -17,6 +16,7 @@ import {clothing_types,types,durabilities,personalities} from '../entity-enum'
 })
 export class EntityFormComponent implements OnInit {
   @ViewChild('content', { static: true }) public contentModal;
+  
 
   constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private uploadService: UploadService, 
     private entityService: EntityService) { }
@@ -28,7 +28,7 @@ export class EntityFormComponent implements OnInit {
   entity: Entity;
   creating: boolean = this.route.snapshot.data['creating']
   entityForm;
-  types = types;
+  types = Type;
 
   ngOnInit(): void {
     if(this.creating){
@@ -39,7 +39,6 @@ export class EntityFormComponent implements OnInit {
 
     this.entityForm = new FormGroup({
       name: new FormControl(this.entity.name, [Validators.required]),
-      description: new FormControl(this.entity.description, [Validators.required]),
       image: new FormControl(this.entity.image, [Validators.required]),
       exchangeable: new FormControl(this.entity.exchangeable, [Validators.required])
     });
@@ -48,18 +47,20 @@ export class EntityFormComponent implements OnInit {
     this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
   }
 
+
   show(value:string){
     this.type = value;
+    console.log(this.type)
     this.entityForm.reset();
     this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
     this.contentModal.show();
+    console.log(this.entityForm)
   }
 
   onSubmit() {
     if(!this.entityForm.invalid){
       var form = new FormData();
       form.append("name",this.entityForm.get('name').value)
-      form.append("description",this.entityForm.get('description').value)
       form.append("exchangeable",this.entityForm.get('exchangeable').value)
       form.append("type", this.type)
       for (let i = 0; i < this.selectedFiles.length; i++) {
@@ -91,7 +92,6 @@ export class EntityFormComponent implements OnInit {
   }
 
   get name() { return this.entityForm.get('name'); }
-  get description() { return this.entityForm.get('description'); }
   get image() { return this.entityForm.get('image'); }
   get exchangeable() { return this.entityForm.get('exchangeable'); }
   get shadow() { return this.entityForm.get('shadow'); }
@@ -114,7 +114,7 @@ export class EntityFormComponent implements OnInit {
   get consumable_type() { return this.entityForm.get('consumable_type'); }
   get durability() { return this.entityForm.get('durability'); }
   get size() { return this.entityForm.get('size'); }
-  get special_character_id() { return this.entityForm.get('special_character_id'); }
+  get npc() { return this.entityForm.get('npc'); }
   get species() { return this.entityForm.get('species'); }
   get personality() { return this.entityForm.get('personality'); }
   get genre() { return this.entityForm.get('genre'); }

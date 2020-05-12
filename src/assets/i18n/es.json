@@ -35,8 +35,7 @@
   "entity":{
     "new_entity": "Añadir nueva entidad",
     "edit_entity": "Editar una entidad",
-    "english_name": "Nombre en inglés",
-    "spanish_name": "Nombre en español",
+    "name": "Nombre",
     "description": "Descripción",
     "image": "Imagen",
     "size": "Tamaño",

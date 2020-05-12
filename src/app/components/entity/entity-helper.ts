@@ -73,18 +73,18 @@ export class EntityHelper{
             form.addControl('consumable_type', new FormControl(entity.consumable_type, [Validators.required]));
         } else
         if(type=='villager'){
-            form.addControl('species', new FormControl(entity.species, [Validators.required]));
+            form.addControl('specie', new FormControl(entity.specie, [Validators.required]));
             form.addControl('personality', new FormControl(entity.personality, [Validators.required]));
             form.addControl('genre', new FormControl(entity.genre, [Validators.required]));
             form.addControl('catchphrase', new FormControl(entity.catchphrase, [Validators.required]));
             form.addControl('birthdate', new FormControl(entity.birthdate, [Validators.required]));
         } else
-        if(type=='special_character'){
+        if(type=='npc'){
             form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
         } else
         if(type=='event'){
             form.addControl('date', new FormControl(entity.date, [Validators.required]));
-            form.addControl('special_character_id', new FormControl(entity.special_character_id, [Validators.required]));
+            form.addControl('npc', new FormControl(entity.npc, [Validators.required]));
         }
     }
 
@@ -170,13 +170,13 @@ export class EntityHelper{
                 form.append('birthdate', entity.get("birthdate").value);
                 return form;
             } 
-            case 'special_character': {
+            case 'npc': {
                 form.append('obtainment', entity.get("obtainment").value);
                 return form;
             } 
             case 'event': {
                 form.append('date', entity.get("date"));
-                form.append('special_character_id', entity.get("special_character_id").value);
+                form.append('npc', entity.get("npc").value);
                 return form;
             }
         }
@@ -234,7 +234,7 @@ export class EntityHelper{
                     case 'buy_price': return true
                     case 'obtainment': return true
                     case 'clothing_type': true
-                    default: false
+                    default: return false
                 }
             }
             case 'furniture':{
@@ -283,7 +283,7 @@ export class EntityHelper{
                     default: return false
                 }
             }
-            case 'special_character':{
+            case 'npc':{
                 switch(param){
                     case 'obtainment': return true
                     default: return false
@@ -292,7 +292,7 @@ export class EntityHelper{
             case 'event':{
                 switch(param){
                     case 'date': return true
-                    case 'special_character_id': return true
+                    case 'npc': return true
                     default: return false
                 }
             }

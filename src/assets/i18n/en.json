@@ -35,8 +35,7 @@
   "entity":{
     "new_entity": "Add new entity",
     "edit_entity": "Edit an entity",
-    "english_name": "English name",
-    "spanish_name": "Spanish name",
+    "name": "Name",
     "description": "Description",
     "image": "Image",
     "size": "Size",

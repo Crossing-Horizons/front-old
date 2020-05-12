@@ -1,7 +1,6 @@
 export class Entity{
-    //common
+    // common
     name: string;
-    description: string;
     image: [];
     exchangeable: boolean;
 
@@ -11,6 +10,7 @@ export class Entity{
     month_northern: string;
     month_southern: string;
     time: string;
+    rain: string;
     all_day: boolean;
     all_year: boolean;
     price_cj: number;
@@ -18,61 +18,134 @@ export class Entity{
     rarity: Rarities;
     museum_phrase: string;
 
-    // other
+    // other commons
     obtainment: string;
     buy_price: number;
     sell_price: number;
-    date: string;
-    clothing_type: Clothing;
-    plant_type: Plants;
-    consumable_type: Consumables;
-    durability: Durabilities;
-    size: string;
-    special_character_id: number;
-    varieties: number;
+    variants: string;
+    recipe: number;
 
-    // vilager
-    species: Animals;
-    personality: string;
+    // plant
+    plant_type: Plants;
+
+    // flower
+    parent_1: number;
+    parent_2: number;
+
+    //consumable
+    consumable_type: Consumables;
+
+    // infrastructure
+    infrastructure_type: Infrastructures;
+
+    // villager
+    specie: Animals;
+    personality: Personalities;
     genre: Genre;
     catchphrase: string;
     birthdate: string;
+
+    // event
+    date: string;
+    npc: number;
+
+    // clothes
+    clothing_type: Clothing;
+
+    // tool
+    durability: Durabilities;
+
+    // furniture
+    furniture_type: Furnitures;
+    size: string;
+    place_on: boolean;
+    interactive: boolean;
+
+    // music
+    song: string
+
+    // reaction
+
+    //recipe
+    materials: {}
+
+    // achievement
+    award_criteria: string;
+    num_tiers: number;
+    tier1: number;
+    tier2: number;
+    tier3: number;
+    tier4: number;
+    tier5: number;
+    tier6: number;
+    reward_tier1: number;
+    reward_tier2: number;
+    reward_tier3: number;
+    reward_tier4: number;
+    reward_tier5: number;
+    reward_tier6: number;
 }
 
-export const enum Type{
-    bug, fish, fossil, material, clothes, furniture, tool, plant, consumable, villager, special_character_id, event
+export enum Type{
+    bug = 'bug',
+    fish = 'fish', 
+    fossil = 'fossil', 
+    material = 'material', 
+    clothes = 'clothes', 
+    furniture = 'furniture', 
+    tool = 'tool', 
+    plant = 'plant', 
+    consumable = 'consumable', 
+    villager = 'villager', 
+    npc = 'npc', 
+    event = 'event', 
+    art = 'art', 
+    infrastructure = 'infrastructure', 
+    flower = 'flower',
+    music = 'music', 
+    reaction = 'reaction', 
+    recipe = 'recipe', 
+    achievement = 'achievement'
 }
 
-export const enum Genre{
+export enum Furnitures{
+    house, exterior, fence, hang, floor, wall, rug
+}
+
+export enum Infrastructures{
+    stairs, bridge
+}
+
+export enum Genre{
     male, female
 }
 
-export const enum Clothing{
+export enum Clothing{
     accessory, bag, bottom, dress, headwear, shoes, socks, top, umbrella
 }
 
-export const enum Plants{
-    tree, flower
+export enum Plants{
+    tree, bush, flower
 }
 
-export const enum Consumables{
-    fruit, vegetables, misc
+export enum Consumables{
+    fruit, vegetables, event, misc
 }
 
-export const enum Durabilities{
-    low, medium, high, very_high, infinite
+export enum Durabilities{
+    very_low, low, medium, high, very_high, infinite
 }
 
-export const enum Rarities{
+export enum Rarities{
     common, uncommon, rare, ultra_rare
 }
 
-export const enum Animals{
+export enum Animals{
     alligator, anteater, bear, bird, bull, cat, chicken, cow, cub, deer, dog, duck, eagle, elephant, frog, goat, gorilla,
     hamster, hippo, horse, kangaroo, koala, lion, mouse, monkey, octopus, ostrich, penguin, pig, rabbit, rhino, sheep, squirrel, 
     tiger, wolf
 }
 
-export const enum Personalities{
+export enum Personalities{
     crancky, jock, lazy, smug, normal, peppy, sisterly, snooty
 }
