@@ -1,342 +1,410 @@
-<app-header></app-header>
-<div class="container my-5">
-    <div class="card">
-        <h1 class="text-center m-2">Añadir una nueva entidad</h1>
-        <p class="text-center mx-5">Desde esta pantalla podrás crear una nueva entidad del juego.<br><br>
-            Recuerda que las entidades se generan automáticamente en la base de datos y <br>
-            no es necesario añadirlas manualmente.
-        </p>
-        <div class="row text-center my-4">
-            <div class="col-md-3" *ngFor="let item of types | keyvalue">
-                <button type="button" mdbBtn color="info" class="waves-light w-75 m-2" (click)="show(item.value)" mdbWavesEffect>{{item.value}}</button>
-            </div>
-        </div>
-        <div style="overflow-y: auto" mdbModal #content="mdbModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title text-white" id="exampleModalLabel">{{"entity.new_entity" | translate}} {{type}}</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="content.hide()">
-                            <span aria-hidden="true" class="text-white" >×</span>
-                        </button>
-                    </div>
-                    <form class="px-5" [formGroup]="entityForm" (ngSubmit)="onSubmit()">
-                        <div class="modal-body">
-                            <!-- Image -->
-                            <div class="row">
-                                <legend>Propiedades</legend>
-                                <div class="col-md-12">
-                                    <label for="image" class="form-label">{{'entity.image' | translate}}</label>
-                                    <div class="row m-2" *ngIf="imgPreview">
-                                        <img [src]="imgPreview" class="img-fluid"> <br/>
-                                    </div>
-                                    <div class="custom-file mb-4">
-                                        <input type="file" class="custom-file-input" id="image" formControlName="image" (change)="selectFile($event)" required multiple>
-                                        <label class="custom-file-label" for="customFile">Choose file</label>
-                                    </div>
-                                    <div *ngIf="image.invalid && (image.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="image.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Name -->
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label">{{'entity.name' | translate}}</label>
-                                    <input type="text" id="name" class="form-control mb-4" formControlName="name">
-                                    <div *ngIf="name.invalid && (name.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="name.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Exchangeable -->
-                                <div class="col-md-6">
-                                    <mdb-checkbox [default]="true" formControlName="exchangeable">{{"entity.exchangeable" | translate}}</mdb-checkbox>
-                                </div>
-                                <!-- Shadow -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('shadow', type)">
-                                    <label for="shadow" class="form-label">{{'entity.shadow' | translate}}</label>
-                                    <input type="text" id="shadow" class="form-control mb-4" formControlName="shadow">
-                                    <div *ngIf="shadow.invalid && (shadow.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="shadow.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Location -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('location', type)">
-                                    <label for="location" class="form-label">{{'entity.location' | translate}}</label>
-                                    <input type="text" id="location" class="form-control mb-4" formControlName="location">
-                                    <div *ngIf="location.invalid && (location.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="location.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Month northern -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('month_northern', type)">
-                                    <label for="month_northern" class="form-label">{{'entity.month_northern' | translate}}</label>
-                                    <input type="string" id="month_northern" class="form-control mb-4" [value]="!all_year.value ? month_northern.value : null"
-                                        [readOnly]="all_year.value" formControlName="month_northern">
-                                    <div *ngIf="month_northern.invalid && (month_northern.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="month_northern.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Month southern -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('month_southern', type)">
-                                    <label for="month_southern" class="form-label">{{'entity.month_southern' | translate}}</label>
-                                    <input type="string" id="month_southern" class="form-control mb-4" [value]="!all_year.value ? month_southern.value : null" 
-                                        [readOnly]="all_year.value" formControlName="month_southern">
-                                    <div *ngIf="month_southern.invalid && (month_southern.dirty || submitAttemp) && !all_year.value" class="alert alert-danger">
-                                        <div *ngIf="month_southern.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Time -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('time', type)">
-                                    <label for="time" class="form-label">{{'entity.time' | translate}}</label>
-                                    <input type="text" id="time" class="form-control mb-4" [value]="!all_day.value ? time.value : null"
-                                        [readOnly]="all_day.value" formControlName="time">
-                                    <div *ngIf="time.invalid && (time.dirty || submitAttemp) && !all_day.value" class="alert alert-danger">
-                                        <div *ngIf="time.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- All day -->
-                                <div class="col-md-6 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('all_day', type)">
-                                    <mdb-checkbox [default]="true" formControlName="all_day">{{'entity.all_day' | translate}}</mdb-checkbox>
-                                </div>
-                                <!-- All year -->
-                                <div class="col-md-6 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('all_year', type)">
-                                    <mdb-checkbox [default]="true" formControlName="all_year">{{'entity.all_year' | translate}}</mdb-checkbox>
-                                </div>
-                                <!-- Sell price -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('sell_price', type)">
-                                    <label for="sell_price" class="form-label">{{'entity.sell_price' | translate}}</label>
-                                    <input type="number" id="sell_price" class="form-control mb-4" formControlName="sell_price">
-                                    <div *ngIf="sell_price.invalid && (sell_price.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="sell_price.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Price CJ -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('price_cj', type)">
-                                    <label for="price_cj" class="form-label">{{'entity.price_cj' | translate}}</label>
-                                    <input type="number" id="price_cj" class="form-control mb-4" formControlName="price_cj">
-                                    <div *ngIf="price_cj.invalid && (price_cj.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="price_cj.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Price Flick -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('price_flick', type)">
-                                    <label for="price_flick" class="form-label">{{'entity.price_flick' | translate}}</label>
-                                    <input type="number" id="price_flick" class="form-control mb-4" formControlName="price_flick">
-                                    <div *ngIf="price_flick.invalid && (price_flick.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="price_flick.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Rarity -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('rarity', type)">
-                                    <label for="rarity" class="form-label">{{'entity.rarity' | translate}}</label>
-                                    <input type="text" id="rarity" class="form-control mb-4" formControlName="rarity">
-                                    <div *ngIf="rarity.invalid && (rarity.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="rarity.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Museum phrase -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('museum_phrase', type)">
-                                    <label for="museum_phrase" class="form-label">{{'entity.museum_phrase' | translate}}</label>
-                                    <input type="text" id="museum_phrase" class="form-control mb-4" formControlName="museum_phrase">
-                                    <div *ngIf="museum_phrase.invalid && (museum_phrase.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="museum_phrase.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Buy price -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('buy_price', type)">
-                                    <label for="buy_price" class="form-label">{{'entity.buy_price' | translate}}</label>
-                                    <input type="number" id="buy_price" class="form-control mb-4" formControlName="buy_price">
-                                    <div *ngIf="buy_price.invalid && (buy_price.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="buy_price.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Obtainment -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('obtainment', type)">
-                                    <label for="obtainment" class="form-label">{{'entity.obtainment' | translate}}</label>
-                                    <input type="text" id="obtainment" class="form-control mb-4" formControlName="obtainment">
-                                    <div *ngIf="obtainment.invalid && (obtainment.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="obtainment.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Date -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('date', type)">
-                                    <label for="date" class="form-label">{{'entity.date' | translate}}</label>
-                                    <input type="text" id="date" class="form-control mb-4" formControlName="date">
-                                    <div *ngIf="date.invalid && (date.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="date.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Clothing type -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('clothing_type', type)">
-                                    <label for="clothing_type" class="form-label">{{'entity.clothing_type' | translate}}</label>
-                                    <input type="text" id="clothing_type" class="form-control mb-4" formControlName="clothing_type">
-                                    <div *ngIf="clothing_type.invalid && (clothing_type.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="clothing_type.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Plant type -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('plant_type', type)">
-                                    <label for="plant_type" class="form-label">{{'entity.plant_type' | translate}}</label>
-                                    <input type="text" id="plant_type" class="form-control mb-4" formControlName="plant_type">
-                                    <div *ngIf="plant_type.invalid && (plant_type.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="plant_type.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Consumable type -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('consumable_type', type)">
-                                    <label for="consumable_type" class="form-label">{{'entity.consumable_type' | translate}}</label>
-                                    <input type="text" id="consumable_type" class="form-control mb-4" formControlName="consumable_type">
-                                    <div *ngIf="consumable_type.invalid && (consumable_type.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="consumable_type.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Durability -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('durability', type)">
-                                    <label for="durability" class="form-label">{{'entity.durability' | translate}}</label>
-                                    <input type="text" id="durability" class="form-control mb-4" formControlName="durability">
-                                    <div *ngIf="durability.invalid && (durability.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="durability.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Size -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('size', type)">
-                                    <label for="size" class="form-label">{{'entity.size' | translate}}</label>
-                                    <textarea id="size" class="form-control mb-4" formControlName="size"></textarea>
-                                    <div *ngIf="size.invalid && (size.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="size.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Npc id -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('npc', type)">
-                                    <label for="npc" class="form-label">{{'entity.npc' | translate}}</label>
-                                    <input type="text" id="npc" class="form-control mb-4" formControlName="npc">
-                                    <div *ngIf="npc.invalid && (npc.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="npc.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Species -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('species', type)">
-                                    <label for="specie" class="form-label">{{'entity.species' | translate}}</label>
-                                    <input type="text" id="species" class="form-control mb-4" formControlName="species">
-                                    <div *ngIf="species.invalid && (species.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="species.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Personality -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('personality', type)">
-                                    <label for="personality" class="form-label">{{'entity.personality' | translate}}</label>
-                                    <input type="text" id="personality" class="form-control mb-4" formControlName="personality">
-                                    <div *ngIf="personality.invalid && (personality.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="personality.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Genre -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('genre', type)">
+        <form class="px-5" [formGroup]="entityForm" (ngSubmit)="onSubmit()" *ngIf="entityForm">
             
-                                    <label for="genre" class="form-label">{{'entity.genre' | translate}}</label>
-                                    <input type="text" id="genre" class="form-control mb-4" formControlName="genre">
-                                    <div *ngIf="genre.invalid && (genre.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="genre.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Birthdate -->
-                                <div class="col-md-6" *ngIf="entityHelper.getEntityInputsAttributes('birthdate', type)">
-                                    <label for="birthdate" class="form-label">{{'entity.birthdate' | translate}}</label>
-                                    <input type="text" id="birthdate" class="form-control mb-4" formControlName="birthdate">
-                                    <div *ngIf="birthdate.invalid && (birthdate.dirty || submitAttemp)" class="alert alert-danger">
-                                        <div *ngIf="birthdate.errors.required">
-                                            {{"general.required.username" | translate}}
-                                        </div>
-                                    </div>
-                                </div>
-                                
+            <!-- Image -->
+            <div class="row">
+                <legend>Propiedades</legend>
+                <div class="col-md-12">
+                    <label for="image" class="form-label">{{'entity.image' | translate}}</label>
+                    <div class="row m-2" *ngIf="imgPreview">
+                        <img [src]="imgPreview" class="img-fluid"> <br/>
+                    </div>
+                    <div class="custom-file mb-4">
+                        <input type="file" class="custom-file-input" id="image" formControlName="image" (change)="selectFile($event)" required multiple>
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <div *ngIf="image.invalid && (image.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="image.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Name -->
+                <div class="col-md-6">
+                    <label for="name" class="form-label">{{'entity.name' | translate}}</label>
+                    <input type="text" id="name" class="form-control mb-4" formControlName="name">
+                    <div *ngIf="name.invalid && (name.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="name.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Exchangeable -->
+                <div class="col-md-6 my-4">
+                    <mdb-checkbox class="checkbox" [default]="true" formControlName="exchangeable">{{"entity.exchangeable" | translate}}</mdb-checkbox>
+                </div>
+                <!-- Rarity -->
+                <div class="col-md-6" *ngIf="rarity">
+                    <label for="rarity" class="form-label">{{'entity.rarity' | translate}}</label>
+                    <select id="rarity" class="browser-default custom-select mb-4" formControlName="rarity">
+                        <option [value]="null" selected>Selecciona rareza</option>
+                        <option *ngFor="let rarity of rarities" [value]="rarity" >{{ "entity.rarities." + rarity | translate}}</option>
+                    </select>
+                    <div *ngIf="rarity.invalid && (rarity.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="rarity.errors.wrong_option">
+                            ¡Anda!
+                        </div>
+                    </div>
+                </div>
+                <!-- Shadow -->
+                <div class="col-md-6" *ngIf="shadow">
+                    <label for="shadow" class="form-label">{{'entity.shadow' | translate}}</label>
+                    <select id="shadow" class="browser-default custom-select mb-4" formControlName="shadow">
+                        <option [value]="null" selected>Selecciona sombra</option>
+                        <option *ngFor="let shadow of shadows" [value]="shadow" >{{ "entity.shadows." + shadow | translate}}</option>
+                    </select>
+                    <div *ngIf="shadow.invalid && (shadow.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="shadow.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Museum phrase -->
+                <div class="col-md-12" *ngIf="museum_phrase">
+                    <label for="museum_phrase" class="form-label">{{'entity.museum_phrase' | translate}}</label>
+                    <textarea id="museum_phrase" class="form-control mb-4" formControlName="museum_phrase"></textarea>
+                    <div *ngIf="museum_phrase.invalid && (museum_phrase.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="museum_phrase.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
 
-                                <!-- Translations -->
-                                <fieldset>
-                                    <legend>
-                                        Traducciones
-                                    </legend>
-                                
-                                    <a (click)="test.toggle()"><i class="fas fa-plus-circle mb-4" data-target="#toggle-pane-88"></i></a> Añadir traducciones
-                                  
-                                    <div id="toggle-pane-88" mdbCollapse #test="bs-collapse">
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <label for="EUen" class="form-label">EUen Translation</label>
-                                                <input type="text" id="EUen" class="form-control mb-4">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="EUes" class="form-label">EUes Translation</label>
-                                                <input type="text" id="EUes" class="form-control mb-4">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="EUfr" class="form-label">EUfr Translation</label>
-                                                <input type="text" id="EUfr" class="form-control mb-4">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="EUde" class="form-label">EUde Translation</label>
-                                                <input type="text" id="EUde" class="form-control mb-4">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                <legend *ngIf="type=='fish' || type=='bug'">Obtencion</legend>
+                <!-- Rain -->
+                <div class="col-md-12 mt-2" *ngIf="rain">
+                    <!-- Default inline 1-->
+                    <div class="custom-control custom-radio custom-control-inline col-md-4">
+                        <input type="radio" class="custom-control-input" id="rain0" [value]="0" formControlName="rain" checked mdbInput>
+                        <label class="custom-control-label" for="rain0">Todos los climas</label>
+                    </div>
+                    
+                    <!-- Default inline 2-->
+                    <div class="custom-control custom-radio custom-control-inline col-md-4">
+                        <input type="radio" class="custom-control-input" id="rain1" [value]="1" formControlName="rain" mdbInput>
+                        <label class="custom-control-label" for="rain1">Todos menos lluvia</label>
+                    </div>
+                    
+                    <!-- Default inline 3-->
+                    <div class="custom-control custom-radio custom-control-inline col-md-3">
+                        <input type="radio" class="custom-control-input" id="rain2" [value]="2" formControlName="rain" mdbInput>
+                        <label class="custom-control-label" for="rain2">Solo con lluvia</label>
+                    </div>
+                </div>
+                <!-- All year -->
+                <div class="col-md-6 my-4" *ngIf="all_year">
+                    <mdb-checkbox [default]="true" class="checkbox" formControlName="all_year" (click)="entityHelper.clickMonths(entityForm)">{{'entity.all_year' | translate}}</mdb-checkbox>
+                </div>
+                <!-- All day -->
+                <div class="col-md-6 my-4" *ngIf="all_day">
+                    <mdb-checkbox [default]="true" class="checkbox" formControlName="all_day" (click)="entityHelper.clickTime(entityForm)">{{'entity.all_day' | translate}}</mdb-checkbox>
+                </div>
+                <!-- Month northern -->
+                <div class="col-md-6" *ngIf="month_northern">
+                    <label for="month_northern" class="form-label">{{'entity.month_northern' | translate}}</label>
+                    <input type="text" id="month_northern" class="form-control mb-4" [value]="!all_year.value ? month_northern.value : null" 
+                        [readOnly]="all_year.value" formControlName="month_northern" placeholder="3-5 && 7-10" pattern="[1]?[0-9](-[1]?[0-9])?( && [1]?[0-9]-[1]?[0-9])?">
+                    <div *ngIf="month_northern.invalid && (month_northern.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="month_northern.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                        <div *ngIf="month_northern.errors.pattern">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Month southern -->
+                <div class="col-md-6" *ngIf="month_southern">
+                    <label for="month_southern" class="form-label">{{'entity.month_southern' | translate}}</label>
+                    <input type="text" id="month_southern" class="form-control mb-4" [value]="!all_year.value ? month_southern.value : null" 
+                        [readOnly]="all_year.value" formControlName="month_southern" placeholder="6-9 && 2-4" pattern="[1]?[0-9](-[1]?[0-9])?( && [1]?[0-9]-[1]?[0-9])?">
+                    <div *ngIf="month_southern.invalid && (month_southern.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="month_southern.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                        <div *ngIf="month_southern.errors.pattern">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Time -->
+                <div class="col-md-6" *ngIf="time">
+                    <label for="time" class="form-label">{{'entity.time' | translate}}</label>
+                    <input type="text" id="time" class="form-control mb-4" [value]="!all_day.value ? time.value : null"
+                        [readOnly]="all_day.value" formControlName="time" placeholder="4am-5pm" pattern="[0-1]?[0-9][aApP][mM]-[0-1]?[0-9][aApP][mM]">
+                    <div *ngIf="time.invalid && (time.dirty || submitAttemp) && !all_day.value" class="alert alert-danger">
+                        <div *ngIf="time.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                        <div *ngIf="time.errors.pattern">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Location -->
+                <div class="col-md-6" *ngIf="location">
+                    <label for="location" class="form-label">{{'entity.location' | translate}}</label>
+                    <input type="text" id="location" class="form-control mb-4" formControlName="location">
+                    <div *ngIf="location.invalid && (location.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="location.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                
+                <legend>Prices</legend>
+                <!-- Sell price -->
+                <div class="col-md-6" *ngIf="sell_price">
+                    <label for="sell_price" class="form-label">{{'entity.sell_price' | translate}}</label>
+                    <input type="number" id="sell_price" class="form-control mb-4" formControlName="sell_price">
+                    <div *ngIf="sell_price.invalid && (sell_price.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="sell_price.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Price CJ -->
+                <div class="col-md-6" *ngIf="price_cj">
+                    <label for="price_cj" class="form-label">{{'entity.price_cj' | translate}}</label>
+                    <input type="number" id="price_cj" class="form-control mb-4" formControlName="price_cj">
+                    <div *ngIf="price_cj.invalid && (price_cj.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="price_cj.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Price Flick -->
+                <div class="col-md-6" *ngIf="price_flick">
+                    <label for="price_flick" class="form-label">{{'entity.price_flick' | translate}}</label>
+                    <input type="number" id="price_flick" class="form-control mb-4" formControlName="price_flick">
+                    <div *ngIf="price_flick.invalid && (price_flick.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="price_flick.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Buy price -->
+                <div class="col-md-6" *ngIf="buy_price">
+                    <label for="buy_price" class="form-label">{{'entity.buy_price' | translate}}</label>
+                    <input type="number" id="buy_price" class="form-control mb-4" formControlName="buy_price">
+                    <div *ngIf="buy_price.invalid && (buy_price.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="buy_price.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Obtainment -->
+                <div class="col-md-6" *ngIf="obtainment">
+                    <label for="obtainment" class="form-label">{{'entity.obtainment' | translate}}</label>
+                    <input type="text" id="obtainment" class="form-control mb-4" formControlName="obtainment">
+                    <div *ngIf="obtainment.invalid && (obtainment.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="obtainment.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Date -->
+                <div class="col-md-6" *ngIf="date">
+                    <label for="date" class="form-label">{{'entity.date' | translate}}</label>
+                    <input type="text" id="date" class="form-control mb-4" formControlName="date">
+                    <div *ngIf="date.invalid && (date.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="date.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Clothing type -->
+                <div class="col-md-6" *ngIf="clothing_type">
+                    <label for="clothing_type" class="form-label">{{'entity.clothing_type' | translate}}</label>
+                    <input type="text" id="clothing_type" class="form-control mb-4" formControlName="clothing_type">
+                    <div *ngIf="clothing_type.invalid && (clothing_type.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="clothing_type.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Plant type -->
+                <div class="col-md-6" *ngIf="plant_type">
+                    <label for="plant_type" class="form-label">{{'entity.plant_type' | translate}}</label>
+                    <input type="text" id="plant_type" class="form-control mb-4" formControlName="plant_type">
+                    <div *ngIf="plant_type.invalid && (plant_type.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="plant_type.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Consumable type -->
+                <div class="col-md-6" *ngIf="consumable_type">
+                    <label for="consumable_type" class="form-label">{{'entity.consumable_type' | translate}}</label>
+                    <select id="consumable_type" class="browser-default custom-select mb-4" formControlName="consumable_type">
+                        <option [value]="null" selected>Selecciona tipo de consumible</option>
+                        <option *ngFor="let consumable of consumables" [value]="consumable" >{{ "entity.consumables." + consumable | translate}}</option>
+                    </select>
+                    <div *ngIf="consumable_type.invalid && (consumable_type.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="consumable_type.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Infrastructure type -->
+                <div class="col-md-6" *ngIf="infrastructure_type">
+                    <label for="infrastructure_type" class="form-label">{{'entity.infrastructure_type' | translate}}</label>
+                    <select id="infrastructure_type" class="browser-default custom-select mb-4" formControlName="infrastructure_type">
+                        <option [value]="null" selected>Selecciona tipo de infrastructura</option>
+                        <option *ngFor="let infrastructure of infrastructures" [value]="infrastructure" >{{ "entity.infrastructures." + infrastructure | translate}}</option>
+                    </select>
+                    <div *ngIf="infrastructure_type.invalid && (infrastructure_type.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="infrastructure_type.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Durability -->
+                <div class="col-md-6" *ngIf="durability">
+                    <label for="durability" class="form-label">{{'entity.durability' | translate}}</label>
+                    <input type="text" id="durability" class="form-control mb-4" formControlName="durability">
+                    <div *ngIf="durability.invalid && (durability.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="durability.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Size -->
+                <div class="col-md-6" *ngIf="size">
+                    <label for="size" class="form-label">{{'entity.size' | translate}}</label>
+                    <textarea id="size" class="form-control mb-4" formControlName="size"></textarea>
+                    <div *ngIf="size.invalid && (size.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="size.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Npc id -->
+                <div class="col-md-6" *ngIf="npc">
+                    <label for="npc" class="form-label">{{'entity.npc' | translate}}</label>
+                    <input type="text" id="npc" class="form-control mb-4" formControlName="npc">
+                    <div *ngIf="npc.invalid && (npc.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="npc.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Species -->
+                <div class="col-md-6" *ngIf="specie">
+                    <label for="specie" class="form-label">{{'entity.specie' | translate}}</label>
+                    <select id="specie" class="browser-default custom-select mb-4" formControlName="specie">
+                        <option [value]="null" selected>Selecciona especie</option>
+                        <option *ngFor="let specie of species" [value]="specie" >{{ "entity.species." + specie | translate}}</option>
+                    </select>
+                    <div *ngIf="specie.invalid && (specie.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="specie.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Personality -->
+                <div class="col-md-6" *ngIf="personality">
+                    <label for="personality" class="form-label">{{'entity.personality' | translate}}</label>
+                    <select id="personality" class="browser-default custom-select mb-4" formControlName="personality">
+                        <option [value]="null" selected>Selecciona tipo de personalidad</option>
+                        <option *ngFor="let personality of personalities" [value]="personality" >{{ "entity.personalities." + personality | translate}}</option>
+                    </select>
+                    <div *ngIf="personality.invalid && (personality.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="personality.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Genre -->
+                <div class="col-md-6" *ngIf="genre">
+
+                    <label for="genre" class="form-label">{{'entity.genre' | translate}}</label>
+                    <input type="text" id="genre" class="form-control mb-4" formControlName="genre">
+                    <div *ngIf="genre.invalid && (genre.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="genre.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Birthdate -->
+                <div class="col-md-6" *ngIf="birthdate">
+                    <label for="birthdate" class="form-label">{{'entity.birthdate' | translate}}</label>
+                    <input type="text" id="birthdate" class="form-control mb-4" formControlName="birthdate">
+                    <div *ngIf="birthdate.invalid && (birthdate.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="birthdate.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Translations -->
+
+                <fieldset>
+                    <legend>
+                        Traducciones
+                    </legend>
+                
+                    <a (click)="test.toggle()"><i class="fas fa-plus-circle mb-4" data-target="#toggle-pane-88"></i> Añadir traducciones</a>
+                    
+                    <div id="toggle-pane-88" mdbCollapse #test="bs-collapse">
+                        <div class="form-row">
+                            <div class="col-md-6 px-3">
+                                <label for="USen" class="form-label">USen Translation</label>
+                                <input type="text" id="USen" class="form-control mb-4" formControlName="USen">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="EUde" class="form-label">EUde Translation</label>
+                                <input type="text" id="EUde" class="form-control mb-4" formControlName="EUde">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="EUes" class="form-label">EUes Translation</label>
+                                <input type="text" id="EUes" class="form-control mb-4" formControlName="EUes">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="USes" class="form-label">USes Translation</label>
+                                <input type="text" id="USes" class="form-control mb-4" formControlName="USes">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="EUfr" class="form-label">EUfr Translation</label>
+                                <input type="text" id="EUfr" class="form-control mb-4" formControlName="EUfr">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="USfr" class="form-label">USfr Translation</label>
+                                <input type="text" id="EUfr" class="form-control mb-4" formControlName="USfr">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="EUit" class="form-label">EUit Translation</label>
+                                <input type="text" id="EUit" class="form-control mb-4" formControlName="EUit">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="EUnl" class="form-label">EUnl Translation</label>
+                                <input type="text" id="EUnl" class="form-control mb-4" formControlName="EUnl">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="CNzh" class="form-label">CNzh Translation</label>
+                                <input type="text" id="CNzh" class="form-control mb-4" formControlName="CNzh">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="TWzh" class="form-label">TWzh Translation</label>
+                                <input type="text" id="TWzh" class="form-control mb-4" formControlName="TWzh">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="JPja" class="form-label">JPja Translation</label>
+                                <input type="text" id="JPja" class="form-control mb-4" formControlName="JPja">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="KRko" class="form-label">KRko Translation</label>
+                                <input type="text" id="KRko" class="form-control mb-4" formControlName="KRko">
+                            </div>
+                            <div class="col-md-6 px-3">
+                                <label for="EUru" class="form-label">EUru Translation</label>
+                                <input type="text" id="EUru" class="form-control mb-4" formControlName="EUru">
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button mdbBtn class="waves-light btn-primary" type="submit">{{"general.actions.create" | translate}}</button>
-                            <button type="button" mdbBtn color="danger" class="waves-light" (click)="content.hide()" mdbWavesEffect>Close</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </fieldset>
             </div>
-        </div>
-    </div>
-</div>
-<app-footer></app-footer>
+            <div class="modal-footer">
+                <button mdbBtn class="waves-light btn-primary" type="submit">{{"general.actions.create" | translate}}</button>
+                <button type="button" mdbBtn color="danger" class="waves-light" (click)="content.hide()" mdbWavesEffect>Close</button>
+            </div>
+        </form>

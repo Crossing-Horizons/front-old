@@ -10,7 +10,7 @@ export class EntityService {
   constructor(private requestService: RequestService) { }
 
   create(data: any) {
-    return this.requestService.request('POST', `${environment.endpoint}/entity`, data, {}, false);
+    return this.requestService.request('POST', `${environment.endpoint}/entity/create`, data, {}, false);
   }
 
   get(name: string, type: string){

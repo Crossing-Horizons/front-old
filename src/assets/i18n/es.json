@@ -48,7 +48,7 @@
     "buy_price": "Precio de compra",
     "clothing_type": "Tipo de ropa",
     "plant_type": "Tipo de planta",
-    "species": "Especie",
+    "specie": "Especie",
     "personality": "Personalidad",
     "genre": "Género",
     "catchphrase": "Muletilla",
@@ -64,7 +64,84 @@
     "museum_phrase": "Texto del museo",
     "shadow": "Sombra",
     "durability": "Durabilidad",
-    "consumable_type": "Tipo de consumible"
+    "consumable_type": "Tipo de consumible",
+    "infrastructure_type": "Tipo de infrastructura",
+    "rarities": {
+      "common": "Común",
+      "uncommon": "Poco frecuente",
+      "rare": "Raro",
+      "ultra_rare": "Muy raro"
+    },
+    "shadows": {
+      "tiny": "Diminuta",
+      "small": "Pequeña",
+      "medium": "Mediana",
+      "large": "Grande",
+      "very_large": "Muy grande",
+      "largest": "Enorme",
+      "medium_fin": "Mediana con aleta",
+      "large_fin": "Grande con aleta",
+      "largest_fin": "Enorme con aleta"
+    },
+    "consumables": {
+      "fruit": "Fruta",
+      "vegetable": "Verdura",
+      "event": "Evento",
+      "misc": "Otros"
+    },
+    "infrastructures": {
+      "bridge": "Puentes",
+      "stairs": "Rampas y escaleras"
+    },
+    "personalities": {
+      "crancky": "Gruñón", 
+      "jock": "Atlético", 
+      "lazy": "Perezoso", 
+      "smug": "Snob", 
+      "normal": "Normal", 
+      "peppy": "Alegre", 
+      "sisterly": "Dulce", 
+      "snooty": "Presumida"
+    },
+    "species": {
+      "alligator": "Cocodrilo", 
+      "anteater": "Oso hormiguero", 
+      "bear": "Oso", 
+      "bird": "Pájaro", 
+      "bull": "Toro", 
+      "cat": "Gato", 
+      "chicken": "Gallina", 
+      "cow": "Vaca", 
+      "cub": "Osito", 
+      "deer": "Ciervo", 
+      "dog": "Perro", 
+      "duck": "Pato", 
+      "eagle": "Águila", 
+      "elephant": "Elefante", 
+      "frog": "Rana", 
+      "goat": "Cabra", 
+      "gorilla": "Gorila",
+      "hamster": "Hámster", 
+      "hippo": "Hipopótamo", 
+      "horse": "Caballo", 
+      "kangaroo": "Canguro", 
+      "koala": "Koala", 
+      "lion": "León", 
+      "mouse": "Ratón", 
+      "monkey": "Mono", 
+      "octopus": "Pulpo", 
+      "ostrich": "Avestruz", 
+      "penguin": "Pingüino", 
+      "pig": "Cerdo", 
+      "rabbit": "Conejo", 
+      "rhino": "Rinoceronte", 
+      "sheep": "Oveja", 
+      "squirrel": "Ardilla", 
+      "tiger": "Tigre", 
+      "wolf": "Lobo"
+    },
+    "placeholder": {
+    }
   },
 
   "authentication": {

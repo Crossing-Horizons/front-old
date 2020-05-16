@@ -64,7 +64,84 @@
     "museum_phrase": "Museum phrase",
     "shadow": "Shadow",
     "durability": "Durability",
-    "consumable_type": "Consumable type"
+    "consumable_type": "Consumable type",
+    "infrastructure_type": "Infrastructure type",
+    "rarities": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "ultra_rare": "Ultra rare"
+    },
+    "shadows": {
+      "tiny": "Tiny",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "very_large": "Very large",
+      "largest": "Largest",
+      "medium_fin": "Medium with fin",
+      "large_fin": "Large with fin",
+      "largest_fin": "Largest with fin"
+    },
+    "consumables": {
+      "fruit": "Fruit",
+      "vegetable": "Vegetable",
+      "event": "Event",
+      "misc": "Other"
+    },
+    "infrastructures": {
+      "bridge": "Bridge",
+      "stairs": "Slopes and stairs"
+    },
+    "personalities": {
+      "crancky": "Cranky", 
+      "jock": "Jock", 
+      "lazy": "Lazy", 
+      "smug": "Smug", 
+      "normal": "Normal", 
+      "peppy": "Peppy", 
+      "sisterly": "Sisterly", 
+      "snooty": "Snooty"
+    },
+    "species": {
+      "alligator": "Alligator", 
+      "anteater": "Anteater", 
+      "bear": "Bear", 
+      "bird": "Bird", 
+      "bull": "Bull", 
+      "cat": "Cat", 
+      "chicken": "Chicken", 
+      "cow": "Cow", 
+      "cub": "Cub", 
+      "deer": "Deer", 
+      "dog": "Dog", 
+      "duck": "Duck", 
+      "eagle": "Eagle", 
+      "elephant": "Elephant", 
+      "frog": "Frog", 
+      "goat": "Goat", 
+      "gorilla": "Gorilla",
+      "hamster": "Hamster", 
+      "hippo": "Hippo", 
+      "horse": "Horse", 
+      "kangaroo": "Kangaroo", 
+      "koala": "Koala", 
+      "lion": "Lion", 
+      "mouse": "Mouse", 
+      "monkey": "Monkey", 
+      "octopus": "Octopus", 
+      "ostrich": "Ostrich", 
+      "penguin": "Penguin", 
+      "pig": "Pig", 
+      "rabbit": "Rabbit", 
+      "rhino": "Rhino", 
+      "sheep": "Sheep", 
+      "squirrel": "Squirrel", 
+      "tiger": "Tiger", 
+      "wolf": "Wolf"
+    },
+    "placeholder": {
+    }
   },
 
   "authentication": {

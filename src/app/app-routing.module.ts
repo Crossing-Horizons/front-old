@@ -8,14 +8,15 @@ import { RegisterComponent } from './components/authentication/register/register
 import { ConfirmationComponent } from './components/authentication/confirmation/confirmation.component';
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
+import { EntityPanelComponent } from './components/entity/entity-panel/entity-panel.component';
 
 const routes: Routes = [
   {path: '', component: IndexComponent },
   {path: 'login', canActivate:[UnauthenticatedGuard], component: LoginComponent},
   {path: 'register', canActivate:[UnauthenticatedGuard], component: RegisterComponent},
   {path: 'confirmation/:hash', canActivate:[UnauthenticatedGuard], component: ConfirmationComponent},
-  {path: 'entity/new', component: EntityFormComponent, data:{creating: true}},
-  {path: 'entity/edit/:type', component: EntityFormComponent, data:{creating: false}},
+  {path: 'entity/new', component: EntityPanelComponent, data:{creating: true}},
+  {path: 'entity/edit/:type/:name', component: EntityFormComponent, data:{creating: false}},
   {path: 'entity/:type/:name', component: EntityDisplayComponent}
 ];
 

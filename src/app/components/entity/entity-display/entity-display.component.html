@@ -1,185 +1,192 @@
 <app-header></app-header>
 <div class="container my-5 p-5">
   <mdb-card>
-    <div class="row mx-4">
-      <!-- Image -->
-      <div class="col-5 p-5 ml-n5">
-        <!-- Single image -->
-        <img *ngIf="type!='furniture'"  class="img-fluid img-background h-100" (click)="basicModal.show()" src="https://vignette.wikia.nocookie.net/animalcrossing/images/b/bb/NH-Acoustic_guitar.png">
-        <!-- .end Single image -->
-
-        <!-- Image with variations -->
-        <mdb-carousel [animation]="'slide'" *ngIf="type=='furniture'">
-          <mdb-carousel-item>
-            <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-          </mdb-carousel-item>
-          <mdb-carousel-item>
-            <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-          </mdb-carousel-item>
-        </mdb-carousel>
-        <div class="row" *ngIf="type=='furniture'">
-          <div class="col-md-3">
-            <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-          </div>
-          <div class="col-md-3">
-            <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-          </div>
-          <div class="col-md-3">
-            <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-          </div>
-          <div class="col-md-3">
-            <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-          </div>
-        </div>
-        <!-- .end Image with variations -->
-      </div>
-      <!-- .end Image -->
-
-      <!-- Modal -->
-      <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <img class="img-fluid" src="https://vignette.wikia.nocookie.net/animalcrossing/images/b/bb/NH-Acoustic_guitar.png">
-            </div>
-            <div class="modal-footer">
-              <button type="button" mdbBtn color="cyan" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- .end Modal -->
-
-      <!-- General -->
-      <div class="col-sm align-self-center">
-        <div class="row">
-          <p class="h1 mt-3">{{entity.name}}</p>
-          <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum quas numquam nostrum </p>
-        </div>
-        <div class="row">
-            <h5 class="mb-4" *ngIf="entityHelper.getEntityInputsAttributes('rarity', type)">Rarity: Uncommon</h5>
-            <br>
-        </div>
-        <!-- .end General-->
-        
-        <!-- Obtainment -->
-        <div class="row mb-4" *ngIf="entityHelper.getEntityInputsAttributes('obtainment', type)">
-          <p class="h5">Obtainment: Crafting</p>
-        </div>
-        <!-- . end Obtainment-->
-
-        <!-- Size -->
-        <div class="row mb-4" *ngIf="entityHelper.getEntityInputsAttributes('size', type)">
-          <p class="h5">Size: 1x1</p>
-          <table class="table table-borderless table-sm">
-            <tbody>
-              <tr class="d-flex" *ngFor="let in of [].constructor(1); let j = index"> 
-                <td *ngFor="let in of [].constructor(1); let i = index">
-                  <mdb-icon fas icon="square" size="2x" class="green-text"></mdb-icon>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- .end Size -->
-
-        <!-- Prices -->
-        <div class="row card pl-4 cyan lighten-3" *ngIf="entityHelper.getEntityInputsAttributes('sell_price', type)">
-          <h3 class="mt-2 text-white">Prices</h3>
-        
-          <div class="col-sm row">
-            <mdb-card class="col-sm mx-2 mb-4 text-center red lighten-1 text-white" *ngIf="entityHelper.getEntityInputsAttributes('price_flick', type)">
-              <h6>Flick's price
-              <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
-              <h4>14.000.000 bayas</h4>
-            </mdb-card>
-
-            <mdb-card class="col-sm mx-2 mb-4 text-center blue text-white" *ngIf="entityHelper.getEntityInputsAttributes('price_cj', type)">
-              <h6>CJ's price
-              <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
-              <h4>14.000.000 bayas</h4>
-            </mdb-card>
-
-            <mdb-card class="col-sm mx-2 mb-4 text-center orange text-white" *ngIf="entityHelper.getEntityInputsAttributes('buy_price', type)">
-              <h6>Buying price
-              <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
-              <h4>140.000 bayas</h4>
-            </mdb-card>
-      
-            <mdb-card class="col-sm mx-2 mb-4 text-center green text-white" *ngIf="entityHelper.getEntityInputsAttributes('sell_price', type)">
-              <h6>Selling price
-              <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
-              <h4>140.000 bayas</h4>
-            </mdb-card>
-          </div>
-        </div>
-        <!-- .end Prices -->
-        
-        <!-- Villager -->
-        <div class="row" *ngIf="type=='villager'">
-          <h5>"Catchphrase"</h5><br>
-          <ul class="list-unstyled">
-            <li>        
-              <img class="icon bg-warning rounded-circle mr-2" src="https://nookipedia.com/w/images/thumb/7/79/SquirrelSpeciesIconSilhouette.png/180px-SquirrelSpeciesIconSilhouette.png"> Squirrel
-            </li>
-            <li>
-              <mdb-icon fas icon="venus" size="3x" class="ml-2 mt-2 mr-2 pink-text"></mdb-icon> Female
-              <!-- <mdb-icon fas icon="mars" size="3x" class="ml-2 mt-2 mr-2 blue-text"></mdb-icon> Male -->
-            </li>
-            <li>
-              <mdb-icon fas icon="birthday-cake" size="3x" class="ml-1 mt-2 mr-1 red-text"></mdb-icon> 13th April
-            </li>
-            <li>
-              <mdb-icon fas icon="theater-masks" size="2x" class="ml-1 mt-3 mr-1 green-text"></mdb-icon> Peppy
-            </li>
-          </ul>
-        </div>
-        <!-- .end Villager -->
+    <div *ngIf="!entity" class="d-flex justify-content-center my-5">
+      <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <hr>
-    <!-- Bug and fish -->
-    <div class="card-body">
-      <p class="h1 text-center mb-4" *ngIf="type=='bug' || type=='fish'">¿Cómo obtenerlo?</p>
-      <div class="row">
-        <div class="col-sm mx-2 mb-4 text-center" *ngIf="entityHelper.getEntityInputsAttributes('location', type)">
-          <div class="card">
-            <div class="card-header green text-white">
-              <h3>En el suelo</h3>
+    <mdb-card-body *ngIf="entity">
+      <div class="row mx-4">
+        <!-- Image -->
+        <div class="col-5 p-5 ml-n5">
+          <!-- Single image -->
+          <img *ngIf="type!='furniture'"  class="img-fluid img-background h-100" (click)="basicModal.show()" src="https://vignette.wikia.nocookie.net/animalcrossing/images/b/bb/NH-Acoustic_guitar.png">
+          <!-- .end Single image -->
+
+          <!-- Image with variations -->
+          <mdb-carousel [animation]="'slide'" *ngIf="type=='furniture'">
+            <mdb-carousel-item>
+              <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </mdb-carousel-item>
+            <mdb-carousel-item>
+              <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </mdb-carousel-item>
+          </mdb-carousel>
+          <div class="row" *ngIf="type=='furniture'">
+            <div class="col-md-3">
+              <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
             </div>
-            <div class="card-body">
-              <img class="img-fluid" src="https://gamepedia.cursecdn.com/animalcrossingpocketcamp_gamepedia_en/b/b7/Breezy_Hollow_Icon.png?version=2a01735ea50de06db4d9ae44362bbcc0">
+            <div class="col-md-3">
+              <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </div>
+            <div class="col-md-3">
+              <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </div>
+            <div class="col-md-3">
+              <img class="img-thumbnail img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </div>
+          </div>
+          <!-- .end Image with variations -->
+        </div>
+        <!-- .end Image -->
+
+        <!-- Modal -->
+        <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <img class="img-fluid" src="https://vignette.wikia.nocookie.net/animalcrossing/images/b/bb/NH-Acoustic_guitar.png">
+              </div>
+              <div class="modal-footer">
+                <button type="button" mdbBtn color="cyan" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-sm mx-2 mb-4 text-center" *ngIf="entityHelper.getEntityInputsAttributes('location', type)">
-          <div class="card">
-            <div class="card-header red lighten-1 text-white">
-              <h3>Junio-Agosto</h3>
-            </div>
-            <div class="card-body">
-              <img class="img-fluid" src="https://icons.iconarchive.com/icons/vexels/office/512/calendar-icon.png">
+        <!-- .end Modal -->
+
+        <!-- General -->
+        <div class="col-sm align-self-center">
+          <div class="row">
+            <p class="h1 mt-3">{{entity.name}}</p>
+            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum quas numquam nostrum </p>
+          </div>
+          <div class="row">
+              <h5 class="mb-4" *ngIf="entity.rarity">Rarity: Uncommon</h5>
+              <br>
+          </div>
+          <!-- .end General-->
+          
+          <!-- Obtainment -->
+          <div class="row mb-4" *ngIf="entity.obtainment">
+            <p class="h5">Obtainment: Crafting</p>
+          </div>
+          <!-- . end Obtainment-->
+
+          <!-- Size -->
+          <div class="row mb-4" *ngIf="entity.size">
+            <p class="h5">Size: 1x1</p>
+            <table class="table table-borderless table-sm">
+              <tbody>
+                <tr class="d-flex" *ngFor="let in of [].constructor(1); let j = index"> 
+                  <td *ngFor="let in of [].constructor(1); let i = index">
+                    <mdb-icon fas icon="square" size="2x" class="green-text"></mdb-icon>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- .end Size -->
+
+          <!-- Prices -->
+          <div class="row card pl-4 cyan lighten-3" *ngIf="entity.sell_price">
+            <h3 class="mt-2 text-white">Prices</h3>
+          
+            <div class="col-sm row">
+              <mdb-card class="col-sm mx-2 mb-4 text-center red lighten-1 text-white" *ngIf="entity.price_flick">
+                <h6>Flick's price
+                <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
+                <h4>14.000.000 bayas</h4>
+              </mdb-card>
+
+              <mdb-card class="col-sm mx-2 mb-4 text-center blue text-white" *ngIf="entity.price_cj">
+                <h6>CJ's price
+                <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
+                <h4>14.000.000 bayas</h4>
+              </mdb-card>
+
+              <mdb-card class="col-sm mx-2 mb-4 text-center orange text-white" *ngIf="entity.buy_price">
+                <h6>Buying price
+                <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
+                <h4>140.000 bayas</h4>
+              </mdb-card>
+        
+              <mdb-card class="col-sm mx-2 mb-4 text-center green text-white" *ngIf="entity.sell_price">
+                <h6>Selling price
+                <img class="img-fluid icon ml-2" src="https://cdn02.nintendo-europe.com/media/images/08_content_images/games_6/nintendo_switch_7/nswitch_animalcrossingnewhorizons/NSwitch_AnimalCrossingNewHorizons_Overview_Howtobuy_btn_Timmy_Tommy.png"></h6>
+                <h4>140.000 bayas</h4>
+              </mdb-card>
             </div>
           </div>
-        </div>
-        <div class="col-sm mx-2 mb-4 text-center" *ngIf="entityHelper.getEntityInputsAttributes('time', type)">
-          <div class="card">
-            <div class="card-header blue text-white">
-              <h3>9AM-4PM</h3>
-            </div>
-            <div class="card-body">
-              <img class="img-fluid mb-4" src="https://www.models-resource.com/resources/big_icons/35/34105.png">
-            </div>
+          <!-- .end Prices -->
+          
+          <!-- Villager -->
+          <div class="row" *ngIf="type=='villager'">
+            <h5>"Catchphrase"</h5><br>
+            <ul class="list-unstyled">
+              <li>        
+                <img class="icon bg-warning rounded-circle mr-2" src="https://nookipedia.com/w/images/thumb/7/79/SquirrelSpeciesIconSilhouette.png/180px-SquirrelSpeciesIconSilhouette.png"> Squirrel
+              </li>
+              <li>
+                <mdb-icon fas icon="venus" size="3x" class="ml-2 mt-2 mr-2 pink-text"></mdb-icon> Female
+                <!-- <mdb-icon fas icon="mars" size="3x" class="ml-2 mt-2 mr-2 blue-text"></mdb-icon> Male -->
+              </li>
+              <li>
+                <mdb-icon fas icon="birthday-cake" size="3x" class="ml-1 mt-2 mr-1 red-text"></mdb-icon> 13th April
+              </li>
+              <li>
+                <mdb-icon fas icon="theater-masks" size="2x" class="ml-1 mt-3 mr-1 green-text"></mdb-icon> Peppy
+              </li>
+            </ul>
           </div>
+          <!-- .end Villager -->
         </div>
       </div>
-      <!-- .end Bug and fish -->
-            
-      <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('date', type)">Date: </p>
-      <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('cloting_type', type)">Clothing type: </p>
-      <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('plant_type', type)">Plant type: </p>
-      <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('special_character_id', type)">special_character_id: </p>
-    </div>
+      <hr>
+      <!-- Bug and fish -->
+      <div class="card-body">
+        <p class="h1 text-center mb-4" *ngIf="type=='bug' || type=='fish'">¿Cómo obtenerlo?</p>
+        <div class="row">
+          <div class="col-sm mx-2 mb-4 text-center" *ngIf="entity.location">
+            <div class="card">
+              <div class="card-header green text-white">
+                <h3>En el suelo</h3>
+              </div>
+              <div class="card-body">
+                <img class="img-fluid" src="https://gamepedia.cursecdn.com/animalcrossingpocketcamp_gamepedia_en/b/b7/Breezy_Hollow_Icon.png?version=2a01735ea50de06db4d9ae44362bbcc0">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm mx-2 mb-4 text-center" *ngIf="entity.location">
+            <div class="card">
+              <div class="card-header red lighten-1 text-white">
+                <h3>Junio-Agosto</h3>
+              </div>
+              <div class="card-body">
+                <img class="img-fluid" src="https://icons.iconarchive.com/icons/vexels/office/512/calendar-icon.png">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm mx-2 mb-4 text-center" *ngIf="entity.location">
+            <div class="card">
+              <div class="card-header blue text-white">
+                <h3>9AM-4PM</h3>
+              </div>
+              <div class="card-body">
+                <img class="img-fluid mb-4" src="https://www.models-resource.com/resources/big_icons/35/34105.png">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Bug and fish -->
+              
+        <p class="h5 mb-4" *ngIf="entity.date">Date: </p>
+        <p class="h5 mb-4" *ngIf="entity.clothing_type">Clothing type: </p>
+        <p class="h5 mb-4" *ngIf="entity.plant_type">Plant type: </p>
+        <p class="h5 mb-4" *ngIf="entity.npc">special_character_id: </p>
+      </div>
+  </mdb-card-body>
   </mdb-card>
 </div>
 <app-footer></app-footer>

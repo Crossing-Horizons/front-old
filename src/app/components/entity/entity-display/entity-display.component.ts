@@ -21,13 +21,12 @@ export class EntityDisplayComponent implements OnInit {
   locale = this.translationComponent.userLocale+this.translationComponent.userLang
   aux = this.translateService.onLangChange.subscribe(lang=>{
     this.locale = this.translationComponent.getLocaleDefault(this.locale)+lang.lang;
-    this.entityHelper.getPropertyTranslated(this.entity, 'name', this.locale, this.name_translations)
+    this.entityHelper.getPropertyTranslated(this.entity, 'name', this.locale)
   })
 
   type: string;
   name: string;
   entity: Entity;
-  name_translations
 
 
   ngOnInit(): void {
@@ -36,8 +35,8 @@ export class EntityDisplayComponent implements OnInit {
       this.name = params['name'];
       this.entityService.get(this.name, this.type).then(res => {
         this.entity = res.entity
-        this.name_translations = res.translations
-        this.entityHelper.getPropertyTranslated(this.entity, 'name', this.locale, this.name_translations)
+        this.entity.translations = res.translations
+        this.entityHelper.getPropertyTranslated(this.entity, 'name', this.locale)
       }).catch(error =>{
         console.log(error)
       })

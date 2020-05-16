@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 // Material Design for Bootstrap
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+//Input mask
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 //Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -24,6 +27,7 @@ import { ConfirmationComponent } from './components/authentication/confirmation/
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
 import { EntityHelper } from './components/entity/entity-helper';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
+import { EntityPanelComponent } from './components/entity/entity-panel/entity-panel.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +40,15 @@ import { EntityDisplayComponent } from './components/entity/entity-display/entit
     RegisterComponent,
     ConfirmationComponent,
     EntityFormComponent,
-    EntityDisplayComponent
+    EntityDisplayComponent,
+    EntityPanelComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
+    NgxMaskModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -58,8 +64,11 @@ import { EntityDisplayComponent } from './components/entity/entity-display/entit
   ],
   providers: [
     EntityHelper,
-    TranslationComponent
+    TranslationComponent,
+    EntityFormComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  options: Partial<IConfig> | (() => Partial<IConfig>);
+}

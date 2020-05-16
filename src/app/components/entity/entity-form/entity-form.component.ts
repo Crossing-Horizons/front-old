@@ -1,73 +1,67 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, OnChanges, ViewChild ,Input, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 
-import { UploadService } from '../../../services/config/upload.service';
 import { EntityService } from '../../../services/entity/entity.service';
 
 import { EntityHelper } from '../entity-helper';
-import { Entity, Type } from '../../../models/entity';
+import { Rarities, Shadows, Consumables, Infrastructures, Personalities, Animals, Genre } from '../../../models/entity';
 
 
 @Component({
   selector: 'app-entity-form',
   templateUrl: './entity-form.component.html',
-  styleUrls: ['./entity-form.component.scss']
+  styleUrls: ['./entity-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EntityFormComponent implements OnInit {
-  @ViewChild('content', { static: true }) public contentModal;
-  
+export class EntityFormComponent implements OnInit, OnChanges {
+  @Input() type: string;
+  @Input() entityForm: FormGroup;
+  @Input() content
+  @Input() submitAttemp: boolean;
 
-  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private uploadService: UploadService, 
-    private entityService: EntityService) { }
+  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private entityService: EntityService) { }
 
   selectedFiles: FileList;
   imgPreview;
-  submitAttemp: boolean;
-  type: string;
-  entity: Entity;
   creating: boolean = this.route.snapshot.data['creating']
-  entityForm;
-  types = Type;
 
+  // Enums
+  rarities = Object.values(Rarities)
+  shadows = Object.values(Shadows)
+  consumables = Object.values(Consumables)
+  infrastructures = Object.values(Infrastructures)
+  genres = Object.values(Genre)
+  species = Object.values(Animals)
+  personalities = Object.values(Personalities)
+  
   ngOnInit(): void {
-    if(this.creating){
-      this.entity = new Entity();
-    } else {
+  }
 
+  ngOnChanges(){
+    this.submitAttemp=false;
+  }
+
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.entityForm.controls;
+    for (const name in controls) {
+        if (controls[name].invalid) {
+            invalid.push(name);
+        }
     }
-
-    this.entityForm = new FormGroup({
-      name: new FormControl(this.entity.name, [Validators.required]),
-      image: new FormControl(this.entity.image, [Validators.required]),
-      exchangeable: new FormControl(this.entity.exchangeable, [Validators.required])
-    });
-    // set checkboxes false by default
-    this.entityForm.get('exchangeable').setValue(false)
-    this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
-  }
-
-
-  show(value:string){
-    this.type = value;
-    console.log(this.type)
-    this.entityForm.reset();
-    this.entityHelper.getEntityFormAttributes(this.entityForm, this.type, this.entity);
-    this.contentModal.show();
-    console.log(this.entityForm)
-  }
+    return invalid;
+}
 
   onSubmit() {
+    console.log(this.findInvalidControls())
     if(!this.entityForm.invalid){
       var form = new FormData();
-      form.append("name",this.entityForm.get('name').value)
-      form.append("exchangeable",this.entityForm.get('exchangeable').value)
-      form.append("type", this.type)
+      form.append('creating', new Boolean(this.creating).toString())
       for (let i = 0; i < this.selectedFiles.length; i++) {
         const file = this.selectedFiles[i];
         form.append("image", file);
       }
-      console.log(form)
       form = this.entityHelper.getEntityDataAttributes(form, this.type, this.entityForm)
       this.entityService.create(form).catch(error => {
         console.log(error);
@@ -90,6 +84,7 @@ export class EntityFormComponent implements OnInit {
       }
     }
   }
+
 
   get name() { return this.entityForm.get('name'); }
   get image() { return this.entityForm.get('image'); }
@@ -115,9 +110,11 @@ export class EntityFormComponent implements OnInit {
   get durability() { return this.entityForm.get('durability'); }
   get size() { return this.entityForm.get('size'); }
   get npc() { return this.entityForm.get('npc'); }
-  get species() { return this.entityForm.get('species'); }
+  get specie() { return this.entityForm.get('specie'); }
   get personality() { return this.entityForm.get('personality'); }
   get genre() { return this.entityForm.get('genre'); }
   get catchphrase() { return this.entityForm.get('catchphrase'); }
   get birthdate() { return this.entityForm.get('birthdate'); }
+  get rain() { return this.entityForm.get('rain'); }
+  get infrastructure_type() { return this.entityForm.get('infrastructure_type'); }
 }

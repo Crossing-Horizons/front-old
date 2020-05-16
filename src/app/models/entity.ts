@@ -5,12 +5,12 @@ export class Entity{
     exchangeable: boolean;
 
     // fish and bugs
-    shadow: string;
+    shadow: Shadows;
     location: string;
     month_northern: string;
     month_southern: string;
     time: string;
-    rain: string;
+    rain: number;
     all_day: boolean;
     all_year: boolean;
     price_cj: number;
@@ -84,6 +84,23 @@ export class Entity{
     reward_tier4: number;
     reward_tier5: number;
     reward_tier6: number;
+
+    translations: {
+        EUen: string;
+        USen: string;
+        EUde: string;
+        EUes: string;
+        USes: string;
+        EUfr: string;
+        USfr: string;
+        EUit: string;
+        EUnl: string;
+        CNzh: string;
+        TWzh: string;
+        JPja: string;
+        KRko: string;
+        EUru: string;
+    }
 }
 
 export enum Type{
@@ -109,43 +126,123 @@ export enum Type{
 }
 
 export enum Furnitures{
-    house, exterior, fence, hang, floor, wall, rug
+    house = 'house', 
+    exterior = 'exterior', 
+    fence = 'fence', 
+    hang = 'hang', 
+    floor = 'floor', 
+    wall = 'wall', 
+    rug = 'rug'
 }
 
 export enum Infrastructures{
-    stairs, bridge
+    stairs = 'stairs', 
+    bridge = 'bridge'
 }
 
 export enum Genre{
-    male, female
+    male = 'male', 
+    female = 'female'
 }
 
 export enum Clothing{
-    accessory, bag, bottom, dress, headwear, shoes, socks, top, umbrella
+    accessory = 'accessory', 
+    bag = 'bag', 
+    bottom = 'bottom', 
+    dress = 'dress', 
+    headwear = 'headwear', 
+    shoes = 'shoes', 
+    socks = 'socks', 
+    top = 'top', 
+    umbrella = 'umbrella'
 }
 
 export enum Plants{
-    tree, bush, flower
+    tree = 'tree', 
+    bush = 'bush', 
+    flower = 'flower'
 }
 
 export enum Consumables{
-    fruit, vegetables, event, misc
+    fruit = 'fruit', 
+    vegetable = 'vegetable', 
+    event = 'event', 
+    misc = 'misc'
 }
 
 export enum Durabilities{
-    very_low, low, medium, high, very_high, infinite
+    very_low = 'very_low', 
+    low = 'low', 
+    medium = 'medium', 
+    high = 'high', 
+    very_high = 'very_high', 
+    infinite = 'infinite'
 }
 
 export enum Rarities{
-    common, uncommon, rare, ultra_rare
+    common = 'common', 
+    uncommon = 'uncommon', 
+    rare = 'rare', 
+    ultra_rare = 'ultra_rare'
 }
 
 export enum Animals{
-    alligator, anteater, bear, bird, bull, cat, chicken, cow, cub, deer, dog, duck, eagle, elephant, frog, goat, gorilla,
-    hamster, hippo, horse, kangaroo, koala, lion, mouse, monkey, octopus, ostrich, penguin, pig, rabbit, rhino, sheep, squirrel, 
-    tiger, wolf
+    alligator = 'alligator', 
+    anteater = 'anteater', 
+    bear = 'bear', 
+    bird = 'bird', 
+    bull = 'bull', 
+    cat = 'cat', 
+    chicken = 'chicken', 
+    cow = 'cow', 
+    cub = 'cub', 
+    deer = 'deer', 
+    dog = 'dog', 
+    duck = 'duck', 
+    eagle = 'eagle', 
+    elephant = 'elephant', 
+    frog = 'frog', 
+    goat = 'goat', 
+    gorilla = 'gorilla',
+    hamster = 'hamster', 
+    hippo = 'hippo', 
+    horse = 'horse', 
+    kangaroo = 'kangaroo', 
+    koala = 'koala', 
+    lion = 'lion', 
+    mouse = 'mouse', 
+    monkey = 'monkey', 
+    octopus = 'octopus', 
+    ostrich = 'ostrich', 
+    penguin = 'penguin', 
+    pig = 'pig', 
+    rabbit = 'rabbit', 
+    rhino = 'rhino', 
+    sheep = 'sheep', 
+    squirrel = 'squirrel', 
+    tiger = 'tiger', 
+    wolf = 'wolf'
 }
 
 export enum Personalities{
-    crancky, jock, lazy, smug, normal, peppy, sisterly, snooty
+    crancky = 'crancky', 
+    jock = 'jock', 
+    lazy = 'lazy', 
+    smug = 'smug', 
+    normal = 'normal', 
+    peppy = 'peppy', 
+    sisterly = 'sisterly', 
+    snooty = 'snooty'
+}
+
+export enum Shadows{
+    tiny='tiny',
+    small='small',
+    medium = 'medium',
+    large = 'large',
+    very_large = 'very_large',
+    largest = 'largest',
+    medium_fin = 'medium_fin',
+    large_fin = 'large_fin',
+    largest_fin = 'largest_fin'
 }
