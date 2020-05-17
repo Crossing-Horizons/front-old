@@ -20,6 +20,8 @@ export class EntityFormComponent implements OnInit, OnChanges {
   @Input() content
   @Input() submitAttemp: boolean;
 
+  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private entityService: EntityService,
+    public formUtilities: FormUtilities) { }
 
   selectedFiles: FileList;
   imgPreview;
