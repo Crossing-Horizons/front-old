@@ -53,7 +53,7 @@
     "genre": "Género",
     "catchphrase": "Muletilla",
     "birthdate": "Cumpleaños",
-    "special_character": "Personaje",
+    "npc": "Personaje",
     "exchangeable": "Intercambiable",
     "month_northern": "Meses hemisferio norte",
     "month_southern": "Meses hemisferio sur",
@@ -66,6 +66,27 @@
     "durability": "Durabilidad",
     "consumable_type": "Tipo de consumible",
     "infrastructure_type": "Tipo de infrastructura",
+    "award_criteria": "Criterios para la obtención",
+    "types": {
+      "fish": "Pez", 
+      "bug": "Bicho", 
+      "fossil": "Fósil", 
+      "plant": "Planta", 
+      "art": "Arte", 
+      "consumable": "Consumible", 
+      "infrastructure": "Puente o rampa", 
+      "event": "Evento",
+      "npc": "Personaje",
+      "clothes": "Ropa",
+      "tool": "Herramienta",
+      "furniture": "Mueble",
+      "villager": "Vecino",
+      "music": "Música",
+      "reaction": "Emoción",
+      "recipe": "Receta",
+      "material": "Material",
+      "achievement": "Logro"
+    },
     "rarities": {
       "common": "Común",
       "uncommon": "Poco frecuente",
@@ -139,6 +160,18 @@
       "squirrel": "Ardilla", 
       "tiger": "Tigre", 
       "wolf": "Lobo"
+    },
+    "durabilities": {
+      "very_low": "Muy baja", 
+      "low": "Baja", 
+      "medium": "Media", 
+      "high": "Alta", 
+      "very_high": "Muy alta", 
+      "infinite": "Infinita"
+    },
+    "genres": {
+      "male": "Macho",
+      "female": "Hembra"
     },
     "placeholder": {
     }

@@ -3,9 +3,9 @@ import { FormGroup } from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 
 import { EntityService } from '../../../services/entity/entity.service';
-
 import { EntityHelper } from '../entity-helper';
-import { Rarities, Shadows, Consumables, Infrastructures, Personalities, Animals, Genre } from '../../../models/entity';
+import { Rarities, Shadows, Consumables, Infrastructures, Personalities, Animals, Genre, Durabilities } from '../../../models/entity';
+import { FormUtilities } from '../../../utils/form-utilities'
 
 
 @Component({
@@ -20,7 +20,6 @@ export class EntityFormComponent implements OnInit, OnChanges {
   @Input() content
   @Input() submitAttemp: boolean;
 
-  constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private entityService: EntityService) { }
 
   selectedFiles: FileList;
   imgPreview;
@@ -34,12 +33,19 @@ export class EntityFormComponent implements OnInit, OnChanges {
   genres = Object.values(Genre)
   species = Object.values(Animals)
   personalities = Object.values(Personalities)
+  durabilities = Object.values(Durabilities)
+  materialList = []
   
   ngOnInit(): void {
+    // this.entityService.list(type).then(res => {
+    //   this.materialList.push(res);
+    // });
   }
 
   ngOnChanges(){
     this.submitAttemp=false;
+    this.selectedFiles=null;
+    this.imgPreview=[];
   }
 
   public findInvalidControls() {
@@ -117,4 +123,7 @@ export class EntityFormComponent implements OnInit, OnChanges {
   get birthdate() { return this.entityForm.get('birthdate'); }
   get rain() { return this.entityForm.get('rain'); }
   get infrastructure_type() { return this.entityForm.get('infrastructure_type'); }
+  get tiers() { return this.entityForm.get('tiers'); }
+  get award_criteria() { return this.entityForm.get('award_criteria'); }
+  get materials() { return this.entityForm.get('materials'); }
 }

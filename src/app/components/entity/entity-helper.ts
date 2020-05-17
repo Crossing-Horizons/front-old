@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { FormControl, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormControl, Validators, AbstractControl, FormBuilder, ValidatorFn } from '@angular/forms';
 import { Entity, Rarities, Shadows } from '../../models/entity'
+import { FormUtilities } from '../../utils/form-utilities'
 
 @Injectable()
 export class EntityHelper{
 
+    constructor(private formUtilities: FormUtilities, private formBuilder: FormBuilder){}
     /**
-     * 
+     * Creates the FormGroup according to the entity type
      * @param form 
      * @param type 
      * @param entity 
@@ -49,6 +51,10 @@ export class EntityHelper{
                 this.priceCommonFormAttributes(form, entity);
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
                 form.addControl('clothing_type', new FormControl(entity.clothing_type, [Validators.required]));
+                form.addControl('always_available', new FormControl(entity.always_available, [Validators.required]));
+                form.addControl('style', new FormControl(entity.style, [Validators.required]));
+                form.addControl('themes', new FormControl(entity.themes, [Validators.required]));
+                form.addControl('seasons', new FormControl(entity.seasons, [Validators.required]));
                 return form;
             }
             case 'furniture': {
@@ -84,6 +90,7 @@ export class EntityHelper{
                 form.addControl('genre', new FormControl(entity.genre, [Validators.required]));
                 form.addControl('catchphrase', new FormControl(entity.catchphrase, [Validators.required]));
                 form.addControl('birthdate', new FormControl(entity.birthdate, [Validators.required]));
+                form.get('genre').setValue('male')
                 return form;
             }
             case 'npc': {
@@ -102,11 +109,27 @@ export class EntityHelper{
                 form.addControl('infrastructure_type', new FormControl(entity.infrastructure_type, [Validators.required]));
                 return form;
             }
+            case 'reaction': {
+                form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
+                return form;
+            }
+            case 'recipe': {
+                this.priceCommonFormAttributes(form, entity);
+                form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
+                this.formUtilities.dynamicInput(form, 'materials', this.initRecipeMaterialInput());
+                console.log(form)
+                return form
+            }
+            case 'achievement': {
+                form.addControl('award_criteria', new FormControl(entity.award_criteria, [Validators.required]));
+                this.formUtilities.dynamicInput(form, 'tiers', this.initTierInput());
+                return form
+            }
         }
     }
 
     /**
-     * 
+     * Generates the FormData according to the entity type
      * @param form 
      * @param type 
      * @param entity 
@@ -147,6 +170,10 @@ export class EntityHelper{
                 this.priceCommonDataAttributes(form, entityForm);
                 form.append('obtainment', entityForm.get("obtainment").value);
                 form.append('clothing_type', entityForm.get("clothing_type").value);
+                form.append('always_available', entityForm.get("always_available").value);
+                form.append('style', entityForm.get("style").value);
+                form.append('themes', entityForm.get("themes").value);
+                form.append('seasons', entityForm.get("seasons").value);
                 return form;
             } 
             case 'furniture': {
@@ -195,6 +222,21 @@ export class EntityHelper{
                 form.append('buy_price', entityForm.get("buy_price"));
                 form.append('obtainment', entityForm.get("obtainment").value);
                 form.append('infrastructure_type', entityForm.get("infrastructure_type").value);
+                return form;
+            }
+            case 'reaction': {
+                form.append('obtainment', entityForm.get("obtainment").value);
+                return form;
+            }
+            case 'recipe': {
+                this.priceCommonDataAttributes(form, entityForm);
+                form.append('obtainment', entityForm.get("obtainment").value);
+                form.append('recipeMaterials', entityForm.get("materials").value);
+                return form;
+            }
+            case 'achievement': {
+                form.append('award_criteria', entityForm.get("award_criteria").value);
+                form.append('tiers', entityForm.get("tiers").value)
                 return form;
             }
         }
@@ -311,5 +353,19 @@ export class EntityHelper{
         form.append('JPja', entityForm.get('JPja').value);
         form.append('KRko', entityForm.get('KRko').value);
         form.append('EUru', entityForm.get('EUru').value);
+    }
+
+    public initTierInput(){
+        return this.formBuilder.group({
+            tier: ['', Validators.required],
+            reward_tier: ['', Validators.required]
+        });
+    }
+
+    public initRecipeMaterialInput(){
+        return this.formBuilder.group({
+            material: [null, Validators.required],
+            quantity: [null, Validators.required]
+        });
     }
 }

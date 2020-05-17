@@ -48,12 +48,12 @@
     "buy_price": "Buy price",
     "clothing_type": "Clothing type",
     "plant_type": "Plant type",
-    "species": "Specie",
+    "specie": "Specie",
     "personality": "Personality",
     "genre": "Genre",
     "catchphrase": "Catchphrase",
     "birthdate": "Birthdate",
-    "special_character": "Special character",
+    "npc": "Special character",
     "exchangeable": "Exchangeable",
     "month_northern": "Northern months",
     "month_southern": "Southern months",
@@ -66,6 +66,27 @@
     "durability": "Durability",
     "consumable_type": "Consumable type",
     "infrastructure_type": "Infrastructure type",
+    "award_criteria": "Award criteria",
+    "types": {
+      "fish": "Fish", 
+      "bug": "Bug", 
+      "fossil": "Fossil", 
+      "plant": "Plant", 
+      "art": "Art", 
+      "consumable": "Consumable", 
+      "infrastructure": "Bridge or Slope", 
+      "event": "Event",
+      "npc": "Character",
+      "clothes": "Clothes",
+      "tool": "Tool",
+      "furniture": "Furniture",
+      "villager": "Villager",
+      "music": "Music",
+      "reaction": "Reaction",
+      "recipe": "Recipe",
+      "material": "Material",
+      "achievement": "Achievement"
+    },
     "rarities": {
       "common": "Common",
       "uncommon": "Uncommon",
@@ -139,6 +160,18 @@
       "squirrel": "Squirrel", 
       "tiger": "Tiger", 
       "wolf": "Wolf"
+    },
+    "durabilities": {
+      "very_low": "Very low", 
+      "low": "Low", 
+      "medium": "Medium", 
+      "high": "High", 
+      "very_high": "Very high", 
+      "infinite": "Infinite"
+    },
+    "genres": {
+      "male": "Male",
+      "female": "Female"
     },
     "placeholder": {
     }

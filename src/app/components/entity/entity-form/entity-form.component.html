@@ -151,7 +151,7 @@
                     </div>
                 </div>
                 
-                <legend>Prices</legend>
+                <legend *ngIf="sell_price || buy_price">Prices</legend>
                 <!-- Sell price -->
                 <div class="col-md-6" *ngIf="sell_price">
                     <label for="sell_price" class="form-label">{{'entity.sell_price' | translate}}</label>
@@ -261,7 +261,10 @@
                 <!-- Durability -->
                 <div class="col-md-6" *ngIf="durability">
                     <label for="durability" class="form-label">{{'entity.durability' | translate}}</label>
-                    <input type="text" id="durability" class="form-control mb-4" formControlName="durability">
+                    <select id="durability" class="browser-default custom-select mb-4" formControlName="durability">
+                        <option [value]="null" selected>Selecciona durabilidad</option>
+                        <option *ngFor="let durability of durabilities" [value]="durability" >{{ "entity.durabilities." + durability | translate}}</option>
+                    </select>
                     <div *ngIf="durability.invalid && (durability.dirty || submitAttemp)" class="alert alert-danger">
                         <div *ngIf="durability.errors.required">
                             {{"general.required.username" | translate}}
@@ -316,9 +319,13 @@
                 </div>
                 <!-- Genre -->
                 <div class="col-md-6" *ngIf="genre">
-
                     <label for="genre" class="form-label">{{'entity.genre' | translate}}</label>
-                    <input type="text" id="genre" class="form-control mb-4" formControlName="genre">
+                    <div class="mb-4">
+                        <div class="custom-control custom-radio custom-control-inline col-4" *ngFor="let genreOpt of genres; let i = index">
+                            <input type="radio" class="custom-control-input" id="genre+{{i}}" [value]="genreOpt" formControlName="genre" mdbInput>
+                            <label class="custom-control-label" for="genre+{{i}}">{{ "entity.genres."+genreOpt | translate }}</label>
+                        </div>
+                    </div>
                     <div *ngIf="genre.invalid && (genre.dirty || submitAttemp)" class="alert alert-danger">
                         <div *ngIf="genre.errors.required">
                             {{"general.required.username" | translate}}
@@ -335,6 +342,67 @@
                         </div>
                     </div>
                 </div>
+                <!-- Award criteria -->
+                <div class="col-md-12" *ngIf="award_criteria">
+                    <label for="award_criteria" class="form-label">{{'entity.award_criteria' | translate}}</label>
+                    <textarea id="award_criteria" class="form-control mb-4" formControlName="award_criteria"></textarea>
+                    <div *ngIf="award_criteria.invalid && (award_criteria.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="award_criteria.errors.required">
+                            {{"general.required.username" | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Tiers -->
+                <div class="col-md-12" *ngIf="tiers" formArrayName='tiers'>
+                    <div class="row" *ngFor="let tierAndReward of entityForm.controls.tiers['controls']; let i=index" [formGroupName]='i'>
+                        <div class="col-md-4">
+                            <label for="tier{{i}}" class="form-label">Tier {{i+1}}</label>
+                            <input type="number" id="tier{{i}}" class="form-control mb-4" formControlName="tier">
+                        </div>
+                        <div class="col-md-5">
+                            <label for="reward{{i}}" class="form-label">Reward of tier {{i+1}}</label>
+                            <input type="number" id="reward{{i}}" class="form-control mb-4" formControlName="reward_tier">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" mdbBtn color="danger" class="mt-4 waves-light" *ngIf="entityForm.controls.tiers['controls'].length>1" 
+                                (click)="formUtilities.removeInput(i, entityForm, 'tiers')" mdbWavesEffect>Remove</button>
+                        </div>
+                        <div class="col-md-9">
+                            <div *ngIf="tierAndReward.invalid && (tierAndReward.dirty || submitAttemp)" class="alert alert-danger">
+                                {{"general.required.username" | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" mdbBtn color="info" class="mb-4 waves-light" *ngIf="entityForm.controls.tiers['controls'].length<6"
+                        (click)="formUtilities.addInput(entityForm, 'tiers', entityHelper.initTierInput())" mdbWavesEffect>Add</button>
+                </div>
+                <!-- Materials -->
+                <div class="col-md-12" *ngIf="materials" formArrayName='materials'>
+                    <div class="row" *ngFor="let materialAndQuantity of entityForm.controls.materials['controls']; let i=index" [formGroupName]='i'>
+                        <div class="col-md-6">
+                            <label for="material{{i}}" class="form-label">Material {{i+1}}</label>
+                            <select id="material{{i}}" class="browser-default custom-select mb-4" formControlName="material">
+                                <option [value]="null" selected>Selecciona material</option>
+                                <option *ngFor="let material of materialList" [value]="material.id">{{material.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="quantity{{i}}" class="form-label">Quantity {{i+1}}</label>
+                            <input type="number" id="quantity{{i}}" class="form-control mb-4" formControlName="quantity">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" mdbBtn color="danger" class="mt-4 waves-light" *ngIf="entityForm.controls.materials['controls'].length>1" 
+                                (click)="formUtilities.removeInput(i, entityForm, 'materials')" mdbWavesEffect>Remove</button>
+                        </div>
+                        <div class="col-md-10">
+                            <div *ngIf="materialAndQuantity.invalid && (materialAndQuantity.dirty || submitAttemp)" class="alert alert-danger">
+                                {{"general.required.username" | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" mdbBtn color="info" class="mb-4 waves-light" *ngIf="entityForm.controls.materials['controls'].length<6"
+                        (click)="formUtilities.addInput(entityForm, 'materials', entityHelper.initRecipeMaterialInput())" mdbWavesEffect>Add</button>
+                </div>
 
                 <!-- Translations -->
 
@@ -343,9 +411,9 @@
                         Traducciones
                     </legend>
                 
-                    <a (click)="test.toggle()"><i class="fas fa-plus-circle mb-4" data-target="#toggle-pane-88"></i> Añadir traducciones</a>
+                    <a (click)="translations.toggle()"><i class="fas fa-plus-circle mb-4" data-target="#toggle-pane-88"></i> Añadir traducciones</a>
                     
-                    <div id="toggle-pane-88" mdbCollapse #test="bs-collapse">
+                    <div id="toggle-pane-88" mdbCollapse #translations="bs-collapse">
                         <div class="form-row">
                             <div class="col-md-6 px-3">
                                 <label for="USen" class="form-label">USen Translation</label>

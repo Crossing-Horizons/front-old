@@ -29,6 +29,8 @@ import { EntityHelper } from './components/entity/entity-helper';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
 import { EntityPanelComponent } from './components/entity/entity-panel/entity-panel.component';
 
+import { FormUtilities } from './utils/form-utilities'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,7 @@ import { EntityPanelComponent } from './components/entity/entity-panel/entity-pa
   providers: [
     EntityHelper,
     TranslationComponent,
+    FormUtilities,
     EntityFormComponent
   ],
   bootstrap: [AppComponent]

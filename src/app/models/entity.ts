@@ -1,3 +1,5 @@
+import { ServerStreamResponseOptions } from 'http2';
+
 export class Entity{
     // common
     name: string;
@@ -51,6 +53,10 @@ export class Entity{
 
     // clothes
     clothing_type: Clothing;
+    seasons: Array<Seasons>;
+    themes: Array<Themes>;
+    style: Styles;
+    always_available: boolean;
 
     // tool
     durability: Durabilities;
@@ -117,8 +123,7 @@ export enum Type{
     npc = 'npc', 
     event = 'event', 
     art = 'art', 
-    infrastructure = 'infrastructure', 
-    flower = 'flower',
+    infrastructure = 'infrastructure',
     music = 'music', 
     reaction = 'reaction', 
     recipe = 'recipe', 
@@ -138,6 +143,35 @@ export enum Furnitures{
 export enum Infrastructures{
     stairs = 'stairs', 
     bridge = 'bridge'
+}
+
+export enum Seasons{
+    spring = 'spring', 
+    summer = 'summer',
+    autumn = 'autumn',
+    winter = 'winter'
+}
+
+export enum Themes{
+    comfy = 'comfy',
+    everyday = 'everyday',
+    formal = 'formal', 
+    outdoorsy = 'outdoorsy',
+    theatrical = 'theatrical',
+    vacation = 'vacation',
+    work = 'work',
+    party = 'party',
+    fairy_tale = 'fairy_tale',
+    sporty = 'sporty'
+}
+
+export enum Styles{
+    cool = 'cool',
+    simple = 'simple',
+    georgeuos = 'georgeuos', 
+    active = 'active',
+    cute = 'cute',
+    elegant = 'elegant'
 }
 
 export enum Genre{

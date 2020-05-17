@@ -8,7 +8,7 @@
         </p>
         <div class="row text-center my-4">
             <div class="col-md-3" *ngFor="let item of types | keyvalue">
-                <button type="button" mdbBtn color="info" class="waves-light w-75 m-2" (click)="show(item.value)" mdbWavesEffect>{{item.value}}</button>
+                <button type="button" mdbBtn color="info" class="waves-light w-75 m-2" (click)="show(item.value)" mdbWavesEffect>{{ "entity.types."+item.value | translate }}</button>
             </div>
         </div>
         <div style="overflow-y: auto" mdbModal #content="mdbModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
