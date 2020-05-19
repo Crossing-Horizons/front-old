@@ -32,6 +32,7 @@
     "jmespath": "^0.15.0",
     "jwt-decoder": "0.0.0",
     "ngx-mask": "^9.0.2",
+    "ngx-translate-multi-http-loader": "^3.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

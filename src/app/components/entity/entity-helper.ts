@@ -55,18 +55,27 @@ export class EntityHelper{
                 form.addControl('style', new FormControl(entity.style, [Validators.required]));
                 form.addControl('themes', new FormControl(entity.themes, [Validators.required]));
                 form.addControl('seasons', new FormControl(entity.seasons, [Validators.required]));
+                form.addControl('variants', new FormControl(entity.variants));
+                form.get('always_available').setValue(false)
                 return form;
             }
             case 'furniture': {
                 this.priceCommonFormAttributes(form, entity);
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
                 form.addControl('size', new FormControl(entity.size, [Validators.required]));
+                form.addControl('furniture_type', new FormControl(entity.furniture_type, [Validators.required]));
+                form.addControl('variants', new FormControl(entity.variants));
+                form.addControl('interactive', new FormControl(entity.interactive));
+                form.addControl('place_on', new FormControl(entity.place_on));
+                form.get('interactive').setValue(false);
+                form.get('place_on').setValue(false);
                 return form;
             }
             case 'tool': {
                 this.priceCommonFormAttributes(form, entity);
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
                 form.addControl('durability', new FormControl(entity.durability, [Validators.required]));
+                form.addControl('variants', new FormControl(entity.variants));
                 return form;                
             }
             case 'plant': {
@@ -90,6 +99,7 @@ export class EntityHelper{
                 form.addControl('genre', new FormControl(entity.genre, [Validators.required]));
                 form.addControl('catchphrase', new FormControl(entity.catchphrase, [Validators.required]));
                 form.addControl('birthdate', new FormControl(entity.birthdate, [Validators.required]));
+                form.addControl('favorite_music', new FormControl(entity.favorite_music, [Validators.required]));
                 form.get('genre').setValue('male')
                 return form;
             }
@@ -117,12 +127,16 @@ export class EntityHelper{
                 this.priceCommonFormAttributes(form, entity);
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
                 this.formUtilities.dynamicInput(form, 'materials', this.initRecipeMaterialInput());
-                console.log(form)
                 return form
             }
             case 'achievement': {
                 form.addControl('award_criteria', new FormControl(entity.award_criteria, [Validators.required]));
                 this.formUtilities.dynamicInput(form, 'tiers', this.initTierInput());
+                return form
+            }
+            case 'music': {
+                this.priceCommonFormAttributes(form, entity);
+                form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
                 return form
             }
         }
@@ -134,7 +148,7 @@ export class EntityHelper{
      * @param type 
      * @param entity 
      */
-    getEntityDataAttributes(form, type, entityForm){
+    getEntityDataAttributes(form, type, entityForm, selectedVariants){
         this.translationDataAttributes(form, entityForm);
         form.append("name", entityForm.get('name').value)
         form.append("exchangeable", entityForm.get('exchangeable').value)
@@ -174,18 +188,23 @@ export class EntityHelper{
                 form.append('style', entityForm.get("style").value);
                 form.append('themes', entityForm.get("themes").value);
                 form.append('seasons', entityForm.get("seasons").value);
+                form.append('variants', selectedVariants);
                 return form;
             } 
             case 'furniture': {
                 this.priceCommonDataAttributes(form, entityForm);
                 form.append('obtainment', entityForm.get("obtainment").value);
                 form.append('size', entityForm.get("size").value);
+                form.append('variants', selectedVariants);
+                form.append('interactive', entityForm.get("interactive").value);
+                form.append('place_on', entityForm.get("place_on").value);
                 return form;
             } 
             case 'tool': {
                 this.priceCommonDataAttributes(form, entityForm);
                 form.append('obtainment', entityForm.get("obtainment").value);
                 form.append('durability', entityForm.get("durability").value);
+                form.append('variants', selectedVariants);
                 return form;
             } 
             case 'plant': {
@@ -206,6 +225,7 @@ export class EntityHelper{
                 form.append('genre', entityForm.get("genre").value);
                 form.append('catchphrase', entityForm.get("catchphrase").value);
                 form.append('birthdate', entityForm.get("birthdate").value);
+                form.append('favorite_music', entityForm.get("favorite_music").value);
                 return form;
             } 
             case 'npc': {
@@ -237,6 +257,11 @@ export class EntityHelper{
             case 'achievement': {
                 form.append('award_criteria', entityForm.get("award_criteria").value);
                 form.append('tiers', entityForm.get("tiers").value)
+                return form;
+            }
+            case 'music': {
+                this.priceCommonDataAttributes(form, entityForm);
+                form.append('obtainment', entityForm.get("obtainment").value);
                 return form;
             }
         }
@@ -281,6 +306,18 @@ export class EntityHelper{
         }
         entityForm.get('month_northern').updateValueAndValidity();
         entityForm.get('month_southern').updateValueAndValidity();
+    }
+
+    clickSeasons(entityForm){
+        if(entityForm.value.always_available){
+            entityForm.get('seasons').enable();
+            entityForm.get('seasons').setValidators([Validators.required]);
+          
+        }else{
+            entityForm.get('seasons').disable();
+            entityForm.get('seasons').clearValidators();
+        }
+        entityForm.get('seasons').updateValueAndValidity();
     }
 
     private bugAndFishCommonFormAttributes(form, entity){

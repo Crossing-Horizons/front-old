@@ -4,7 +4,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 import { EntityService } from '../../../services/entity/entity.service';
 import { EntityHelper } from '../entity-helper';
-import { Rarities, Shadows, Consumables, Infrastructures, Personalities, Animals, Genre, Durabilities } from '../../../models/entity';
+import { Rarities, Shadows, Consumables, Infrastructures, Personalities, Animals, Genre, 
+  Durabilities, Furnitures, Plants, Clothing, Styles, Themes, Seasons } from '../../../models/entity';
 import { FormUtilities } from '../../../utils/form-utilities'
 
 
@@ -23,8 +24,11 @@ export class EntityFormComponent implements OnInit, OnChanges {
   constructor(private route: ActivatedRoute, public entityHelper: EntityHelper, private entityService: EntityService,
     public formUtilities: FormUtilities) { }
 
-  selectedFiles: FileList;
-  imgPreview;
+  selectedImage: File;
+  imgPreview: any;
+  selectedVariants: FileList;
+  variantsPreview = [];
+  
   creating: boolean = this.route.snapshot.data['creating']
 
   // Enums
@@ -36,7 +40,15 @@ export class EntityFormComponent implements OnInit, OnChanges {
   species = Object.values(Animals)
   personalities = Object.values(Personalities)
   durabilities = Object.values(Durabilities)
+  furnitures = Object.values(Furnitures)
+  plants = Object.values(Plants)
+  clothes = Object.values(Clothing)
+  styles = Object.values(Styles)
+  themeList = Object.values(Themes)
+  seasonList = Object.values(Seasons)
+
   materialList = []
+  musicList = []
   
   ngOnInit(): void {
     // this.entityService.list(type).then(res => {
@@ -45,8 +57,9 @@ export class EntityFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(){
+
     this.submitAttemp=false;
-    this.selectedFiles=null;
+    this.selectedImage=null;
     this.imgPreview=[];
   }
 
@@ -66,11 +79,8 @@ export class EntityFormComponent implements OnInit, OnChanges {
     if(!this.entityForm.invalid){
       var form = new FormData();
       form.append('creating', new Boolean(this.creating).toString())
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        const file = this.selectedFiles[i];
-        form.append("image", file);
-      }
-      form = this.entityHelper.getEntityDataAttributes(form, this.type, this.entityForm)
+      form.append("image", this.selectedImage);
+      form = this.entityHelper.getEntityDataAttributes(form, this.type, this.entityForm, this.selectedVariants)
       this.entityService.create(form).catch(error => {
         console.log(error);
       });
@@ -80,18 +90,38 @@ export class EntityFormComponent implements OnInit, OnChanges {
     }
   }
     
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
+  selectImage(event) {
+    this.selectedImage = event.target.files;
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-
+      reader.onload = (event: ProgressEvent) => {
+        this.imgPreview = (<FileReader>event.target).result;
+      }
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.imgPreview = event.target.result;
+      reader.onload = (event) => {
+        this.imgPreview = reader.result;
       }
+    } else {
+      this.imgPreview = null;
     }
   }
+
+  selectVariants(event) {
+    this.selectedVariants = event.target.files;
+    if (event.target.files && event.target.files[0]) {
+      this.variantsPreview = []
+      for(let file of event.target.files){
+          let reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.variantsPreview.push(reader.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      } else {
+        this.variantsPreview = null;
+      }
+    }
 
 
   get name() { return this.entityForm.get('name'); }
@@ -128,4 +158,13 @@ export class EntityFormComponent implements OnInit, OnChanges {
   get tiers() { return this.entityForm.get('tiers'); }
   get award_criteria() { return this.entityForm.get('award_criteria'); }
   get materials() { return this.entityForm.get('materials'); }
+  get furniture_type() { return this.entityForm.get('furniture_type'); }
+  get variants() { return this.entityForm.get('variants'); }
+  get style() { return this.entityForm.get('style'); }
+  get themes() { return this.entityForm.get('themes'); }
+  get always_available() { return this.entityForm.get('always_available'); }
+  get seasons() { return this.entityForm.get('seasons'); }
+  get favorite_music() { return this.entityForm.get('favorite_music'); }
+  get interactive() { return this.entityForm.get('interactive'); }
+  get place_on() { return this.entityForm.get('place_on'); }
 }

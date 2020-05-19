@@ -1,5 +1,3 @@
-import { ServerStreamResponseOptions } from 'http2';
-
 export class Entity{
     // common
     name: string;
@@ -24,7 +22,7 @@ export class Entity{
     obtainment: string;
     buy_price: number;
     sell_price: number;
-    variants: string;
+    variants: [];
     recipe: number;
 
     // plant
@@ -46,6 +44,7 @@ export class Entity{
     genre: Genre;
     catchphrase: string;
     birthdate: string;
+    favorite_music: number;
 
     // event
     date: string;
@@ -162,7 +161,8 @@ export enum Themes{
     work = 'work',
     party = 'party',
     fairy_tale = 'fairy_tale',
-    sporty = 'sporty'
+    sporty = 'sporty',
+    ghotic = 'ghotic'
 }
 
 export enum Styles{

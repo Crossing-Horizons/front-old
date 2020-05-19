@@ -43,7 +43,7 @@ import { FormUtilities } from './utils/form-utilities'
     ConfirmationComponent,
     EntityFormComponent,
     EntityDisplayComponent,
-    EntityPanelComponent
+    EntityPanelComponent,
   ],
   imports: [
     BrowserModule,
