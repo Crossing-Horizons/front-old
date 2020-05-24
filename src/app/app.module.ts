@@ -7,6 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 // Material Design for Bootstrap
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
+//Input mask
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
 //Translation
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -25,12 +28,11 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { ConfirmationComponent } from './components/authentication/confirmation/confirmation.component';
 import { EntityFormComponent } from './components/entity/entity-form/entity-form.component';
-
 import { EntityHelper } from './components/entity/entity-helper';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
-import { AuthorizationService } from './utils/authguard/authorization.service';
 import { EntityListComponent } from './components/entity/entity-list/entity-list.component';
-
+import { EntityPanelComponent } from './components/entity/entity-panel/entity-panel.component';
+import { FormUtilities } from './utils/form-utilities'
 
 @NgModule({
   declarations: [
@@ -44,13 +46,15 @@ import { EntityListComponent } from './components/entity/entity-list/entity-list
     ConfirmationComponent,
     EntityFormComponent,
     EntityDisplayComponent,
-    EntityListComponent
+    EntityListComponent,
+    EntityPanelComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MDBBootstrapModule.forRoot(),
+    NgxMaskModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -66,8 +70,13 @@ import { EntityListComponent } from './components/entity/entity-list/entity-list
     })
   ],
   providers: [
-    EntityHelper
+    EntityHelper,
+    TranslationComponent,
+    FormUtilities,
+    EntityFormComponent
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  options: Partial<IConfig> | (() => Partial<IConfig>);
+}

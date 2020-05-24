@@ -1,7 +1,7 @@
 <li class="nav-item dropdown" dropdown>
   <a mdbWavesEffect mdbDropdownToggle>{{ "translation.language" | translate }}<mdb-icon fas icon="globe"></mdb-icon></a>
   <div *dropdownMenu class="dropdown-menu dropdown dropdown-menu-right dropdown-primary" role="menu">
-    <a class="dropdown-item waves-light" (click)="cambiarLenguaje('en')">{{ "translation.english" | translate }}</a>
-    <a class="dropdown-item waves-light" (click)="cambiarLenguaje('es')">{{ "translation.spanish" | translate }}</a>
+    <a class="dropdown-item waves-light" (click)="changeLanguage('en', 'EU')">{{ "principal.english" | translate }}</a>
+    <a class="dropdown-item waves-light" (click)="changeLanguage('es', 'EU')">{{ "principal.spanish" | translate }}</a>
   </div>
 </li>

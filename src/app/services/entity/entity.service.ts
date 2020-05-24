@@ -10,11 +10,14 @@ export class EntityService {
   constructor(private requestService: RequestService) { }
 
   create(data: any) {
-      return this.requestService.request('POST', `${environment.endpoint}/entity`, data, {}, false);
-    }
+  return this.requestService.request('POST', `${environment.endpoint}/entity/create`, data, {}, false);
+  }
 
-  getEntityList(type: string){
+  listByType(type: string){
     return this.requestService.request('GET' ,`${environment.endpoint}/entity/list/${type}`, {}, {}, false );
   }  
 
+  get(name: string, type: string){
+    return this.requestService.request('GET', `${environment.endpoint}/entity/get`, {name, type}, {}, false);
+  }
 }

@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div class="container my-5">
+    <div class="card">
+        <h1 class="text-center m-2">Añadir una nueva entidad</h1>
+        <p class="text-center mx-5">Desde esta pantalla podrás crear una nueva entidad del juego.<br><br>
+            Recuerda que las entidades se generan automáticamente en la base de datos y <br>
+            no es necesario añadirlas manualmente.
+        </p>
+        <div class="row text-center my-4">
+            <div class="col-md-3" *ngFor="let item of types | keyvalue">
+                <button type="button" mdbBtn color="info" class="waves-light w-75 m-2" (click)="show(item.value)" mdbWavesEffect>{{ "entity.types."+item.value | translate | titlecase }}</button>
+            </div>
+        </div>
+        <div style="overflow-y: auto" mdbModal #content="mdbModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-notify modal-info" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title text-white" id="exampleModalLabel">{{"entity.new_entity" | translate}} {{ "entity.types."+type | translate }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="content.hide()">
+                            <span aria-hidden="true" class="text-white" >×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <app-entity-form [type]="type" [entityForm]="entityForm" [content]="content" [submitAttemp]="false"></app-entity-form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

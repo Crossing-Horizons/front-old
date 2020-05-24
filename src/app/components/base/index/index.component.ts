@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslationComponent } from '../../../utils/translation/translation.component';
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-index',
@@ -7,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private translationComponent: TranslationComponent, private translateService: TranslateService) {}
 
   ngOnInit(): void {
   }
-
 }

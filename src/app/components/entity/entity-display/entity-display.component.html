@@ -1,31 +1,132 @@
 <app-header></app-header>
-<div class="card container my-5 p-5">
-    <div class="row">
-        <div class="col-md-4">
-            <img class="img-fluid" src="https://nooksisland.com/images/atlas-moth.png">
-        </div>
-        <div class="col-md-8">
-            <p class="h1 mb-4">Title</p>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque illum quas numquam nostrum necessitatibus atque praesentium modi asperiores obcaecati repellat tempora fugit, culpa temporibus, ea ratione eveniet! Dolorum, illum explicabo.</p>
-            <hr>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('size', type)">Size :</p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('location', type)">location :</p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('date', type)">Date: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('time', type)">Time: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('sell_price', type)">Sell price: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('rarity', type)">Rarity: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('obtainment', type)">obtainment: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('buy_price', type)">Buy price: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('cloting_type', type)">Clothing type: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('plant_type', type)">Plant type: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('species', type)">Animal type: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('personality', type)">Personality: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('genre', type)">Genre: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('slogan', type)">Slogan: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('catchphrase', type)">Catchphrase: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('birthdate', type)">Bithdate: </p>
-            <p class="h5 mb-4" *ngIf="entityHelper.getEntityInputsAttributes('special_character_id', type)">special_character_id: </p>
-        </div>
+<div class="container my-5 p-5">
+  <mdb-card>
+    <div *ngIf="!entity" class="d-flex justify-content-center my-5">
+      <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
+    <mdb-card-body *ngIf="entity">
+      <div class="row mx-4 align-items-center text-center">
+        <!-- Image -->
+        <div class="col-sm-5 ml-n5 align-items-center text-center">
+          <!-- Single image -->
+          <img *ngIf="type!='furniture' || !entity.variants"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+          <!-- .end Single image -->
+
+          <!-- Image with variations -->
+          <mdb-carousel [animation]="'slide'" *ngIf="type=='furniture' && entity.variants">
+            <mdb-carousel-item>
+              <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </mdb-carousel-item>
+            <mdb-carousel-item>
+              <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
+            </mdb-carousel-item>
+          </mdb-carousel>
+          <!-- .end Image with variations -->
+        </div>
+        <!-- .end Image -->
+
+        <!-- Modal -->
+        <div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <img class="img-fluid" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+              </div>
+              <div class="modal-footer">
+                <button type="button" mdbBtn color="cyan" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Modal -->
+
+        <!-- General -->
+        <div class="col-sm align-self-center text-left">
+            <p class="h1 mt-3">{{entity.name}}</p>
+            <p><i class="fas fa-sync"></i> {{ (entity.exchangeable ? "entity.exchangeable.true" : "entity.exchangeable.false") | translate }} </p>
+        
+          <!-- .end General-->
+          
+          <!-- Villager -->
+          <div class="row" *ngIf="type=='villager'">
+            <h5>"Catchphrase"</h5><br>
+            <ul class="list-unstyled">
+              <li>        
+                <img class="icon bg-warning rounded-circle mr-2" src="https://nookipedia.com/w/images/thumb/7/79/SquirrelSpeciesIconSilhouette.png/180px-SquirrelSpeciesIconSilhouette.png"> Squirrel
+              </li>
+              <li>
+                <mdb-icon fas icon="venus" size="3x" class="ml-2 mt-2 mr-2 pink-text"></mdb-icon> Female
+                <!-- <mdb-icon fas icon="mars" size="3x" class="ml-2 mt-2 mr-2 blue-text"></mdb-icon> Male -->
+              </li>
+              <li>
+                <mdb-icon fas icon="birthday-cake" size="3x" class="ml-1 mt-2 mr-1 red-text"></mdb-icon> 13th April
+              </li>
+              <li>
+                <mdb-icon fas icon="theater-masks" size="2x" class="ml-1 mt-3 mr-1 green-text"></mdb-icon> Peppy
+              </li>
+            </ul>
+          </div>
+          <!-- .end Villager -->
+        
+
+        <!-- Bug and fish -->
+        <div *ngIf="type == 'fish' || type == 'bug'">
+          <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
+          <br>
+          <div class="row">
+            <div class="col-sm" *ngIf="entity.month_southern">
+              <div class="col-sm ml-n3">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NortHemisphere.png">
+                {{ 
+                  entity.month_northern.split("-")[1] ? (
+                  ("general.months." + entity.month_northern.split("-")[0] | translate) + '-' + ("general.months." + entity.month_northern.split("-")[1] | translate)
+                  ) : ("general.months." + entity.month_northern | translate)
+                }}
+              </div>
+              <div class="col-sm ml-n3">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/SouthHemisphere.png">
+              {{ 
+                entity.month_southern.split("-")[1] ? (
+                ("general.months." + entity.month_southern.split("-")[0] | translate) + '-' + ("general.months." + entity.month_southern.split("-")[1] | translate)
+                ) : ("general.months." + entity.month_southern | translate)
+              }}
+              </div>
+            </div>
+            <div class="col-sm" *ngIf="entity.all_year">
+              <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Globe.png">
+              {{ "entity.all_year" | translate }}
+            </div>
+            <div class="col-sm"><img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Timer.png">
+              {{entity.all_day ? ("entity.all_day" | translate) : entity.time | uppercase}}
+            </div>
+          </div>
+          <p>
+            <img *ngIf="type=='fish'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Fishingrod.png">
+            <img *ngIf="type=='bug'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Net.png">
+            {{"entity.locations." + entity.location | translate }}
+          </p>
+          <p><mdb-icon fas icon="star" size="2x" class="amber-text mx-1" aria-hidden="true"></mdb-icon> 
+            {{"entity.rarities." + entity.rarity | translate }}
+          </p>
+          <p *ngIf="entity.shadow"><img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Shadow.png">
+            {{"entity.shadows." + entity.shadow | translate }}
+          </p>
+        </div>
+
+        <!-- .end Bug and fish -->
+      
+        <!-- Prices -->
+            
+        <!-- .end Prices -->
+        <p class="h5 mb-4" *ngIf="entity.date">Date: </p>
+        <p class="h5 mb-4" *ngIf="entity.clothing_type">Clothing type: </p>
+        <p class="h5 mb-4" *ngIf="entity.plant_type">Plant type: </p>
+        <p class="h5 mb-4" *ngIf="entity.npc">special_character_id: </p>
+      </div>
+    </div>
+  </mdb-card-body>
+  </mdb-card>
 </div>
 <app-footer></app-footer>
