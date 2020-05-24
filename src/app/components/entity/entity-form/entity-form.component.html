@@ -131,16 +131,16 @@
                         </div>
                     </div>
                 </div>
-                <!-- Infrastructure type -->
-                <div class="col-md-6" *ngIf="infrastructure_type">
-                    <label for="infrastructure_type" class="form-label">{{'entity.infrastructure_type' | translate}}</label>
-                    <select id="infrastructure_type" class="browser-default custom-select mb-4" formControlName="infrastructure_type">
-                        <option [value]="null" selected>Selecciona tipo de infrastructura</option>
-                        <option *ngFor="let infrastructure of infrastructures" [value]="infrastructure" >{{ "entity.infrastructures." + infrastructure | translate}}</option>
+                <!-- construction type -->
+                <div class="col-md-6" *ngIf="construction_type">
+                    <label for="construction_type" class="form-label">{{'entity.construction_type' | translate}}</label>
+                    <select id="construction_type" class="browser-default custom-select mb-4" formControlName="construction_type">
+                        <option [value]="null" selected>Selecciona tipo de construcción</option>
+                        <option *ngFor="let construction of constructions" [value]="construction" >{{ "entity.constructions." + construction | translate}}</option>
                     </select>
-                    <div *ngIf="infrastructure_type.invalid && (infrastructure_type.dirty || submitAttemp)" class="alert alert-danger">
-                        <div *ngIf="infrastructure_type.errors.required">
-                            {{"entity.required.infrastructure_type" | translate}}
+                    <div *ngIf="construction_type.invalid && (construction_type.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="construction_type.errors.required">
+                            {{"entity.required.construction_type" | translate}}
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,20 @@
       "delete": "Delete",
       "cancel": "Cancel"
     },
+    "months": {
+      "1": "January",
+      "2": "February",
+      "3": "March",
+      "4": "April",
+      "5": "May", 
+      "6": "Jun", 
+      "7": "July",
+      "8": "August",
+      "9": "September",
+      "10": "October",
+      "11": "November",
+      "12": "December"
+    },
     "user":{
       "username": "Username",
       "password": "Password",
@@ -56,6 +70,8 @@
     "birthdate": "Birthdate",
     "npc": "Special character",
     "exchangeable": "Exchangeable",
+    "exchangeable.false": "Cannot be exchange",
+    "exchangeable.true": "Exchangeable",
     "month_northern": "Northern months",
     "month_southern": "Southern months",
     "all_day": "Available all day",
@@ -66,7 +82,7 @@
     "shadow": "Shadow",
     "durability": "Durability",
     "consumable_type": "Consumable type",
-    "infrastructure_type": "Infrastructure type",
+    "construction_type": "Construction type",
     "award_criteria": "Award criteria",
     "furniture_type": "Furniture type",
     "variants": "Variants images",
@@ -84,7 +100,7 @@
       "plant": "plant", 
       "art": "art", 
       "consumable": "consumable", 
-      "infrastructure": "bridge or slope", 
+      "construction": "construction", 
       "event": "event",
       "npc": "character",
       "clothes": "clothes",
@@ -120,9 +136,13 @@
       "event": "Event",
       "misc": "Other"
     },
-    "infrastructures": {
+    "constructions": {
       "bridge": "Bridge",
-      "stairs": "Slopes and stairs"
+      "incline": "Slopes and stairs",
+      "mailbox": "Mailbox",
+      "siding": "Siding",
+      "roofing": "Roofing",
+      "door": "Door"
     },
     "personalities": {
       "crancky": "Cranky", 
@@ -263,7 +283,7 @@
       "shadow": "Invalid shadow",
       "durability": "Inavlid durability",
       "consumable_type": "Invalid consumable type",
-      "infrastructure_type": "Invalid infrastructure type",
+      "construction_type": "Invalid construction type",
       "award_criteria": "You mush provide the award criteria",
       "furniture_type": "Invalid furniture type",
       "season": "You must select some seasons or always available",

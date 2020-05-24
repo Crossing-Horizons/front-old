@@ -35,8 +35,8 @@ export class Entity{
     //consumable
     consumable_type: Consumables;
 
-    // infrastructure
-    infrastructure_type: Infrastructures;
+    // construction
+    construction_type: constructions;
 
     // villager
     specie: Animals;
@@ -122,7 +122,7 @@ export enum Type{
     npc = 'npc', 
     event = 'event', 
     art = 'art', 
-    infrastructure = 'infrastructure',
+    construction = 'construction',
     music = 'music', 
     reaction = 'reaction', 
     recipe = 'recipe', 
@@ -139,9 +139,13 @@ export enum Furnitures{
     rug = 'rug'
 }
 
-export enum Infrastructures{
-    stairs = 'stairs', 
-    bridge = 'bridge'
+export enum constructions{
+    incline = 'incline', 
+    bridge = 'bridge',
+    mailbox = 'mailbox',
+    siding = 'siding',
+    door = 'door',
+    roofing = 'roofing'
 }
 
 export enum Seasons{

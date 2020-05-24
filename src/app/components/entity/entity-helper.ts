@@ -113,10 +113,10 @@ export class EntityHelper{
                 form.addControl('npc', new FormControl(entity.npc, [Validators.required]));
                 return form;
             }
-            case 'infrastructure': {
+            case 'construction': {
                 form.addControl('buy_price', new FormControl(entity.buy_price, [Validators.required]));
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
-                form.addControl('infrastructure_type', new FormControl(entity.infrastructure_type, [Validators.required]));
+                form.addControl('construction_type', new FormControl(entity.construction_type, [Validators.required]));
                 return form;
             }
             case 'reaction': {
@@ -238,10 +238,10 @@ export class EntityHelper{
                 form.append('npc', entityForm.get("npc").value);
                 return form;
             }
-            case 'infrastructure': {
+            case 'construction': {
                 form.append('buy_price', entityForm.get("buy_price"));
                 form.append('obtainment', entityForm.get("obtainment").value);
-                form.append('infrastructure_type', entityForm.get("infrastructure_type").value);
+                form.append('construction_type', entityForm.get("construction_type").value);
                 return form;
             }
             case 'reaction': {

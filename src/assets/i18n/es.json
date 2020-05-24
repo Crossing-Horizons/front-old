@@ -13,6 +13,20 @@
       "delete": "Eliminar",
       "cancel": "Cancelar"
     },
+    "months": {
+      "1": "Enero",
+      "2": "Febrero",
+      "3": "Marzo",
+      "4": "Abril",
+      "5": "Mayo", 
+      "6": "Junio", 
+      "7": "Julio",
+      "8": "Agosto",
+      "9": "Septiembre",
+      "10": "Octubre",
+      "11": "Noviembre",
+      "12": "Diciembre"
+    },
     "user":{
       "username": "Nombre de usuario",
       "password": "Contraseña",
@@ -55,17 +69,19 @@
     "birthdate": "Cumpleaños",
     "npc": "Personaje",
     "exchangeable": "Intercambiable",
+    "exchangeable.false": "No se puede intercambiar",
+    "exchangeable.true": "Es intercambiable",
     "month_northern": "Meses hemisferio norte",
     "month_southern": "Meses hemisferio sur",
-    "all_day": "Disponible todo el día",
-    "all_year": "Disponible todo el año",
+    "all_day": "Todo el día",
+    "all_year": "Todo el año",
     "price_flick": "Precio venta a Kamilo",
     "price_cj": "Precio venta a CJ",
     "museum_phrase": "Texto del museo",
     "shadow": "Sombra",
     "durability": "Durabilidad",
     "consumable_type": "Tipo de consumible",
-    "infrastructure_type": "Tipo de infrastructura",
+    "construction_type": "Tipo de construcción",
     "award_criteria": "Criterios para la obtención",
     "furniture_type": "Tipo de mueble",
     "variants": "Imágenes de las variaciones",
@@ -83,7 +99,7 @@
       "plant": "planta", 
       "art": "arte", 
       "consumable": "consumible", 
-      "infrastructure": "puente o rampa", 
+      "construction": "construcción", 
       "event": "evento",
       "npc": "personaje",
       "clothes": "ropa",
@@ -119,9 +135,13 @@
       "event": "Evento",
       "misc": "Otros"
     },
-    "infrastructures": {
+    "constructions": {
       "bridge": "Puentes",
-      "stairs": "Rampas y escaleras"
+      "incline": "Rampas y escaleras",
+      "mailbox": "Buzón",
+      "siding": "Fachada",
+      "roofing": "Tejado",
+      "door": "Puerta"
     },
     "personalities": {
       "crancky": "Gruñón", 
@@ -236,6 +256,30 @@
       "cute": "Coqueto",
       "elegant": "Elegante"
     },
+    "locations": {
+      "On rotten food": "Sobre comida podrida",
+      "Flying": "Volando",
+      "On the ground": "En el suelo",
+      "On trees": "En los árboles",
+      "On flowers": "En las flores",
+      "Shaking trees": "Sacudiendo árboles",
+      "On ponds and rivers": "En charcas y ríos",
+      "Underground": "Bajo tierra",
+      "On tree stumps": "En tocones de árboles",
+      "On palm trees": "En las palmeras",
+      "On the beach": "En la arena de la playa",
+      "On the beach rocks": "En las rocas de la playa",
+      "Near trash": "Cerca de la basura",
+      "Hitting rocks": "Golpeando rocas",
+      "On villagers": "En los vecinos",
+      "On rocks (when raining)": "Sobre las piedras",
+      "On white flowers": "En flores blancas",
+      "Sea (when raining or snowing)": "En el mar",
+      "Sea": "En el mar",
+      "River (Clifftop)": "En el río (nivel 1)",
+      "Pond": "En charcas"
+
+    },
     "required": {
       "name": "Debe indicar el nombre de la entidad",
       "image": "Debe adjuntar una imagen de la entidad",
@@ -263,7 +307,7 @@
       "shadow": "La sombra introducida no es válida",
       "durability": "La durabilidad introducida no es válida",
       "consumable_type": "El tipo de consumible introducido no es válido",
-      "infrastructure_type": "El tipo de infrastructura introducido no es válido",
+      "construction_type": "El tipo de construcción introducido no es válido",
       "award_criteria": "Debe indicar los criterios de la obtención del logro",
       "furniture_type": "El tipo de mueble introducido no es válido",
       "season": "Debe seleccionar una o varias estaciones o siempre disponible",
