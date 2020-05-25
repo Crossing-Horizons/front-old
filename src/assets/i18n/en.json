@@ -37,6 +37,9 @@
       "username": "Username required",
       "password": "Password required",
       "email": "Email required"
+    },
+    "conjunctives":{
+      "and": "and"
     }
   },
 
@@ -93,6 +96,7 @@
     "favorite_music": "Favorite song",
     "place_on": "Can be place on",
     "interactive": "Interactive",
+    "bells": "bells",
     "types": {
       "fish": "fish", 
       "bug": "bug", 
