@@ -97,6 +97,7 @@
     "place_on": "Can be place on",
     "interactive": "Interactive",
     "bells": "bells",
+    "fossil.identification": "Blathers may identify it!",
     "types": {
       "fish": "fish", 
       "bug": "bug", 
@@ -259,6 +260,10 @@
       "elegant": "Elegant"
     },
     "placeholder": {
+    },
+    "obtainments":{
+      "Dig Spot": "Digging into spot",
+      "Jolly Redd's Treasure Trawler": "Can be bought at Jolly Redd's Treasure Trawler"
     },
     "required": {
       "name": "Entity name required",

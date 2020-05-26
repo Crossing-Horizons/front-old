@@ -96,6 +96,7 @@
     "place_on": "Se puede colocar encima",
     "interactive": "Interactivo",
     "bells": "bayas",
+    "fossil.identification": "¡Sócrates debe identificarlo!",
     "types": {
       "fish": "pez", 
       "bug": "bicho", 
@@ -290,7 +291,10 @@
       "River (Clifftop) & Pond": "En el río (nivel 1) y charcas",
       "River (Mouth)": "Desembocadura del río",
       "Pier": "En el muelle"
-
+    },
+    "obtainments":{
+      "Dig Spot": "Cavando en marca del suelo",
+      "Jolly Redd's Treasure Trawler": "Puede comprarse en el navío ambulante de Ladino"
     },
     "required": {
       "name": "Debe indicar el nombre de la entidad",

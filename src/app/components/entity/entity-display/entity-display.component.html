@@ -46,6 +46,7 @@
         <div class="col-sm align-self-center text-left">
             <div class="row float-right">
               <img *ngIf="type=='fish' || type=='bug'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/FishBugs.png">
+              <img *ngIf="type=='fossil'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Fossil.png">
             </div>
 
             <p class="h1 mt-3">{{entity.name}}</p>
@@ -103,7 +104,7 @@
           <p class="float-right"><mdb-icon fas icon="star" size="lg" class="amber-text mx-1" aria-hidden="true"></mdb-icon> 
             {{"entity.rarities." + entity.rarity | translate }}
           </p>
-          <h4>Obtención</h4>
+          <h4>{{"entity.obtainment" | translate }}</h4>
           <hr>
           <div class="row">
             <div class="col-sm" *ngIf="entity.month_southern">
@@ -182,8 +183,51 @@
             </div>
           </div>
         </div>
-
         <!-- .end Bug and fish -->
+
+        <!-- Fossils -->
+        <div *ngIf="type == 'fossil'">
+          <!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
+          <br> -->
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Scoop.png">
+                <div class="col-sm my-auto">
+                  {{"entity.obtainments.Dig Spot" | translate }}
+                </div>  
+              </div>
+              <div class="row">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/owl.png">
+                <div class="col-sm my-auto">
+                  {{"entity.fossil.identification" | translate }}
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Fossils -->
+
+        <!-- Art -->
+        <div *ngIf="type == 'art'">
+          <!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
+          <br> -->
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/fox.png">
+                <div class="col-sm my-auto">
+                  {{"entity.obtainments.Jolly Redd's Treasure Trawler" | translate }}
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Art -->
         <p class="h5 mb-4" *ngIf="entity.date">Date: </p>
         <p class="h5 mb-4" *ngIf="entity.clothing_type">Clothing type: </p>
         <p class="h5 mb-4" *ngIf="entity.plant_type">Plant type: </p>
