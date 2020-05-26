@@ -79,7 +79,7 @@ export class EntityListComponent implements OnInit {
     this.slides = this.chunk(this.cards, 3);
     this.route.params.subscribe(params => {
       this.type = params['type'];
-      this.entityService.getEntityList(this.type).then(res =>{ 
+      this.entityService.listByType(this.type).then(res =>{ 
         res.forEach(element => {
           this.entityList.push(element)
         });
