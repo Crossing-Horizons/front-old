@@ -37,6 +37,9 @@
       "username": "Debe indicar el nombre de usuario",
       "password": "Debe indicar la contraseña",
       "email": "Debe indicar el correo electrónico"
+    },
+    "conjunctives":{
+      "and": "y"
     }
   },
 
@@ -92,6 +95,7 @@
     "favorite_music": "Canción favorita",
     "place_on": "Se puede colocar encima",
     "interactive": "Interactivo",
+    "bells": "bayas",
     "types": {
       "fish": "pez", 
       "bug": "bicho", 
@@ -257,6 +261,10 @@
       "elegant": "Elegante"
     },
     "locations": {
+      "Flying near hybrid flowers": "Volando en flores híbridas",
+      "Flying by light": "Cerca de la luz",
+      "Under trees":"Debajo de los árboles",
+      "On beach rocks":"En las rocas de la playa",
       "On rotten food": "Sobre comida podrida",
       "Flying": "Volando",
       "On the ground": "En el suelo",
@@ -277,7 +285,11 @@
       "Sea (when raining or snowing)": "En el mar",
       "Sea": "En el mar",
       "River (Clifftop)": "En el río (nivel 1)",
-      "Pond": "En charcas"
+      "Pond": "En charcas",
+      "River": "",
+      "River (Clifftop) & Pond": "En el río (nivel 1) y charcas",
+      "River (Mouth)": "Desembocadura del río",
+      "Pier": "En el muelle"
 
     },
     "required": {
