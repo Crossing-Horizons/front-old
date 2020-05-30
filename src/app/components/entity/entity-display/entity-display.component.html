@@ -9,20 +9,29 @@
     <mdb-card-body *ngIf="entity">
       <div class="row mx-4 align-items-center text-center">
         <!-- Image -->
-        <div class="col-sm-5 ml-n5 align-items-center text-center">
+        <div class="col-5 ml-n5 align-items-center text-center">
           <!-- Single image -->
-          <img *ngIf="type!='furniture' || !entity.variants"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+          <div class="row">
+            <div class="col-sm">
+              <img *ngIf="!entity.variants"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+            </div>
+            <div *ngIf="entity.has_fake" class="col-sm">
+              <img *ngIf="(type!='furniture' || !entity.variants) && type=='art'"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}Fake.png">
+              <br>{{"entity.art.fake" | translate}}
+            </div>
+          </div>
           <!-- .end Single image -->
 
           <!-- Image with variations -->
-          <mdb-carousel [animation]="'slide'" *ngIf="type=='furniture' && entity.variants">
-            <mdb-carousel-item>
-              <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img class="img-fluid h-100" src="https://vignette.wikia.nocookie.net/animalcrossing/images/6/6e/NH-Natural_garden_chair.png" alt="First slide">
-            </mdb-carousel-item>
-          </mdb-carousel>
+          <div class="row">
+            <div class="col-sm">
+              <mdb-carousel class="bg-light rounded" [animation]="'slide'" *ngIf="entity.variants">
+                <mdb-carousel-item class="justify-content-center" *ngFor="let variant of variants">
+                  <img class="img-fluid my-5" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}{{variant}}.png">
+                </mdb-carousel-item>
+              </mdb-carousel>
+            </div>
+          </div>
           <!-- .end Image with variations -->
         </div>
         <!-- .end Image -->
@@ -32,7 +41,15 @@
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-body">
-                <img class="img-fluid" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+                <div class="row">
+                  <div class="col-sm">
+                    <img *ngIf="type!='furniture' || !entity.variants"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+                  </div>
+                  <div *ngIf="entity.has_fake" class="col-sm">
+                    <img *ngIf="(type!='furniture' || !entity.variants) && type=='art'"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}Fake.png">
+                    <br>{{"entity.art.fake" | translate}}
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
                 <button type="button" mdbBtn color="cyan" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
@@ -47,6 +64,10 @@
             <div class="row float-right">
               <img *ngIf="type=='fish' || type=='bug'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/FishBugs.png">
               <img *ngIf="type=='fossil'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Fossil.png">
+              <img *ngIf="type=='villager'" class="icon bg-info rounded-circle" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/specie/{{entity.specie}}.png">
+              <img *ngIf="type=='plant' && entity.plant_type=='flower'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/PltRose4.png">
+              <img *ngIf="type=='plant' && entity.plant_type=='bush'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/PltAzaleaPink.png">
+              <img *ngIf="type=='plant' && entity.plant_type=='tree'" class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/PltApple.png">
             </div>
 
             <p class="h1 mt-3">{{entity.name}}</p>
@@ -55,14 +76,14 @@
         <!-- .end General-->
         
         <!-- Prices -->
-        <div class="row mb-2">
+        <div class="row my-4">
+          <div *ngIf="entity.buy_price" class="col-5 ml-n3 mt-n3">
+            <img class="icon" src="{{entityHelper.buyPriceIcon(type, entity.obtainment)}}">
+            {{entity.buy_price}} {{ "entity.bells" |translate }}
+          </div>
           <div *ngIf="entity.sell_price" class="col-5 ml-n3 mt-n3">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png">
             {{entity.sell_price}} {{ "entity.bells" |translate }}
-          </div>
-          <div *ngIf="entity.buy_price" class="col-5 ml-n3 mt-n3">
-            <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png">
-            {{entity.buy_price}} {{ "entity.bells" |translate }}
           </div>
           <div *ngIf="entity.price_cj" class="col-4 ml-n3 mt-n3">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png">
@@ -75,26 +96,35 @@
         </div>
         <!-- .end Prices -->
         
-          <!-- Villager -->
-          <div class="row" *ngIf="type=='villager'">
-            <h5>"Catchphrase"</h5><br>
-            <ul class="list-unstyled">
-              <li>        
-                <img class="icon bg-warning rounded-circle mr-2" src="https://nookipedia.com/w/images/thumb/7/79/SquirrelSpeciesIconSilhouette.png/180px-SquirrelSpeciesIconSilhouette.png"> Squirrel
-              </li>
-              <li>
-                <mdb-icon fas icon="venus" size="3x" class="ml-2 mt-2 mr-2 pink-text"></mdb-icon> Female
-                <!-- <mdb-icon fas icon="mars" size="3x" class="ml-2 mt-2 mr-2 blue-text"></mdb-icon> Male -->
-              </li>
-              <li>
-                <mdb-icon fas icon="birthday-cake" size="3x" class="ml-1 mt-2 mr-1 red-text"></mdb-icon> 13th April
-              </li>
-              <li>
-                <mdb-icon fas icon="theater-masks" size="2x" class="ml-1 mt-3 mr-1 green-text"></mdb-icon> Peppy
-              </li>
-            </ul>
+        <!-- Villager -->
+        <div *ngIf="type == 'villager'">
+          <h5><i>"{{entity.catchphrase}}"</i></h5>
+          <br>
+          <div class="row ml-1">
+            <div class="col-sm">
+              <div class="row">
+                <img class="mini-icon bg-warning rounded-circle" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/birthday/{{entityHelper.birthdayIcon(entity.birthday)}}.png">
+                <div class="col-sm my-auto">
+                  {{entity.birthday.split("/")[0] + " de " + ("general.months." + entity.birthday.split("/")[1] | translate)}}
+                </div>  
+              </div>
+              <div class="row mt-1">
+                <mdb-icon *ngIf="entity.gender=='female'" fas icon="venus" size="3x" class="pink-text"></mdb-icon>
+                <mdb-icon *ngIf="entity.gender=='male'" fas icon="mars" size="3x" class="blue-text"></mdb-icon>
+                <div class="col-sm my-auto">
+                  {{"entity.genders." + entity.gender | translate}}
+                </div> 
+              </div>
+              <div class="row mt-1">
+                <mdb-icon fas icon="theater-masks" size="lg" class="green-text"></mdb-icon>
+                <div class="col-sm my-auto">
+                  {{"entity.personalities." + entity.personality | translate}}
+                </div> 
+              </div>
+            </div>
           </div>
-          <!-- .end Villager -->
+        </div>
+        <!-- .end Villager -->
         
         
         <!-- Bug and fish -->
@@ -228,10 +258,72 @@
           </div>
         </div>
         <!-- .end Art -->
-        <p class="h5 mb-4" *ngIf="entity.date">Date: </p>
-        <p class="h5 mb-4" *ngIf="entity.clothing_type">Clothing type: </p>
-        <p class="h5 mb-4" *ngIf="entity.plant_type">Plant type: </p>
-        <p class="h5 mb-4" *ngIf="entity.npc">special_character_id: </p>
+
+        <!-- Construction -->
+        <div *ngIf="type == 'construction'">
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/TownHall.png">
+                <div class="col-sm my-auto">
+                  {{"entity.obtainments.Resident Services Upgrade" | translate }}
+                </div>
+              </div>
+              <div class="row" *ngIf="entity.obtainment!='Resident Services Upgrade'">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Building.png">
+                <div class="col-sm my-auto">
+                  {{"entity.obtainments." + entity.obtainment | translate }}
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Construction -->
+
+        <!-- Music -->
+        <div *ngIf="type == 'music'">
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/tkkA.png">
+                <div class="col-sm my-auto">
+                  {{"entity.obtainments." + entity.obtainment | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Music -->
+
+        <!-- Reaction -->
+        <div *ngIf="type == 'reaction'">
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
+                <div class="col-sm my-auto">
+                  {{"entity.obtainments." + entity.obtainment | translate }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- .end Reaction -->
+
+        <!-- Plant -->
+        <div *ngIf="type == 'plant'">
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <app-plant [type]="type" [entity]="entity"></app-plant>
+        </div>
+        <!-- .end Plant -->
+
       </div>
     </div>
   </mdb-card-body>

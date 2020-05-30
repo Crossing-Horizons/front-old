@@ -4,7 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 
 import { EntityService } from '../../../services/entity/entity.service';
 import { EntityHelper } from '../entity-helper';
-import { Rarities, Shadows, Consumables, constructions, Personalities, Animals, Genre, 
+import { Rarities, Shadows, Consumables, constructions, Personalities, Animals, Gender, 
   Durabilities, Furnitures, Plants, Clothing, Styles, Themes, Seasons } from '../../../models/entity';
 import { FormUtilities } from '../../../utils/form-utilities'
 
@@ -36,7 +36,7 @@ export class EntityFormComponent implements OnInit, OnChanges {
   shadows = Object.values(Shadows)
   consumables = Object.values(Consumables)
   constructions = Object.values(constructions)
-  genres = Object.values(Genre)
+  genders = Object.values(Gender)
   species = Object.values(Animals)
   personalities = Object.values(Personalities)
   durabilities = Object.values(Durabilities)
@@ -150,9 +150,9 @@ export class EntityFormComponent implements OnInit, OnChanges {
   get npc() { return this.entityForm.get('npc'); }
   get specie() { return this.entityForm.get('specie'); }
   get personality() { return this.entityForm.get('personality'); }
-  get genre() { return this.entityForm.get('genre'); }
+  get gender() { return this.entityForm.get('gender'); }
   get catchphrase() { return this.entityForm.get('catchphrase'); }
-  get birthdate() { return this.entityForm.get('birthdate'); }
+  get birthday() { return this.entityForm.get('birthday'); }
   get rain() { return this.entityForm.get('rain'); }
   get construction_type() { return this.entityForm.get('construction_type'); }
   get tiers() { return this.entityForm.get('tiers'); }

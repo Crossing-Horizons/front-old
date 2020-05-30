@@ -1,8 +1,10 @@
 export class Entity{
     // common
+    id: number;
     name: string;
-    image: [];
+    image: string;
     exchangeable: boolean;
+    entity_id: number;
 
     // fish and bugs
     shadow: Shadows;
@@ -18,19 +20,19 @@ export class Entity{
     rarity: Rarities;
     museum_phrase: string;
 
+    // art
+    has_fake: boolean;
+
     // other commons
     obtainment: string;
     buy_price: number;
     sell_price: number;
-    variants: [];
+    variants: string;
     recipe: number;
 
     // plant
     plant_type: Plants;
-
-    // flower
-    parent_1: number;
-    parent_2: number;
+    hybrid_parent: Array<Entity>;
 
     //consumable
     consumable_type: Consumables;
@@ -41,9 +43,9 @@ export class Entity{
     // villager
     specie: Animals;
     personality: Personalities;
-    genre: Genre;
+    gender: Gender;
     catchphrase: string;
-    birthdate: string;
+    birthday: string;
     favorite_music: number;
 
     // event
@@ -178,7 +180,7 @@ export enum Styles{
     elegant = 'elegant'
 }
 
-export enum Genre{
+export enum Gender{
     male = 'male', 
     female = 'female'
 }

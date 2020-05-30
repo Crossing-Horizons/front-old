@@ -83,8 +83,9 @@ export class EntityHelper{
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
                 form.addControl('plant_type', new FormControl(entity.plant_type, [Validators.required]));
                 form.addControl('rarity', new FormControl(entity.rarity));
-                form.addControl('parent_1', new FormControl(entity.parent_1));
-                form.addControl('parent_2', new FormControl(entity.parent_2));
+                // TODO Revisar los padres de las hibridas
+                // form.addControl('parent_1', new FormControl(entity.parent_1));
+                // form.addControl('parent_2', new FormControl(entity.parent_2));
                 return form;
             }
             case 'consumable': {
@@ -96,16 +97,16 @@ export class EntityHelper{
             case 'villager': {
                 form.addControl('specie', new FormControl(entity.specie, [Validators.required]));
                 form.addControl('personality', new FormControl(entity.personality, [Validators.required]));
-                form.addControl('genre', new FormControl(entity.genre, [Validators.required]));
+                form.addControl('gender', new FormControl(entity.gender, [Validators.required]));
                 form.addControl('catchphrase', new FormControl(entity.catchphrase, [Validators.required]));
-                form.addControl('birthdate', new FormControl(entity.birthdate, [Validators.required]));
+                form.addControl('birthday', new FormControl(entity.birthday, [Validators.required]));
                 form.addControl('favorite_music', new FormControl(entity.favorite_music, [Validators.required]));
-                form.get('genre').setValue('male')
+                form.get('gender').setValue('male')
                 return form;
             }
             case 'npc': {
                 form.addControl('obtainment', new FormControl(entity.obtainment, [Validators.required]));
-                form.addControl('birthdate', new FormControl(entity.birthdate, [Validators.required]));
+                form.addControl('birthday', new FormControl(entity.birthday, [Validators.required]));
                 return form;
             }
             case 'event': {
@@ -222,15 +223,15 @@ export class EntityHelper{
             case 'villager': {
                 form.append('specie', entityForm.get("specie").value);
                 form.append('personality', entityForm.get("personality").value);
-                form.append('genre', entityForm.get("genre").value);
+                form.append('gender', entityForm.get("gender").value);
                 form.append('catchphrase', entityForm.get("catchphrase").value);
-                form.append('birthdate', entityForm.get("birthdate").value);
+                form.append('birthday', entityForm.get("birthday").value);
                 form.append('favorite_music', entityForm.get("favorite_music").value);
                 return form;
             } 
             case 'npc': {
                 form.append('obtainment', entityForm.get("obtainment").value);
-                form.append('birthdate', entityForm.get("birthdate").value);
+                form.append('birthday', entityForm.get("birthday").value);
                 return form;
             } 
             case 'event': {
@@ -404,5 +405,55 @@ export class EntityHelper{
             material: [null, Validators.required],
             quantity: [null, Validators.required]
         });
+    }
+
+    public birthdayIcon(birthday){
+        var day = birthday.split("/")[0]
+        var month = birthday.split("/")[1]
+        if((month == '3' && day >='21') || (month == '4' && day <='20')){
+            return 'aries'
+        }
+        if((month == '4' && day >='21') || (month == '5' && day <='20')){
+            return 'taurus'
+        }
+        if((month == '5' && day >='21') || (month == '6' && day <='20')){
+            return 'gemini'
+        }
+        if((month == '6' && day >='21') || (month == '7' && day <='20')){
+            return 'cancer'
+        }
+        if((month == '7' && day >='23') || (month == '8' && day <='21')){
+            return 'leo'
+        }
+        if((month == '8' && day >='22') || (month == '9' && day <='22')){
+            return 'virgo'
+        }
+        if((month == '9' && day >='23') || (month == '10' && day <='22')){
+            return 'libra'
+        }
+        if((month == '10' && day >='23') || (month == '11' && day <='22')){
+            return 'scorpio'
+        }
+        if((month == '11' && day >='23') || (month == '12' && day <='21')){
+            return 'sagittarius'
+        }
+        if((month == '12' && day >='21') || (month == '1' && day <='19')){
+            return 'capricorn'
+        }
+        if((month == '1' && day >='20') || (month == '2' && day <='18')){
+            return 'aquarius'
+        }
+        if((month == '2' && day >='19') || (month == '3' && day <='20')){
+            return 'pisces'
+        }
+    }
+    public buyPriceIcon(type, obtainment){
+        if(type=='construction'){
+            return "https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/rco.png"
+        }
+        if(type=='music'){
+            return "https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NookShopping.png"
+        }
+        return "https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png"
     }
 }

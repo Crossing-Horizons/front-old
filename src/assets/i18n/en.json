@@ -68,9 +68,9 @@
     "plant_type": "Plant type",
     "specie": "Specie",
     "personality": "Personality",
-    "genre": "Genre",
+    "gender": "Gender",
     "catchphrase": "Catchphrase",
-    "birthdate": "Birthdate",
+    "birthday": "birthday",
     "npc": "Special character",
     "exchangeable": "Exchangeable",
     "exchangeable.false": "Cannot be exchange",
@@ -98,6 +98,7 @@
     "interactive": "Interactive",
     "bells": "bells",
     "fossil.identification": "Blathers may identify it!",
+    "art.fake": "Fake",
     "types": {
       "fish": "fish", 
       "bug": "bug", 
@@ -204,7 +205,7 @@
       "very_high": "Very high", 
       "infinite": "Infinite"
     },
-    "genres": {
+    "genders": {
       "male": "Male",
       "female": "Female"
     },
@@ -263,7 +264,21 @@
     },
     "obtainments":{
       "Dig Spot": "Digging into spot",
-      "Jolly Redd's Treasure Trawler": "Can be bought at Jolly Redd's Treasure Trawler"
+      "Jolly Redd's Treasure Trawler": "Can be bought at Jolly Redd's Treasure Trawler",
+      "Resident Services Upgrade": "Can be built from the Construction consultation counter",
+      "3rd House Upgrade (Left Room)": "After pay 3rd mortgage (left room is added)",
+      "4th House Upgrade (Right Room)": "After pay 4th mortgage (right room is added)",
+      "5th House Upgrade (2nd Floor)": "After pay 5th mortgage (a first floor is added)",
+      "Buy it in Nook Shopping or request it to K.K. Slider  after 6pm in front of the Resident Services building": "Request it to K.K. Saturdays after 6PM or buy it at Nook Shopping",
+      "This is a secret song! Request it to K.K. Slider after 6pm in front of the Resident Services building": "Request it to K.K. Saturdays after 6PM",
+      "Can be adquired from crancky villagers": "Can be adquired from crancky villagers",
+      "Can be adquired from jock villagers": "Can be adquired from jock villagers",
+      "Can be adquired from lazy villagers": "Can be adquired from lazy villagers",
+      "Can be adquired from snob villagers": "Can be adquired from snob villagers",
+      "Can be adquired from normal villagers": "Can be adquired from normal villagers",
+      "Can be adquired from peppy villagers": "Can be adquired from peppy villagers",
+      "Can be adquired from sisterly villagers": "Can be adquired from sisterly villagers",
+      "Can be adquired from snooty villagers": "Can be adquired from snooty villagers"
     },
     "required": {
       "name": "Entity name required",
@@ -280,9 +295,9 @@
       "plant_type": "Invalid plant type",
       "specie": "Invalid specie",
       "personality": "Invalid personality",
-      "genre": "Genre must be male or female",
+      "gender": "Gender must be male or female",
       "catchphrase": "You must provide villager catchphrase",
-      "birthdate": "You must provide villager birthdate",
+      "birthday": "You must provide villager birthday",
       "npc": "You must select valid npc",
       "month_northern": "Must indicate the range of months in the northern hemisphere",
       "month_southern": "Must indicate the range of months in the southern hemisphere",

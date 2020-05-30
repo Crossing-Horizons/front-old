@@ -29,7 +29,8 @@ import { EntityHelper } from './components/entity/entity-helper';
 import { EntityDisplayComponent } from './components/entity/entity-display/entity-display.component';
 import { EntityPanelComponent } from './components/entity/entity-panel/entity-panel.component';
 
-import { FormUtilities } from './utils/form-utilities'
+import { FormUtilities } from './utils/form-utilities';
+import { PlantComponent } from './components/entity/entity-display/plant/plant.component'
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FormUtilities } from './utils/form-utilities'
     EntityFormComponent,
     EntityDisplayComponent,
     EntityPanelComponent,
+    PlantComponent,
   ],
   imports: [
     BrowserModule,

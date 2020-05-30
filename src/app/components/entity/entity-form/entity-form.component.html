@@ -400,28 +400,28 @@
                         </div>
                     </div>
                 </div>
-                <!-- Birthdate -->
-                <div class="col-md-6" *ngIf="birthdate">
-                    <label for="birthdate" class="form-label">{{'entity.birthdate' | translate}}</label>
-                    <input type="text" id="birthdate" class="form-control mb-4" formControlName="birthdate">
-                    <div *ngIf="birthdate.invalid && (birthdate.dirty || submitAttemp)" class="alert alert-danger">
-                        <div *ngIf="birthdate.errors.required">
-                            {{"entity.required.birthdate" | translate}}
+                <!-- birthday -->
+                <div class="col-md-6" *ngIf="birthday">
+                    <label for="birthday" class="form-label">{{'entity.birthday' | translate}}</label>
+                    <input type="text" id="birthday" class="form-control mb-4" formControlName="birthday">
+                    <div *ngIf="birthday.invalid && (birthday.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="birthday.errors.required">
+                            {{"entity.required.birthday" | translate}}
                         </div>
                     </div>
                 </div>
-                <!-- Genre -->
-                <div class="col-md-6" *ngIf="genre">
-                    <label for="genre" class="form-label">{{'entity.genre' | translate}}</label>
+                <!-- Gender -->
+                <div class="col-md-6" *ngIf="gender">
+                    <label for="gender" class="form-label">{{'entity.gender' | translate}}</label>
                     <div class="mb-4">
-                        <div class="custom-control custom-radio custom-control-inline col-4" *ngFor="let genreOpt of genres; let i = index">
-                            <input type="radio" class="custom-control-input" id="genre+{{i}}" [value]="genreOpt" formControlName="genre" mdbInput>
-                            <label class="custom-control-label" for="genre+{{i}}">{{ "entity.genres."+genreOpt | translate }}</label>
+                        <div class="custom-control custom-radio custom-control-inline col-4" *ngFor="let genderOpt of genders; let i = index">
+                            <input type="radio" class="custom-control-input" id="gender+{{i}}" [value]="genderOpt" formControlName="gender" mdbInput>
+                            <label class="custom-control-label" for="gender+{{i}}">{{ "entity.genders."+genderOpt | translate }}</label>
                         </div>
                     </div>
-                    <div *ngIf="genre.invalid && (genre.dirty || submitAttemp)" class="alert alert-danger">
-                        <div *ngIf="genre.errors.required">
-                            {{"entity.required.genre" | translate}}
+                    <div *ngIf="gender.invalid && (gender.dirty || submitAttemp)" class="alert alert-danger">
+                        <div *ngIf="gender.errors.required">
+                            {{"entity.required.gender" | translate}}
                         </div>
                     </div>
                 </div>

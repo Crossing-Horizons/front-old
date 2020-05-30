@@ -38,7 +38,7 @@ export enum consumable_types {
     'misc'
 }
 
-export enum genres {
+export enum genders {
     'male',
     'female'
 }

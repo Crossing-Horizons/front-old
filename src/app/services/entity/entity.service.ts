@@ -13,7 +13,15 @@ export class EntityService {
     return this.requestService.request('POST', `${environment.endpoint}/entity/create`, data, {}, false);
   }
 
-  get(name: string, type: string){
-    return this.requestService.request('GET', `${environment.endpoint}/entity/get`, {name, type}, {}, false);
+  getByName(name: string, type: string){
+    return this.requestService.request('GET', `${environment.endpoint}/entity/getByName`, {name, type}, {}, false);
+  }
+
+  getByEntityId(id: number, type: string, entityOrTypeId: string){
+    return this.requestService.request('GET', `${environment.endpoint}/entity/getByEntityId`, {id, type, entityOrTypeId}, {}, false);
+  }
+
+  getHybridParents(id: number){
+    return this.requestService.request('GET', `${environment.endpoint}/entity/getHybridParents`, {id}, {}, false);
   }
 }

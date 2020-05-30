@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm">
+        <div class="row" *ngIf="entity.obtainment == 'Hybrid'">
+            <div *ngFor="let pair of hybrid_parents">
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/{{pair[0].entity.image}}.png">
+                +
+                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/{{pair[1].entity.image}}.png">
+            </div>
+        </div>
+        <div class="row" *ngIf="entity.obtainment == 'Seed bag'">
+            <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/{{seed_bag.image}}.png">
+        </div>
+    </div>
+</div>
