@@ -324,6 +324,14 @@
         </div>
         <!-- .end Plant -->
 
+        <!-- Furniture -->
+        <div *ngIf="type == 'furniture'">
+          <h4>{{"entity.obtainment" | translate }}</h4>
+          <hr>
+          <app-recipe [type]="type" [entity]="entity"></app-recipe>
+        </div>
+        <!-- .end Plant -->
+
       </div>
     </div>
   </mdb-card-body>

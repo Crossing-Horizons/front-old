@@ -30,7 +30,8 @@ import { EntityDisplayComponent } from './components/entity/entity-display/entit
 import { EntityPanelComponent } from './components/entity/entity-panel/entity-panel.component';
 
 import { FormUtilities } from './utils/form-utilities';
-import { PlantComponent } from './components/entity/entity-display/plant/plant.component'
+import { PlantComponent } from './components/entity/entity-display/plant/plant.component';
+import { RecipeComponent } from './components/entity/entity-display/recipe/recipe.component'
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { PlantComponent } from './components/entity/entity-display/plant/plant.c
     EntityDisplayComponent,
     EntityPanelComponent,
     PlantComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule,
