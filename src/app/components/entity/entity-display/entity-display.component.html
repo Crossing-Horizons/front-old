@@ -76,7 +76,7 @@
         <!-- .end General-->
         
         <!-- Prices -->
-        <div class="row my-4">
+        <div *ngIf="entity.buy_price || entity.sell_price" class="row my-4">
           <div *ngIf="entity.buy_price" class="col-5 ml-n3 mt-n3">
             <img class="icon" src="{{entityHelper.buyPriceIcon(type, entity.obtainment)}}">
             {{entity.buy_price}} {{ "entity.bells" |translate }}
@@ -98,239 +98,59 @@
         
         <!-- Villager -->
         <div *ngIf="type == 'villager'">
-          <h5><i>"{{entity.catchphrase}}"</i></h5>
-          <br>
-          <div class="row ml-1">
-            <div class="col-sm">
-              <div class="row">
-                <img class="mini-icon bg-warning rounded-circle" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/birthday/{{entityHelper.birthdayIcon(entity.birthday)}}.png">
-                <div class="col-sm my-auto">
-                  {{entity.birthday.split("/")[0] + " de " + ("general.months." + entity.birthday.split("/")[1] | translate)}}
-                </div>  
-              </div>
-              <div class="row mt-1">
-                <mdb-icon *ngIf="entity.gender=='female'" fas icon="venus" size="3x" class="pink-text"></mdb-icon>
-                <mdb-icon *ngIf="entity.gender=='male'" fas icon="mars" size="3x" class="blue-text"></mdb-icon>
-                <div class="col-sm my-auto">
-                  {{"entity.genders." + entity.gender | translate}}
-                </div> 
-              </div>
-              <div class="row mt-1">
-                <mdb-icon fas icon="theater-masks" size="lg" class="green-text"></mdb-icon>
-                <div class="col-sm my-auto">
-                  {{"entity.personalities." + entity.personality | translate}}
-                </div> 
-              </div>
-            </div>
-          </div>
+          <app-villager [entity]="entity" [type]="type"></app-villager>
         </div>
         <!-- .end Villager -->
         
         
         <!-- Bug and fish -->
         <div *ngIf="type == 'fish' || type == 'bug'">
-          <!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
-          <br> -->
-          <p class="float-right"><mdb-icon fas icon="star" size="lg" class="amber-text mx-1" aria-hidden="true"></mdb-icon> 
-            {{"entity.rarities." + entity.rarity | translate }}
-          </p>
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <div class="row">
-            <div class="col-sm" *ngIf="entity.month_southern">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NortHemisphere.png">
-                  <div class="col-sm my-auto">
-                    {{ entity.month_northern.split("&")[1] ? 
-                    ((entity.month_northern.split("&")[0].split("-")[1]) && (entity.month_northern.split("&")[1].split("-")[1])) ? 
-                    (("general.months." + entity.month_northern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[0].split("-")[1].trim() | translate)
-                    + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_northern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[1].split("-")[1].trim() | translate))
-                    : (entity.month_northern.split("&")[0].split("-")[1] ? 
-                    ("general.months." + entity.month_northern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[0].split("-")[1].trim() | translate)
-                    + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_northern.split("&")[1].trim() | translate)
-                    : ("general.months." + entity.month_northern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[1].split("-")[1].trim() | translate)
-                    + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_northern.split("&")[0].trim() | translate))
-                    : entity.month_northern.split("-")[1] ? 
-                    (("general.months." + entity.month_northern.split("-")[0] | translate) + ' - ' + ("general.months." + entity.month_northern.split("-")[1] | translate)) 
-                    : ("general.months." + entity.month_northern | translate)
-                    }}
-                  </div>
-              </div>
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/SouthHemisphere.png">
-                <div class="col-sm my-auto">
-                  {{ entity.month_southern.split("&")[1] ? 
-                  ((entity.month_southern.split("&")[0].split("-")[1]) && (entity.month_southern.split("&")[1].split("-")[1])) ? 
-                  (("general.months." + entity.month_southern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[0].split("-")[1].trim() | translate)
-                  + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_southern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[1].split("-")[1].trim() | translate))
-                  : (entity.month_southern.split("&")[0].split("-")[1] ? 
-                  ("general.months." + entity.month_southern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[0].split("-")[1].trim() | translate)
-                  + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_southern.split("&")[1].trim() | translate)
-                  : ("general.months." + entity.month_southern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[1].split("-")[1].trim() | translate)
-                  + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_southern.split("&")[0].trim() | translate))
-                  : entity.month_southern.split("-")[1] ? 
-                  (("general.months." + entity.month_southern.split("-")[0] | translate) + ' - ' + ("general.months." + entity.month_southern.split("-")[1] | translate)) 
-                  : ("general.months." + entity.month_southern | translate)
-                  }}
-                </div>
-              </div>
-            </div>
-            <div class="col-sm" *ngIf="entity.all_year">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Globe.png">
-                <div class="col-sm my-auto">
-                  {{ "entity.all_year" | translate }}
-                </div>
-              </div>
-            </div>
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Timer.png">
-                <div class="col-sm my-auto">
-                  {{entity.all_day ? ("entity.all_day" | translate) : entity.time | uppercase}}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Map.png">
-                <div class="col-sm my-auto">
-                  {{"entity.locations." + entity.location | translate }}
-                  <img class="mini-icon" *ngIf="entity.rain==1" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NoUmbrella.png">
-                  <img class="mini-icon" *ngIf="entity.rain==2" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Umbrella.png">
-                </div>  
-              </div>
-            </div>
-            <div *ngIf="entity.shadow" class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Shadow.png">
-                <div class="col-sm my-auto">
-                  {{"entity.shadows." + entity.shadow | translate }}
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-critters [entity]="entity" [type]="type"></app-critters>
         </div>
         <!-- .end Bug and fish -->
 
         <!-- Fossils -->
         <div *ngIf="type == 'fossil'">
-          <!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
-          <br> -->
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <div class="row">
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Scoop.png">
-                <div class="col-sm my-auto">
-                  {{"entity.obtainments.Dig Spot" | translate }}
-                </div>  
-              </div>
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/owl.png">
-                <div class="col-sm my-auto">
-                  {{"entity.fossil.identification" | translate }}
-                </div>  
-              </div>
-            </div>
-          </div>
+          <app-fossil [entity]="entity" [type]="type"></app-fossil>
         </div>
         <!-- .end Fossils -->
 
         <!-- Art -->
         <div *ngIf="type == 'art'">
-          <!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
-          <br> -->
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <div class="row">
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/fox.png">
-                <div class="col-sm my-auto">
-                  {{"entity.obtainments.Jolly Redd's Treasure Trawler" | translate }}
-                </div>  
-              </div>
-            </div>
-          </div>
+          <app-art [entity]="entity" [type]="type"></app-art>
         </div>
         <!-- .end Art -->
 
         <!-- Construction -->
         <div *ngIf="type == 'construction'">
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <div class="row">
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/TownHall.png">
-                <div class="col-sm my-auto">
-                  {{"entity.obtainments.Resident Services Upgrade" | translate }}
-                </div>
-              </div>
-              <div class="row" *ngIf="entity.obtainment!='Resident Services Upgrade'">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Building.png">
-                <div class="col-sm my-auto">
-                  {{"entity.obtainments." + entity.obtainment | translate }}
-                </div>  
-              </div>
-            </div>
-          </div>
+          <app-construction [entity]="entity" [type]="type"></app-construction>
         </div>
         <!-- .end Construction -->
 
         <!-- Music -->
         <div *ngIf="type == 'music'">
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <div class="row">
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/npc/tkkA.png">
-                <div class="col-sm my-auto">
-                  {{"entity.obtainments." + entity.obtainment | translate }}
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-music [entity]="entity" [type]="type"></app-music>
         </div>
         <!-- .end Music -->
 
         <!-- Reaction -->
         <div *ngIf="type == 'reaction'">
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <div class="row">
-            <div class="col-sm">
-              <div class="row">
-                <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
-                <div class="col-sm my-auto">
-                  {{"entity.obtainments." + entity.obtainment | translate }}
-                </div>
-              </div>
-            </div>
-          </div>
+          <app-reaction [entity]="entity" [type]="type"></app-reaction>
         </div>
         <!-- .end Reaction -->
 
         <!-- Plant -->
         <div *ngIf="type == 'plant'">
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
           <app-plant [type]="type" [entity]="entity"></app-plant>
         </div>
         <!-- .end Plant -->
 
         <!-- Furniture -->
         <div *ngIf="type == 'furniture'">
-          <h4>{{"entity.obtainment" | translate }}</h4>
-          <hr>
-          <app-recipe [type]="type" [entity]="entity"></app-recipe>
+          <app-furniture [type]="type" [entity]="entity"></app-furniture>
+          <app-recipe [type]="type" [entity]="entity" [locale]="locale"></app-recipe>
         </div>
-        <!-- .end Plant -->
+        <!-- .end Furniture -->
 
       </div>
     </div>

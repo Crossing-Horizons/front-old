@@ -31,7 +31,15 @@ import { EntityPanelComponent } from './components/entity/entity-panel/entity-pa
 
 import { FormUtilities } from './utils/form-utilities';
 import { PlantComponent } from './components/entity/entity-display/plant/plant.component';
-import { RecipeComponent } from './components/entity/entity-display/recipe/recipe.component'
+import { RecipeComponent } from './components/entity/entity-display/recipe/recipe.component';
+import { VillagerComponent } from './components/entity/entity-display/villager/villager.component';
+import { CrittersComponent } from './components/entity/entity-display/critters/critters.component';
+import { FossilComponent } from './components/entity/entity-display/fossil/fossil.component';
+import { ConstructionComponent } from './components/entity/entity-display/construction/construction.component';
+import { ArtComponent } from './components/entity/entity-display/art/art.component';
+import { MusicComponent } from './components/entity/entity-display/music/music.component';
+import { ReactionComponent } from './components/entity/entity-display/reaction/reaction.component';
+import { FurnitureComponent } from './components/entity/entity-display/furniture/furniture.component'
 
 @NgModule({
   declarations: [
@@ -48,6 +56,14 @@ import { RecipeComponent } from './components/entity/entity-display/recipe/recip
     EntityPanelComponent,
     PlantComponent,
     RecipeComponent,
+    VillagerComponent,
+    CrittersComponent,
+    FossilComponent,
+    ConstructionComponent,
+    ArtComponent,
+    MusicComponent,
+    ReactionComponent,
+    FurnitureComponent,
   ],
   imports: [
     BrowserModule,

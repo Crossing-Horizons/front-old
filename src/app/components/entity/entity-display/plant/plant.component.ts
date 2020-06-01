@@ -18,14 +18,12 @@ export class PlantComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.entity.plant_type=='flower'){
-      console.log(this.entity)
-      if(this.entity.obtainment == 'Hybrid'){
-        console.log('es hibrida')
+      if(this.entity.obtainment == 'hybrid'){
         this.entityService.getHybridParents(this.entity.id).then(res => {
           console.log(res)
           this.hybrid_parents = res;
         })
-      } else if(this.entity.obtainment == 'Seed bag'){
+      } else if(this.entity.obtainment == 'seed_bag'){
         this.entityService.getByName(this.entity.translations.EUen.replace("plant", "seed"), this.type).then(res => {
           this.seed_bag = res.entity;
           console.log(res)

@@ -65,7 +65,9 @@ export class Entity{
     // furniture
     furniture_type: Furnitures;
     size: string;
-    place_on: boolean;
+    tag: string;
+    series: string;
+    set: string;
     interactive: boolean;
 
     // music
@@ -75,6 +77,8 @@ export class Entity{
 
     //recipe
     materials: {}
+    material: number;
+    quantity: number;
 
     // achievement
     award_criteria: string;

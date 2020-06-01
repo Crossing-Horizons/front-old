@@ -66,9 +66,10 @@ export class EntityHelper{
                 form.addControl('furniture_type', new FormControl(entity.furniture_type, [Validators.required]));
                 form.addControl('variants', new FormControl(entity.variants));
                 form.addControl('interactive', new FormControl(entity.interactive));
-                form.addControl('place_on', new FormControl(entity.place_on));
+                form.addControl('tag', new FormControl(entity.tag));
+                form.addControl('series', new FormControl(entity.series));
+                form.addControl('set', new FormControl(entity.set));
                 form.get('interactive').setValue(false);
-                form.get('place_on').setValue(false);
                 return form;
             }
             case 'tool': {
@@ -198,7 +199,9 @@ export class EntityHelper{
                 form.append('size', entityForm.get("size").value);
                 form.append('variants', selectedVariants);
                 form.append('interactive', entityForm.get("interactive").value);
-                form.append('place_on', entityForm.get("place_on").value);
+                form.append('tag', entityForm.get("tag").value);
+                form.append('series', entityForm.get("series").value);
+                form.append('set', entityForm.get("set").value);
                 return form;
             } 
             case 'tool': {

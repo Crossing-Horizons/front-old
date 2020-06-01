@@ -1,0 +1,83 @@
+<!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
+<br> -->
+<p class="float-right"><mdb-icon fas icon="star" size="lg" class="amber-text mx-1" aria-hidden="true"></mdb-icon> 
+{{"entity.rarities." + entity.rarity | translate }}
+</p>
+<h4>{{"entity.obtainment" | translate }}</h4>
+<hr>
+<div class="row">
+<div class="col-sm" *ngIf="entity.month_southern">
+    <div class="row">
+    <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NortHemisphere.png">
+        <div class="col-sm my-auto">
+        {{ entity.month_northern.split("&")[1] ? 
+        ((entity.month_northern.split("&")[0].split("-")[1]) && (entity.month_northern.split("&")[1].split("-")[1])) ? 
+        (("general.months." + entity.month_northern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[0].split("-")[1].trim() | translate)
+        + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_northern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[1].split("-")[1].trim() | translate))
+        : (entity.month_northern.split("&")[0].split("-")[1] ? 
+        ("general.months." + entity.month_northern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[0].split("-")[1].trim() | translate)
+        + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_northern.split("&")[1].trim() | translate)
+        : ("general.months." + entity.month_northern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_northern.split("&")[1].split("-")[1].trim() | translate)
+        + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_northern.split("&")[0].trim() | translate))
+        : entity.month_northern.split("-")[1] ? 
+        (("general.months." + entity.month_northern.split("-")[0] | translate) + ' - ' + ("general.months." + entity.month_northern.split("-")[1] | translate)) 
+        : ("general.months." + entity.month_northern | translate)
+        }}
+        </div>
+    </div>
+    <div class="row">
+    <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/SouthHemisphere.png">
+    <div class="col-sm my-auto">
+        {{ entity.month_southern.split("&")[1] ? 
+        ((entity.month_southern.split("&")[0].split("-")[1]) && (entity.month_southern.split("&")[1].split("-")[1])) ? 
+        (("general.months." + entity.month_southern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[0].split("-")[1].trim() | translate)
+        + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_southern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[1].split("-")[1].trim() | translate))
+        : (entity.month_southern.split("&")[0].split("-")[1] ? 
+        ("general.months." + entity.month_southern.split("&")[0].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[0].split("-")[1].trim() | translate)
+        + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_southern.split("&")[1].trim() | translate)
+        : ("general.months." + entity.month_southern.split("&")[1].split("-")[0].trim() | translate) + ' - ' + ("general.months." + entity.month_southern.split("&")[1].split("-")[1].trim() | translate)
+        + ' ' + ("general.conjunctives.and" | translate) + ' ' + ("general.months." + entity.month_southern.split("&")[0].trim() | translate))
+        : entity.month_southern.split("-")[1] ? 
+        (("general.months." + entity.month_southern.split("-")[0] | translate) + ' - ' + ("general.months." + entity.month_southern.split("-")[1] | translate)) 
+        : ("general.months." + entity.month_southern | translate)
+        }}
+    </div>
+    </div>
+</div>
+<div class="col-sm" *ngIf="entity.all_year">
+    <div class="row">
+    <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Globe.png">
+    <div class="col-sm my-auto">
+        {{ "entity.all_year" | translate }}
+    </div>
+    </div>
+</div>
+<div class="col-sm">
+    <div class="row">
+    <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Timer.png">
+    <div class="col-sm my-auto">
+        {{entity.all_day ? ("entity.all_day" | translate) : entity.time | uppercase}}
+    </div>
+    </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm">
+    <div class="row">
+    <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Map.png">
+    <div class="col-sm my-auto">
+        {{"entity.locations." + entity.location | translate }}
+        <img class="mini-icon" *ngIf="entity.rain==1" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NoUmbrella.png">
+        <img class="mini-icon" *ngIf="entity.rain==2" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Umbrella.png">
+    </div>  
+    </div>
+</div>
+<div *ngIf="entity.shadow" class="col-sm">
+    <div class="row">
+    <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Shadow.png">
+    <div class="col-sm my-auto">
+        {{"entity.shadows." + entity.shadow | translate }}
+    </div>
+    </div>
+</div>
+</div>
