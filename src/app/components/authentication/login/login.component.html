@@ -3,29 +3,29 @@
   <!-- Default form login -->
   <form class="card text-center border border-light p-5" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <p class="h4 mb-4">{{"authentication.login" | translate}}</p>
+    <p class="h4 mb-4">{{"authentication.actions.login" | translate}}</p>
 
     <!-- Username -->
-    <input mdbInput type="text" id="username" formControlName="username" class="form-control mb-4" required />
+    <input mdbInput type="text" id="username" formControlName="username" class="form-control mb-4" placeholder="{{'user.properties.username' | translate}}" required />
     <div *ngIf="username.invalid && (username.dirty || submitAttemp)" class="alert alert-danger">
       <div *ngIf="username.errors.required">
-        {{"general.required.username" | translate}}
+        {{ "common.validations.required.masc" | translate:{ output: ("user.properties.username" | translate) } }}
       </div>
     </div>
 
     <!-- Password -->
-    <input mdbInput type="password" id="password" formControlName="password" class="form-control mb-4" placeholder="{{'general.user.password' | translate}}" required>
+    <input mdbInput type="password" id="password" formControlName="password" class="form-control mb-4" placeholder="{{'user.properties.password' | translate}}" required>
     <div *ngIf="password.invalid && (password.dirty || submitAttemp)" class="alert alert-danger">
       <div *ngIf="password.errors.required">
-        {{"general.required.password" | translate}}
+        {{ "common.validations.required.fem" | translate:{ output: ("user.properties.password" | translate) } }}
       </div>
     </div>
 
     <div *ngIf="this.loginError=='Not found'" class="alert alert-danger">
-      {{"authentication.error.notfound" | translate}}
+      {{"authentication.validations.notfound" | translate}}
     </div>
     <div *ngIf="this.loginError=='Internal'" class="alert alert-danger">
-      {{"authentication.error.server" | translate}}
+      {{"common.errors.server" | translate}}
     </div>
 
     <div class="d-flex justify-content-around">
@@ -40,11 +40,11 @@
     </div>
 
     <!-- Sign in button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">{{"authentication.login" | translate}}</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit">{{"authentication.actions.login" | translate}}</button>
 
     <!-- Register -->
     <p>{{"authentication.notmember" | translate}}
-      <a routerLink="/register">{{"authentication.register" | translate}}</a>
+      <a routerLink="/register">{{"authentication.actions.register" | translate}}</a>
     </p>
     
   </form>

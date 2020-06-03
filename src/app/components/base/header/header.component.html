@@ -57,12 +57,12 @@
       </li>
       <li *ngIf="connected" class="nav-item">
         <a class="nav-link" (click)="disconnect()">
-          {{ "authentication.logout" | translate}}<mdb-icon fas icon="sign-out-alt"></mdb-icon>
+          {{ "authentication.actions.logout" | translate}}<mdb-icon fas icon="sign-out-alt"></mdb-icon>
         </a>
       </li>
       <li *ngIf="!connected" class="nav-item">
         <a class="nav-link" routerLink="/login">
-          {{ "authentication.login" | translate}}<mdb-icon fas icon="sign-in-alt"></mdb-icon>
+          {{ "authentication.actions.login" | translate}}<mdb-icon fas icon="sign-in-alt"></mdb-icon>
         </a>
       </li>
     </ul>

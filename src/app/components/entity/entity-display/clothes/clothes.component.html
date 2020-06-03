@@ -3,29 +3,21 @@
         <div class="row">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
             <div class="col-sm my-auto">
-                {{"entity.properties.furniture_types." + entity.furniture_type | translate }}
+                {{"entity.properties.clothing_types." + entity.clothing_type | translate }}
             </div>
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
             <div class="col-sm my-auto">
-                {{entity.size}}
+                {{entity.always_available == false ? entity.seasons : ("entity.properties.all_year" | translate)}}
             </div>
         </div>
         <div class="row">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
             <div class="col-5 my-auto">
-                {{entity.tag}}
+                {{entity.style}}
             </div>
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
             <div class="col-5 my-auto">
-                {{entity.interactive}}
-            </div>
-            <img class="icon" *ngIf="entity.set" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
-            <div class="col-5 my-auto" *ngIf="entity.set">
-                {{entity.set}}
-            </div>
-            <img class="icon" *ngIf="entity.series" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
-            <div class="col-6 my-auto" *ngIf="entity.series">
-                {{entity.series}}
+                {{entity.themes}}
             </div>
         </div>
     </div>

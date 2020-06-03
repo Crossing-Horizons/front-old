@@ -25,7 +25,7 @@ export class EntityService {
     return this.requestService.request('GET', `${environment.endpoint}/entity/getHybridParents`, {id}, {}, false);
   }
 
-  getRecipeAndMaterials(name: string){
-    return this.requestService.request('GET', `${environment.endpoint}/entity/getRecipeAndMaterials`, {name}, {}, false);
+  getRecipeAndMaterials(name: string, type: string){
+    return this.requestService.request('GET', `${environment.endpoint}/entity/getRecipeAndMaterials`, {name, type}, {}, false);
   }
 }

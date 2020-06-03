@@ -1,0 +1,292 @@
+{
+  "actions": {
+    "new": "Add new entity",
+    "edit": "Edit an entity"
+  },
+  
+  "properties": {
+    "name": "Name",
+    "image": "Image",
+
+    "exchangeable": "Exchangeable",
+    "exchangeable.false": "Cannot be exchange",
+    "exchangeable.true": "Can be exchange",
+
+    "sell_price": "Sell price",
+    "buy_price": "Buy price",
+    "price_flick": "Flick'sprice",
+    "price_cj": "C.J.'s price",
+    "bells": "bells",
+
+    "location": "Location",
+    "locations": {
+      "Flying near hybrid flowers": "Flying near hybrid flowers",
+      "Flying by light": "Flying by light",
+      "Under trees":"Under trees",
+      "On beach rocks":"On beach rocks",
+      "On rotten food": "On rotten food",
+      "Flying": "Flyng",
+      "On the ground": "On the ground",
+      "On trees": "On trees",
+      "On flowers": "On flowers",
+      "Shaking trees": "Shaking trees",
+      "On ponds and rivers": "On ponds and rivers",
+      "Underground": "Underground",
+      "On tree stumps": "On tree stumps",
+      "On palm trees": "On palm trees",
+      "On the beach": "On the beach",
+      "On the beach rocks": "On the beach rocks",
+      "Near trash": "Near trash",
+      "Hitting rocks": "Hitting rocks",
+      "On villagers": "On villagers",
+      "On rocks (when raining)": "On rocks",
+      "On white flowers": "On white flowers",
+      "Sea (when raining or snowing)": "Sea",
+      "Sea": "Sea",
+      "River (Clifftop)": "River (Clifftop)",
+      "Pond": "Pond",
+      "River": "River",
+      "River (Clifftop) & Pond": "River (Clifftop) & Pond",
+      "River (Mouth)": "River (Mouth)",
+      "Pier": "Pier"
+    },
+
+    "shadow": "Shadow",
+    "shadows": {
+      "tiny": "Tiny",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "very_large": "Very large",
+      "largest": "Largest",
+      "medium_fin": "Medium with fin",
+      "large_fin": "Large with fin",
+      "largest_fin": "Largest with fin"
+    },
+
+    "date": "Date",
+    "time": "Time",
+    "month_northern": "Northern months",
+    "month_southern": "Southern months",
+    "all_day": "All day",
+    "all_year": "All year",
+
+    "rarity": "Rarity",
+    "rarities": {
+      "common": "Common",
+      "uncommon": "Uncommon",
+      "rare": "Rare",
+      "ultra_rare": "Ultra rare"
+    },
+
+    "clothing_type": "Clothing type",
+    "clothing_types": {
+      "accessory": "Accessory", 
+      "bag": "Bag", 
+      "bottom": "Bottom",
+      "dress": "Dress",
+      "headwear": "Headwear", 
+      "shoes": "Shoes", 
+      "socks": "Socks", 
+      "top": "Top", 
+      "umbrella": "Umbrella"
+    },
+
+    "plant_type": "Plant type",
+    "plant_types": {
+      "tree": "Tree",
+      "flower": "Flower",
+      "bush": "Bush"
+    },
+
+    "specie": "Specie",
+    "species": {
+      "alligator": "Alligator", 
+      "anteater": "Anteater", 
+      "bear": "Bear", 
+      "bird": "Bird", 
+      "bull": "Bull", 
+      "cat": "Cat", 
+      "chicken": "Chicken", 
+      "cow": "Cow", 
+      "cub": "Cub", 
+      "deer": "Deer", 
+      "dog": "Dog", 
+      "duck": "Duck", 
+      "eagle": "Eagle", 
+      "elephant": "Elephant", 
+      "frog": "Frog", 
+      "goat": "Goat", 
+      "gorilla": "Gorilla",
+      "hamster": "Hamster", 
+      "hippo": "Hippo", 
+      "horse": "Horse", 
+      "kangaroo": "Kangaroo", 
+      "koala": "Koala", 
+      "lion": "Lion", 
+      "mouse": "Mouse", 
+      "monkey": "Monkey", 
+      "octopus": "Octopus", 
+      "ostrich": "Ostrich", 
+      "penguin": "Penguin", 
+      "pig": "Pig", 
+      "rabbit": "Rabbit", 
+      "rhino": "Rhino", 
+      "sheep": "Sheep", 
+      "squirrel": "Squirrel", 
+      "tiger": "Tiger", 
+      "wolf": "Wolf"
+    },
+
+    "personality": "Personality",
+    "personalities": {
+      "crancky": "Crancky", 
+      "jock": "Jock", 
+      "lazy": "Lazy", 
+      "smug": "Smug", 
+      "normal": "Normal", 
+      "peppy": "Peppy", 
+      "sisterly": "Sisterly", 
+      "snooty": "Snooty"
+    },
+
+    "gender": "Gender",
+    "genders": {
+      "male": "Male",
+      "female": "Female"
+    },
+
+    "durability": "Durability",
+    "durabilities": {
+      "very_low": "Very low", 
+      "low": "Low", 
+      "medium": "Medium", 
+      "high": "High", 
+      "very_high": "Very high", 
+      "infinite": "Infinite"
+    },
+
+    "consumable_type": "Consumible type",
+    "consumable_types": {
+      "fruit": "Fruit",
+      "vegetable": "Vegetable",
+      "event": "Event",
+      "misc": "Misc"
+    },
+
+    "construction_type": "Construction type",
+    "construction_types": {
+      "bridge": "Bridge",
+      "incline": "Incline",
+      "mailbox": "Mailbox",
+      "siding": "Siding",
+      "roofing": "Roofing",
+      "door": "Door"
+    },
+
+    "furniture_type": "Furniture type",
+    "furniture_types": {
+      "house": "Interior", 
+      "exterior": "Exterior", 
+      "fence": "Fence",
+      "hang": "Hanging",
+      "floor": "Floor", 
+      "wall": "Wall", 
+      "rug": "Rug",
+      "complements": "Complement"
+    },
+
+    "style": "Style",
+    "styles": {
+      "cool": "Cool",
+      "simple": "Simple",
+      "georgeuos": "Georgeuos", 
+      "active": "Active",
+      "cute": "Cute",
+      "elegant": "Elegant"
+    },
+
+    "themes": "Themes",
+    "themeList": {
+      "comfy": "Comfy",
+      "everyday": "Everyday",
+      "formal": "Formal", 
+      "outdoorsy": "Outdoorsy",
+      "theatrical": "Theatrical",
+      "vacation": "Vacation",
+      "work": "Work",
+      "party": "Party",
+      "fairy_tale": "Fairy tale",
+      "sporty": "Sporty",
+      "ghotic": "Ghotic"
+    },
+
+    "seasons": "Seasons",
+    "seasonList": {
+      "spring": "Sring",
+      "summer": "Summer",
+      "autumn": "Autumn",
+      "winter": "Winter"
+    },
+
+    "museum_phrase": "Museum phrase",
+    "variants": "Variants images",
+    "award_criteria": "Award criteria",
+    "size": "Size",
+    "catchphrase": "Catchphrase",
+    "birthday": "Birthday",
+    "npc": "Character",
+    "always_available": "Always available",
+    "favorite_music": "Favorite music",
+    "place_on": "Can be place on",
+    "interactive": "Interactive",
+    "fake": "Fake",
+
+    "obtainment": "Obtainment",
+    "obtainments":{
+      "shop": "Shopping at Nook's Ccranny",
+      "dig_spot": "Digging spot",
+      "treasure_trawler": "Can be buy at Jolly Redd's Treasure Trawler",
+      "resident_services": "Can be built from the Resident Services",
+      "house_upgrade_3": "After pay 3rd mortage (adds left room)",
+      "house_upgrade_4": "After pay 4th mortage (adds rigth room)",
+      "house_upgrade_5": "After pay 5th mortage (adds first floor)",
+      "nook_shopping": "Buy it at Nook Shopping or request it to K.K. Slider on Saturdays from 6PM",
+      "kk_slider": "Request it to K.K. Slider on Saturdays from 6PM",
+      "birthday": "Only available the week of your birthday",
+      "crancky": "It can be obtained from crancky villagers",
+      "jock": "It can be obtained from jock villagers",
+      "lazy": "It can be obtained from lazy villagers",
+      "snob": "It can be obtained from snob villagers",
+      "normal": "It can be obtained from normal villagers",
+      "peppy": "It can be obtained from peppy villagers",
+      "sisterly": "It can be obtained from sisterly villagers",
+      "snooty": "It can be obtained from snooty villagers",
+      "all": "It can be obtained from any villager",
+      "5_star": "Getting a 5-star rating",
+      "hybrid": "Breeding two flowers",
+      "seed_bag": "Planting a seed bag"
+    }
+  },
+
+  "type": {
+    "fish": "fish", 
+    "bug": "bug", 
+    "fossil": "fossil", 
+    "plant": "plant", 
+    "art": "art", 
+    "consumable": "consumable", 
+    "construction": "construction", 
+    "event": "event",
+    "npc": "npc",
+    "clothes": "clothes",
+    "tool": "tool",
+    "furniture": "furniture",
+    "villager": "villager",
+    "music": "music",
+    "reaction": "reaction",
+    "recipe": "recipe",
+    "material": "material",
+    "achievement": "achievement"
+  }
+}

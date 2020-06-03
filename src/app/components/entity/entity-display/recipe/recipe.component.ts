@@ -24,7 +24,7 @@ export class RecipeComponent implements OnInit, OnChanges {
   materials: Array<Entity> = [];
 
   ngOnInit(): void {
-    this.entityService.getRecipeAndMaterials(this.entity.translations.EUen).then(res => {
+    this.entityService.getRecipeAndMaterials(this.entity.translations.EUen, this.type).then(res => {
       this.recipe = res.recipe.entity;
       this.recipe.translations = res.recipe.translations;
       this.entityHelper.getPropertyTranslated(this.recipe, 'name', this.locale)

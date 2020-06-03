@@ -1,0 +1,22 @@
+{
+  "forgot": "¿Has olvidado la contraseña?",
+  "notmember": "¿No tienes cuenta?",
+  "remember": "Recuérdame",
+  
+  "actions": {
+    "login": "Conectarse",
+    "register": "Registrarse" ,
+    "logout": "Desconectarse"
+  },
+
+  "messages":{
+    "registerconfirm": {
+      "header": "¡La cuenta ha sido creada correctamente!",
+      "body": "Recibirás un enlace de activación en el correo electrónico que has especificado"
+    },
+    "emailconfirm": {
+      "header": "¡El correo electrónico se ha confirmado correctamente!",
+      "body": "Tu cuenta ha sido activada y ya puedes acceder a ella. Para entrar, pulsa el botón 'Conectarse' en el menú."
+    }
+  }
+}

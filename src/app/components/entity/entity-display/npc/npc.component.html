@@ -1,0 +1,22 @@
+<div class="row mb-4 ml-1">
+    <div class="col-sm">
+        <div class="row">
+            <img class="mini-icon bg-warning rounded-circle" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/birthday/{{entityHelper.birthdayIcon(entity.birthday)}}.png">
+            <div class="col-sm my-auto">
+                {{entity.birthday.split("/")[0] + " de " + ("general.months." + entity.birthday.split("/")[1] | translate)}}
+            </div>
+        </div>
+    </div>
+</div>
+<h4>{{"entity.properties.obtainment" | translate }}</h4>
+<hr>
+<div class="row">
+    <div class="col-sm">
+        <div class="row">
+            <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Friends.png">
+            <div class="col-sm my-auto">
+                {{"entity.properties.obtainments." + entity.obtainment | translate }}
+            </div>
+        </div>
+    </div>
+</div>

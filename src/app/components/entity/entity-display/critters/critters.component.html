@@ -1,9 +1,9 @@
 <!-- <p *ngIf="entity.museum_phrase">{{entity.museum_phrase}}</p>
 <br> -->
 <p class="float-right"><mdb-icon fas icon="star" size="lg" class="amber-text mx-1" aria-hidden="true"></mdb-icon> 
-{{"entity.rarities." + entity.rarity | translate }}
+{{"entity.properties.rarities." + entity.rarity | translate }}
 </p>
-<h4>{{"entity.obtainment" | translate }}</h4>
+<h4>{{"entity.properties.obtainment" | translate }}</h4>
 <hr>
 <div class="row">
 <div class="col-sm" *ngIf="entity.month_southern">
@@ -48,7 +48,7 @@
     <div class="row">
     <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Globe.png">
     <div class="col-sm my-auto">
-        {{ "entity.all_year" | translate }}
+        {{ "entity.properties.all_year" | translate }}
     </div>
     </div>
 </div>
@@ -56,7 +56,7 @@
     <div class="row">
     <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Timer.png">
     <div class="col-sm my-auto">
-        {{entity.all_day ? ("entity.all_day" | translate) : entity.time | uppercase}}
+        {{entity.all_day ? ("entity.properties.all_day" | translate) : entity.time | uppercase}}
     </div>
     </div>
 </div>
@@ -66,7 +66,7 @@
     <div class="row">
     <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Map.png">
     <div class="col-sm my-auto">
-        {{"entity.locations." + entity.location | translate }}
+        {{"entity.properties.locations." + entity.location | translate }}
         <img class="mini-icon" *ngIf="entity.rain==1" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/NoUmbrella.png">
         <img class="mini-icon" *ngIf="entity.rain==2" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Umbrella.png">
     </div>  
@@ -76,7 +76,7 @@
     <div class="row">
     <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Shadow.png">
     <div class="col-sm my-auto">
-        {{"entity.shadows." + entity.shadow | translate }}
+        {{"entity.properties.shadows." + entity.shadow | translate }}
     </div>
     </div>
 </div>

@@ -1,0 +1,22 @@
+{
+  "forgot": "Did you forget your password?",
+  "notmember": "Don't you have an account?",
+  "remember": "Remember me",
+  
+  "actions": {
+    "login": "Log in",
+    "register": "Sign up" ,
+    "logout": "Log out"
+  },
+
+  "messages":{
+    "registerconfirm": {
+      "header": "The account has been created successfully!",
+      "body": "You will receive an activation link in the email you have specified"
+    },
+    "emailconfirm": {
+      "header": "The e-mail has been confirmed successfully!",
+      "body": "Your account has been activated and you can access it now. To enter, press the 'Log in' button in the menu."
+    }
+  }
+}

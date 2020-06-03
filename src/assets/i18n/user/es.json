@@ -1,0 +1,15 @@
+{
+  "properties":{
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "email": "Correo electrónico",
+    "confirmpassword": "Confirmar contraseña"
+  },
+
+  "validations": {
+    "username": "El nombre de usuario debe tener al menos 4 caracteres",
+    "password": "La contraseña debe tener al menos 8 caracteres",
+    "matchpassword": "Las contraseñas no coinciden",
+    "notfound": "Nombre de usuario o contraseña incorrecto"
+  }
+}

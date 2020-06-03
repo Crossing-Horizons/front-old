@@ -11,25 +11,26 @@
         <!-- Image -->
         <div class="col-5 ml-n5 align-items-center text-center">
           <!-- Single image -->
-          <div class="row">
+          <div class="row" *ngIf="!entity.variants">
             <div class="col-sm">
-              <img *ngIf="!entity.variants"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
+              <img  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}.png">
             </div>
             <div *ngIf="entity.has_fake" class="col-sm">
-              <img *ngIf="(type!='furniture' || !entity.variants) && type=='art'"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}Fake.png">
-              <br>{{"entity.art.fake" | translate}}
+              <img class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}Fake.png">
+              <br>{{"entity.properties.fake" | translate}}
             </div>
           </div>
           <!-- .end Single image -->
 
           <!-- Image with variations -->
-          <div class="row">
+          <div class="row" *ngIf="entity.variants">
             <div class="col-sm">
-              <mdb-carousel class="bg-light rounded" [animation]="'slide'" *ngIf="entity.variants">
+              <mdb-carousel *ngIf="variants.length > 1" class="bg-light rounded" [animation]="'slide'">
                 <mdb-carousel-item class="justify-content-center" *ngFor="let variant of variants">
                   <img class="img-fluid my-5" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}{{variant}}.png">
                 </mdb-carousel-item>
               </mdb-carousel>
+              <img *ngIf="variants.length <= 1" class="img-fluid my-5" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}0.png">
             </div>
           </div>
           <!-- .end Image with variations -->
@@ -47,7 +48,7 @@
                   </div>
                   <div *ngIf="entity.has_fake" class="col-sm">
                     <img *ngIf="(type!='furniture' || !entity.variants) && type=='art'"  class="img-fluid" (click)="basicModal.show()" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/{{type}}/{{entity.image}}Fake.png">
-                    <br>{{"entity.art.fake" | translate}}
+                    <br>{{"entity.properties.fake" | translate}}
                   </div>
                 </div>
               </div>
@@ -71,7 +72,7 @@
             </div>
 
             <p class="h1 mt-3">{{entity.name}}</p>
-            <p><i class="fas fa-sync"></i> {{ (entity.exchangeable ? "entity.exchangeable.true" : "entity.exchangeable.false") | translate }} </p>
+            <p><i class="fas fa-sync"></i> {{ (entity.exchangeable ? "entity.properties.exchangeable.true" : "entity.properties.exchangeable.false") | translate }} </p>
         
         <!-- .end General-->
         
@@ -79,19 +80,19 @@
         <div *ngIf="entity.buy_price || entity.sell_price" class="row my-4">
           <div *ngIf="entity.buy_price" class="col-5 ml-n3 mt-n3">
             <img class="icon" src="{{entityHelper.buyPriceIcon(type, entity.obtainment)}}">
-            {{entity.buy_price}} {{ "entity.bells" |translate }}
+            {{entity.buy_price}} {{ "entity.properties.bells" |translate }}
           </div>
           <div *ngIf="entity.sell_price" class="col-5 ml-n3 mt-n3">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png">
-            {{entity.sell_price}} {{ "entity.bells" |translate }}
+            {{entity.sell_price}} {{ "entity.properties.bells" |translate }}
           </div>
           <div *ngIf="entity.price_cj" class="col-4 ml-n3 mt-n3">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png">
-            {{entity.price_cj}} {{ "entity.bells" |translate }}
+            {{entity.price_cj}} {{ "entity.properties.bells" |translate }}
           </div>
           <div *ngIf="entity.price_flick" class="col-4 ml-n3 mt-n3">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Coin.png">
-            {{entity.price_flick}} {{ "entity.bells" |translate }}
+            {{entity.price_flick}} {{ "entity.properties.bells" |translate }}
           </div>
         </div>
         <!-- .end Prices -->
@@ -148,9 +149,48 @@
         <!-- Furniture -->
         <div *ngIf="type == 'furniture'">
           <app-furniture [type]="type" [entity]="entity"></app-furniture>
-          <app-recipe [type]="type" [entity]="entity" [locale]="locale"></app-recipe>
         </div>
         <!-- .end Furniture -->
+
+        <!-- Clothes -->
+        <div *ngIf="type == 'clothes'">
+          <app-clothes [type]="type" [entity]="entity"></app-clothes>
+        </div>
+        <!-- .end Clothes -->
+
+        <!-- Tool -->
+        <div *ngIf="type == 'tool'">
+          <app-tool [type]="type" [entity]="entity"></app-tool>
+        </div>
+        <!-- .end Tool -->
+
+        <!-- Material -->
+        <div *ngIf="type == 'material'">
+          <app-material [type]="type" [entity]="entity"></app-material>
+        </div>
+        <!-- .end Material -->
+
+        <!-- Event -->
+        <div *ngIf="type == 'event'">
+          <app-event [type]="type" [entity]="entity"></app-event>
+        </div>
+        <!-- .end Event -->
+        
+        <!-- Npc -->
+        <div *ngIf="type == 'npc'">
+          <app-npc [type]="type" [entity]="entity"></app-npc>
+        </div>
+        <!-- .end Npc -->
+
+        <!-- Achievement -->
+        <div *ngIf="type == 'achievement'">
+          <app-achievement [type]="type" [entity]="entity"></app-achievement>
+        </div>
+        <!-- .end Achievement -->
+
+        <div *ngIf="entity.obtainment == 'crafting'">
+          <app-recipe [type]="type" [entity]="entity" [locale]="locale"></app-recipe>
+        </div>
 
       </div>
     </div>

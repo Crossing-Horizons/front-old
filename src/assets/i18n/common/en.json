@@ -1,0 +1,53 @@
+{
+  "languages": {
+    "english": "English (EU)",
+    "spanish": "Spanish (EU)",
+    "language": "Language"
+  },
+
+  "actions":{
+    "create": "Create",
+    "edit": "Edit",
+    "show": "Show",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "months": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May", 
+    "6": "Jun", 
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
+  },
+
+  "conjunctives": {
+    "and": "and"
+  },
+
+  "validations": {
+    "required.masc": "You must provide the {{output}}",
+    "required.fem": "You must provide the {{output}}",
+    "must.select.masc": "You must select at least one {{output}}",
+    "must.select.fem": "You must select at least one {{output}}",
+    "not.valid.masc": "The {{output}} provided is not valid",
+    "not.valid.fem": "The {{output}} introducida is not valid",
+    "number.masc": "The {{output}} must be a number",
+    "number.fem": "The {{output}} must be a number",
+    "already.exists.masc": "{{output}} already exists",
+    "already.exists.fem": "{{output}} already exists",
+    "wrong.masc": "Wrong {{output}}",
+    "wrong.fem": "Wrong {{output}}"
+  },
+
+  "errors": {
+    "server": "Internal server error"
+  }
+}

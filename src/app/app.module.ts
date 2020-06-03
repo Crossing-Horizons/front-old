@@ -14,6 +14,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ModuleTranslateLoader, IModuleTranslationOptions } from '@larscom/ngx-translate-module-loader';
 
 //Application components
 import { AppComponent } from './app.component';
@@ -39,7 +40,29 @@ import { ConstructionComponent } from './components/entity/entity-display/constr
 import { ArtComponent } from './components/entity/entity-display/art/art.component';
 import { MusicComponent } from './components/entity/entity-display/music/music.component';
 import { ReactionComponent } from './components/entity/entity-display/reaction/reaction.component';
-import { FurnitureComponent } from './components/entity/entity-display/furniture/furniture.component'
+import { FurnitureComponent } from './components/entity/entity-display/furniture/furniture.component';
+import { ClothesComponent } from './components/entity/entity-display/clothes/clothes.component';
+import { ToolComponent } from './components/entity/entity-display/tool/tool.component';
+import { MaterialComponent } from './components/entity/entity-display/material/material.component';
+import { EventComponent } from './components/entity/entity-display/event/event.component';
+import { NpcComponent } from './components/entity/entity-display/npc/npc.component';
+import { AchievementComponent } from './components/entity/entity-display/achievement/achievement.component';
+
+export function moduleHttpLoaderFactory(http: HttpClient) {
+  const baseTranslateUrl = './assets/i18n';
+ 
+  const options: IModuleTranslationOptions = {
+    nameSpaceUppercase: false,
+    modules: [
+      { baseTranslateUrl },
+      { moduleName: 'authentication', baseTranslateUrl },
+      { moduleName: 'common', baseTranslateUrl },
+      { moduleName: 'entity', baseTranslateUrl },
+      { moduleName: 'user', baseTranslateUrl }
+    ]
+  };
+  return new ModuleTranslateLoader(http, options);
+}
 
 @NgModule({
   declarations: [
@@ -64,6 +87,12 @@ import { FurnitureComponent } from './components/entity/entity-display/furniture
     MusicComponent,
     ReactionComponent,
     FurnitureComponent,
+    ClothesComponent,
+    ToolComponent,
+    MaterialComponent,
+    EventComponent,
+    NpcComponent,
+    AchievementComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,9 +106,7 @@ import { FurnitureComponent } from './components/entity/entity-display/furniture
     TranslateModule.forRoot({
       loader: {
       provide: TranslateLoader,
-      useFactory: (http: HttpClient) => {
-          return new TranslateHttpLoader(http);
-      },
+      useFactory: moduleHttpLoaderFactory,
       deps: [ HttpClient ]
       }
     })

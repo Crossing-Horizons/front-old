@@ -1,11 +1,11 @@
-<h4>{{"entity.obtainment" | translate }}</h4>
+<h4>{{"entity.properties.obtainment" | translate }}</h4>
 <hr>
 <div class="row">
     <div class="col-sm">
         <div class="row" *ngIf="entity.obtainment == 'hybrid'">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/utils/Watering.png">
             <div class="col-sm my-auto">
-                {{"entity.obtainments." + entity.obtainment | translate}}
+                {{"entity.properties.obtainments." + entity.obtainment | translate}}
             </div>
         </div>
         <div *ngIf="entity.obtainment == 'hybrid'" class="mt-3">
@@ -24,7 +24,7 @@
         <div class="row" *ngIf="entity.obtainment == 'seed_bag'">
             <img class="icon" src="https://crossing-horizons-images.s3.eu-west-3.amazonaws.com/plant/icons/{{seed_bag.image}}.png">
             <div class="col-sm my-auto">
-                {{"entity.obtainments." + entity.obtainment | translate}}
+                {{"entity.properties.obtainments." + entity.obtainment | translate}}
             </div>
         </div>
     </div>

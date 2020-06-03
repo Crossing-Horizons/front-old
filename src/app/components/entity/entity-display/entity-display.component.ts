@@ -49,7 +49,7 @@ export class EntityDisplayComponent implements OnInit {
   }
 
   entityVariants(){
-    if(this.type=='furniture'){
+    if(this.type=='furniture' || this.type=='tool'){
       var furnitureAux1 = parseInt(this.entity.variants.split("_")[0])
       var furnitureAux2 = parseInt(this.entity.variants.split("_")[1])
       if(furnitureAux1 > 0){
@@ -72,5 +72,6 @@ export class EntityDisplayComponent implements OnInit {
         this.variants.push(i)
       }
     }
+    console.log(this.variants)
   }
 }

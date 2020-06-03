@@ -12,13 +12,13 @@
         <mdb-icon *ngIf="entity.gender=='female'" fas icon="venus" size="3x" class="pink-text"></mdb-icon>
         <mdb-icon *ngIf="entity.gender=='male'" fas icon="mars" size="3x" class="blue-text"></mdb-icon>
         <div class="col-sm my-auto">
-            {{"entity.genders." + entity.gender | translate}}
+            {{"entity.properties.genders." + entity.gender | translate}}
         </div> 
         </div>
         <div class="row mt-1">
         <mdb-icon fas icon="theater-masks" size="lg" class="green-text"></mdb-icon>
         <div class="col-sm my-auto">
-            {{"entity.personalities." + entity.personality | translate}}
+            {{"entity.properties.personalities." + entity.personality | translate}}
         </div> 
         </div>
     </div>
